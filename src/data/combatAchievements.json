@@ -1,0 +1,322 @@
+[
+  {
+    "id": "ca-1",
+    "name": "A Slithery Encounter",
+    "monster": "Giant Mole",
+    "tier": "Easy",
+    "points": 1,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_easy_tier_icon.png",
+    "type": "Kill Count",
+    "description": "Kill the Giant Mole 1 time."
+  },
+  {
+    "id": "ca-2",
+    "name": "A Demon's Best Friend",
+    "monster": "Cerberus",
+    "tier": "Medium",
+    "points": 2,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_medium_tier_icon.png",
+    "type": "Perfection",
+    "description": "Kill Cerberus without taking any damage from her souls."
+  },
+  {
+    "id": "ca-3",
+    "name": "Barrows Novice",
+    "monster": "Barrows",
+    "tier": "Easy",
+    "points": 1,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_easy_tier_icon.png",
+    "type": "Kill Count",
+    "description": "Open the Barrows chest 10 times."
+  },
+  {
+    "id": "ca-4",
+    "name": "Can't Touch This",
+    "monster": "Barrows",
+    "tier": "Medium",
+    "points": 2,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_medium_tier_icon.png",
+    "type": "Perfection",
+    "description": "Defeat all six Barrows brothers without taking any melee damage."
+  },
+  {
+    "id": "ca-5",
+    "name": "King Black Dragon Champion",
+    "monster": "King Black Dragon",
+    "tier": "Medium",
+    "points": 2,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_medium_tier_icon.png",
+    "type": "Kill Count",
+    "description": "Kill the King Black Dragon 25 times."
+  },
+  {
+    "id": "ca-6",
+    "name": "Antifire Only",
+    "monster": "King Black Dragon",
+    "tier": "Hard",
+    "points": 3,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_hard_tier_icon.png",
+    "type": "Restriction",
+    "description": "Kill the King Black Dragon without equipping a Dragonfire shield or DFS equivalent."
+  },
+  {
+    "id": "ca-7",
+    "name": "Fight Caves Veteran",
+    "monster": "TzTok-Jad",
+    "tier": "Hard",
+    "points": 3,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_hard_tier_icon.png",
+    "type": "Kill Count",
+    "description": "Complete the Fight Caves and receive a Fire Cape."
+  },
+  {
+    "id": "ca-8",
+    "name": "Facing Jad Head-on",
+    "monster": "TzTok-Jad",
+    "tier": "Hard",
+    "points": 3,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_hard_tier_icon.png",
+    "type": "Perfection",
+    "description": "Defeat TzTok-Jad without letting him heal to full health from the Yt-HurKot."
+  },
+  {
+    "id": "ca-9",
+    "name": "Zulrah Speed-Trialist",
+    "monster": "Zulrah",
+    "tier": "Hard",
+    "points": 3,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_hard_tier_icon.png",
+    "type": "Speed",
+    "description": "Defeat Zulrah in less than 1 minute 30 seconds."
+  },
+  {
+    "id": "ca-10",
+    "name": "Snake Rebound",
+    "monster": "Zulrah",
+    "tier": "Elite",
+    "points": 4,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_elite_tier_icon.png",
+    "type": "Perfection",
+    "description": "Kill Zulrah without taking any damage from snakelings or venom clouds."
+  },
+  {
+    "id": "ca-11",
+    "name": "Vorkath Speed-Chaser",
+    "monster": "Vorkath",
+    "tier": "Hard",
+    "points": 3,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_hard_tier_icon.png",
+    "type": "Speed",
+    "description": "Defeat Vorkath in less than 1 minute 15 seconds."
+  },
+  {
+    "id": "ca-12",
+    "name": "Faithless Encounter",
+    "monster": "Vorkath",
+    "tier": "Elite",
+    "points": 4,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_elite_tier_icon.png",
+    "type": "Restriction",
+    "description": "Kill Vorkath without activating any protection prayers."
+  },
+  {
+    "id": "ca-13",
+    "name": "The Fremennik Way",
+    "monster": "Vorkath",
+    "tier": "Master",
+    "points": 5,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_master_tier_icon.png",
+    "type": "Restriction",
+    "description": "Kill Vorkath using only melee weapons, taking no damage from his special fireball attacks."
+  },
+  {
+    "id": "ca-14",
+    "name": "Phantom Muspah Adept",
+    "monster": "Phantom Muspah",
+    "tier": "Hard",
+    "points": 3,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_hard_tier_icon.png",
+    "type": "Kill Count",
+    "description": "Kill the Phantom Muspah 10 times."
+  },
+  {
+    "id": "ca-15",
+    "name": "Step Back!",
+    "monster": "Phantom Muspah",
+    "tier": "Elite",
+    "points": 4,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_elite_tier_icon.png",
+    "type": "Perfection",
+    "description": "Defeat the Phantom Muspah without taking any melee damage during its melee phase."
+  },
+  {
+    "id": "ca-16",
+    "name": "General Graardor Master",
+    "monster": "General Graardor",
+    "tier": "Hard",
+    "points": 3,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_hard_tier_icon.png",
+    "type": "Kill Count",
+    "description": "Kill General Graardor 50 times."
+  },
+  {
+    "id": "ca-17",
+    "name": "Door Altar Graardor",
+    "monster": "General Graardor",
+    "tier": "Elite",
+    "points": 4,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_elite_tier_icon.png",
+    "type": "Perfection",
+    "description": "Kill General Graardor in a private room without taking any melee hits from him."
+  },
+  {
+    "id": "ca-18",
+    "name": "Kree'arra Perfection",
+    "monster": "Kree'arra",
+    "tier": "Elite",
+    "points": 4,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_elite_tier_icon.png",
+    "type": "Perfection",
+    "description": "Kill Kree'arra without being blown across the room or hit by her melee attack."
+  },
+  {
+    "id": "ca-19",
+    "name": "Commander Zilyana Flawless",
+    "monster": "Commander Zilyana",
+    "tier": "Elite",
+    "points": 4,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_elite_tier_icon.png",
+    "type": "Perfection",
+    "description": "Defeat Commander Zilyana without taking any melee damage from her."
+  },
+  {
+    "id": "ca-20",
+    "name": "Chambers of Xeric Soloist",
+    "monster": "Great Olm",
+    "tier": "Elite",
+    "points": 4,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_elite_tier_icon.png",
+    "type": "Kill Count",
+    "description": "Complete a Chambers of Xeric raid solo."
+  },
+  {
+    "id": "ca-21",
+    "name": "Immortal Raid",
+    "monster": "Great Olm",
+    "tier": "Master",
+    "points": 5,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_master_tier_icon.png",
+    "type": "Perfection",
+    "description": "Complete a Chambers of Xeric raid without anyone in the team dying."
+  },
+  {
+    "id": "ca-22",
+    "name": "Theatre of Blood Veteran",
+    "monster": "Verzik Vitur",
+    "tier": "Master",
+    "points": 5,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_master_tier_icon.png",
+    "type": "Kill Count",
+    "description": "Complete the Theatre of Blood 25 times."
+  },
+  {
+    "id": "ca-23",
+    "name": "A Timely Snack",
+    "monster": "Verzik Vitur",
+    "tier": "Grandmaster",
+    "points": 6,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_grandmaster_tier_icon.png",
+    "type": "Perfection",
+    "description": "Defeat Verzik Vitur in Hard Mode without anyone triggering a web or taking bounced red spider damage."
+  },
+  {
+    "id": "ca-24",
+    "name": "Tombs of Amascut Expert",
+    "monster": "Tumeken's Warden",
+    "tier": "Master",
+    "points": 5,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_master_tier_icon.png",
+    "type": "Restriction",
+    "description": "Complete a Tombs of Amascut raid with an Invocations level of 350 or higher."
+  },
+  {
+    "id": "ca-25",
+    "name": "All Praise Tumeken",
+    "monster": "Tumeken's Warden",
+    "tier": "Grandmaster",
+    "points": 6,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_grandmaster_tier_icon.png",
+    "type": "Restriction",
+    "description": "Complete a Tombs of Amascut raid at 500 Invocation level without wiping."
+  },
+  {
+    "id": "ca-26",
+    "name": "Inferno Conqueror",
+    "monster": "TzKal-Zuk",
+    "tier": "Grandmaster",
+    "points": 6,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_grandmaster_tier_icon.png",
+    "type": "Kill Count",
+    "description": "Complete the Inferno and obtain the Infernal Cape."
+  },
+  {
+    "id": "ca-27",
+    "name": "Facing Jad Trio",
+    "monster": "TzKal-Zuk",
+    "tier": "Grandmaster",
+    "points": 6,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_grandmaster_tier_icon.png",
+    "type": "Perfection",
+    "description": "Defeat all three Jads in Wave 68 of the Inferno without taking any damage."
+  },
+  {
+    "id": "ca-28",
+    "name": "The Duke's Demise",
+    "monster": "Duke Sucellus",
+    "tier": "Master",
+    "points": 5,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_master_tier_icon.png",
+    "type": "Perfection",
+    "description": "Defeat Duke Sucellus without taking any damage from his gaze or ceiling spikes."
+  },
+  {
+    "id": "ca-29",
+    "name": "Dancing with Vardorvis",
+    "monster": "Vardorvis",
+    "tier": "Master",
+    "points": 5,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_master_tier_icon.png",
+    "type": "Perfection",
+    "description": "Defeat Vardorvis without taking damage from any flying axes or strangler tentacles."
+  },
+  {
+    "id": "ca-30",
+    "name": "Whisping In the Shadows",
+    "monster": "The Whisperer",
+    "tier": "Master",
+    "points": 5,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_master_tier_icon.png",
+    "type": "Perfection",
+    "description": "Defeat The Whisperer without losing sanity to 0 or taking damage from her dark tentacles."
+  },
+  {
+    "id": "ca-31",
+    "name": "Subduing the Beast",
+    "monster": "The Leviathan",
+    "tier": "Grandmaster",
+    "points": 6,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_grandmaster_tier_icon.png",
+    "type": "Speed",
+    "description": "Defeat the Awakened Leviathan in less than 2 minutes."
+  },
+  {
+    "id": "ca-32",
+    "name": "Nex Perfection",
+    "monster": "Nex",
+    "tier": "Grandmaster",
+    "points": 6,
+    "tierIconUrl": "https://oldschool.runescape.wiki/images/Combat_Achievements_-_grandmaster_tier_icon.png",
+    "type": "Perfection",
+    "description": "Defeat Nex in a trio without anyone taking damage from Blood Sacrifice or Shadow Smash."
+  }
+]

@@ -1,0 +1,559 @@
+[
+  {
+    "id": "cooks-assistant",
+    "name": "Cook's Assistant",
+    "difficulty": "Novice",
+    "questPoints": 1,
+    "optimalOrder": 1,
+    "members": false,
+    "requirements": {
+      "skills": {},
+      "quests": []
+    },
+    "rewards": {
+      "questPoints": 1,
+      "experience": { "Cooking": 300 },
+      "items": ["Access to Cook's range"]
+    },
+    "youtubeVideoId": "Y3E2bC6Jc1U"
+  },
+  {
+    "id": "sheep-shearer",
+    "name": "Sheep Shearer",
+    "difficulty": "Novice",
+    "questPoints": 1,
+    "optimalOrder": 2,
+    "members": false,
+    "requirements": {
+      "skills": { "Crafting": 1 },
+      "quests": []
+    },
+    "rewards": {
+      "questPoints": 1,
+      "experience": { "Crafting": 150 },
+      "items": ["60 coins"]
+    },
+    "youtubeVideoId": "2mU79rU7JzY"
+  },
+  {
+    "id": "the-restless-ghost",
+    "name": "The Restless Ghost",
+    "difficulty": "Novice",
+    "questPoints": 1,
+    "optimalOrder": 3,
+    "members": false,
+    "requirements": {
+      "skills": {},
+      "quests": []
+    },
+    "rewards": {
+      "questPoints": 1,
+      "experience": { "Prayer": 1125 },
+      "items": ["Ghostspeak amulet"]
+    },
+    "youtubeVideoId": "gI7qE_R6aWk"
+  },
+  {
+    "id": "x-marks-the-spot",
+    "name": "X Marks the Spot",
+    "difficulty": "Novice",
+    "questPoints": 1,
+    "optimalOrder": 4,
+    "members": false,
+    "requirements": {
+      "skills": {},
+      "quests": []
+    },
+    "rewards": {
+      "questPoints": 1,
+      "experience": {},
+      "items": ["Antique lamp (300 XP)", "200 coins", "Clue scroll (beginner)"]
+    },
+    "youtubeVideoId": "z8pG2_r1N7g"
+  },
+  {
+    "id": "witchs-potion",
+    "name": "Witch's Potion",
+    "difficulty": "Novice",
+    "questPoints": 1,
+    "optimalOrder": 5,
+    "members": false,
+    "requirements": {
+      "skills": {},
+      "quests": []
+    },
+    "rewards": {
+      "questPoints": 1,
+      "experience": { "Magic": 325 }
+    },
+    "youtubeVideoId": "pX2Qe84A4n0"
+  },
+  {
+    "id": "waterfall-quest",
+    "name": "Waterfall Quest",
+    "difficulty": "Intermediate",
+    "questPoints": 1,
+    "optimalOrder": 6,
+    "members": true,
+    "requirements": {
+      "skills": {},
+      "quests": []
+    },
+    "rewards": {
+      "questPoints": 1,
+      "experience": { "Attack": 13750, "Strength": 13750 },
+      "items": ["2 diamonds", "2 gold bars", "40 mithril seeds"]
+    },
+    "youtubeVideoId": "xV2J6m4J_mQ"
+  },
+  {
+    "id": "tree-gnome-village",
+    "name": "Tree Gnome Village",
+    "difficulty": "Intermediate",
+    "questPoints": 2,
+    "optimalOrder": 7,
+    "members": true,
+    "requirements": {
+      "skills": {},
+      "quests": []
+    },
+    "rewards": {
+      "questPoints": 2,
+      "experience": { "Attack": 11450 },
+      "items": ["Gnome amulet", "Spirit tree teleport access"]
+    },
+    "youtubeVideoId": "eN5lY9M2DqU"
+  },
+  {
+    "id": "the-grand-tree",
+    "name": "The Grand Tree",
+    "difficulty": "Experienced",
+    "questPoints": 5,
+    "optimalOrder": 8,
+    "members": true,
+    "requirements": {
+      "skills": { "Agility": 25 },
+      "quests": []
+    },
+    "rewards": {
+      "questPoints": 5,
+      "experience": { "Agility": 7900, "Attack": 18400, "Magic": 2150 },
+      "items": ["Gnome glider access"]
+    },
+    "youtubeVideoId": "9b6n-3K4h8U"
+  },
+  {
+    "id": "fight-arena",
+    "name": "Fight Arena",
+    "difficulty": "Experienced",
+    "questPoints": 2,
+    "optimalOrder": 9,
+    "members": true,
+    "requirements": {
+      "skills": {},
+      "quests": []
+    },
+    "rewards": {
+      "questPoints": 2,
+      "experience": { "Attack": 12175, "Thieving": 2175 },
+      "items": ["1,000 coins"]
+    },
+    "youtubeVideoId": "JqO3Gj4R8u8"
+  },
+  {
+    "id": "priest-in-peril",
+    "name": "Priest in Peril",
+    "difficulty": "Novice",
+    "questPoints": 1,
+    "optimalOrder": 10,
+    "members": true,
+    "requirements": {
+      "skills": {},
+      "quests": []
+    },
+    "rewards": {
+      "questPoints": 1,
+      "experience": { "Prayer": 1406 },
+      "items": ["Wolfbane dagger", "Access to Morytania"]
+    },
+    "youtubeVideoId": "zR3ZtH3tJ48"
+  },
+  {
+    "id": "nature-spirit",
+    "name": "Nature Spirit",
+    "difficulty": "Novice",
+    "questPoints": 2,
+    "optimalOrder": 11,
+    "members": true,
+    "requirements": {
+      "skills": { "Crafting": 18 },
+      "quests": ["priest-in-peril", "the-restless-ghost"]
+    },
+    "rewards": {
+      "questPoints": 2,
+      "experience": { "Crafting": 3000, "Defence": 2000, "Hitpoints": 2000 },
+      "items": ["Druidic pouch"]
+    },
+    "youtubeVideoId": "tqV8hG5D7dU"
+  },
+  {
+    "id": "lost-city",
+    "name": "Lost City",
+    "difficulty": "Experienced",
+    "questPoints": 3,
+    "optimalOrder": 12,
+    "members": true,
+    "requirements": {
+      "skills": { "Crafting": 31, "Woodcutting": 36 },
+      "quests": []
+    },
+    "rewards": {
+      "questPoints": 3,
+      "experience": {},
+      "items": ["Access to Zanaris", "Wield Dragon dagger & Longsword"]
+    },
+    "youtubeVideoId": "o_v-6e4qP8c"
+  },
+  {
+    "id": "fairytale-i",
+    "name": "Fairytale I - Growing Pains",
+    "difficulty": "Experienced",
+    "questPoints": 2,
+    "optimalOrder": 13,
+    "members": true,
+    "requirements": {
+      "skills": {},
+      "quests": ["lost-city", "nature-spirit"]
+    },
+    "rewards": {
+      "questPoints": 2,
+      "experience": { "Farming": 3500, "Fletching": 2000, "Magic": 1000 },
+      "items": ["Magic secateurs"]
+    },
+    "youtubeVideoId": "6mZ9wJ6B3qU"
+  },
+  {
+    "id": "fairytale-ii",
+    "name": "Fairytale II - Cure a Queen",
+    "difficulty": "Experienced",
+    "questPoints": 2,
+    "optimalOrder": 14,
+    "members": true,
+    "requirements": {
+      "skills": { "Thieving": 40, "Farming": 49, "Herblore": 57 },
+      "quests": ["fairytale-i"]
+    },
+    "rewards": {
+      "questPoints": 2,
+      "experience": { "Agility": 2500, "Herblore": 3500 },
+      "items": ["Fairy ring transport system access"]
+    },
+    "youtubeVideoId": "zQ0Jp0Q7o1E"
+  },
+  {
+    "id": "dragon-slayer-i",
+    "name": "Dragon Slayer I",
+    "difficulty": "Experienced",
+    "questPoints": 2,
+    "optimalOrder": 15,
+    "members": false,
+    "requirements": {
+      "skills": { "Crafting": 8 },
+      "quests": []
+    },
+    "rewards": {
+      "questPoints": 2,
+      "experience": { "Strength": 18650, "Defence": 18650 },
+      "items": ["Wear Rune platebody & Green d'hide body"]
+    },
+    "youtubeVideoId": "wB5h1nE4c8A"
+  },
+  {
+    "id": "monkey-madness-i",
+    "name": "Monkey Madness I",
+    "difficulty": "Master",
+    "questPoints": 3,
+    "optimalOrder": 16,
+    "members": true,
+    "requirements": {
+      "skills": {},
+      "quests": ["the-grand-tree", "tree-gnome-village"]
+    },
+    "rewards": {
+      "questPoints": 3,
+      "experience": { "Attack": 35000, "Defence": 35000, "Strength": 20000, "Hitpoints": 20000 },
+      "items": ["Wield Dragon scimitar", "Ape Atoll teleport"]
+    },
+    "youtubeVideoId": "Vw0R6h7Y2qM"
+  },
+  {
+    "id": "heroes-quest",
+    "name": "Heroes' Quest",
+    "difficulty": "Experienced",
+    "questPoints": 1,
+    "optimalOrder": 17,
+    "members": true,
+    "requirements": {
+      "skills": { "Cooking": 53, "Fishing": 53, "Herblore": 25, "Mining": 50 },
+      "quests": ["dragon-slayer-i", "lost-city"]
+    },
+    "rewards": {
+      "questPoints": 1,
+      "experience": { "Attack": 3075, "Defence": 3075, "Strength": 3075, "Hitpoints": 3075, "Fishing": 2725, "Cooking": 2825, "Woodcutting": 1575, "Firemaking": 1575, "Ranged": 2075 },
+      "items": ["Dragon battleaxe & Dragon mace access", "Heroes' Guild entry"]
+    },
+    "youtubeVideoId": "Fk8Y2h_3K4U"
+  },
+  {
+    "id": "legends-quest",
+    "name": "Legends' Quest",
+    "difficulty": "Master",
+    "questPoints": 4,
+    "optimalOrder": 18,
+    "members": true,
+    "requirements": {
+      "skills": { "Agility": 50, "Crafting": 50, "Herblore": 45, "Magic": 56, "Mining": 52, "Prayer": 42, "Smithing": 50, "Strength": 50, "Thieving": 50, "Woodcutting": 50 },
+      "quests": ["heroes-quest", "waterfall-quest"]
+    },
+    "rewards": {
+      "questPoints": 4,
+      "experience": { "Attack": 7650, "Strength": 7650, "Defence": 7650, "Hitpoints": 7650 },
+      "items": ["Cape of legends", "Right of entry to Legends' Guild"]
+    },
+    "youtubeVideoId": "Kj9H3d4G8aM"
+  },
+  {
+    "id": "recipe-for-disaster",
+    "name": "Recipe for Disaster",
+    "difficulty": "Special",
+    "questPoints": 10,
+    "optimalOrder": 19,
+    "members": true,
+    "requirements": {
+      "skills": { "Cooking": 70, "Agility": 48, "Mining": 50, "Fishing": 53, "Thieving": 53, "Herblore": 25, "Magic": 59, "Smithing": 40, "Crafting": 40, "Ranged": 40, "Woodcutting": 36 },
+      "quests": ["cooks-assistant", "the-restless-ghost", "nature-spirit", "lost-city", "monkey-madness-i", "heroes-quest", "legends-quest"]
+    },
+    "rewards": {
+      "questPoints": 10,
+      "experience": { "Cooking": 20000 },
+      "items": ["Barrows gloves", "Culinaromancer's Chest full access"]
+    },
+    "youtubeVideoId": "8J5aX4n0b2s"
+  },
+  {
+    "id": "desert-treasure-i",
+    "name": "Desert Treasure I",
+    "difficulty": "Master",
+    "questPoints": 3,
+    "optimalOrder": 20,
+    "members": true,
+    "requirements": {
+      "skills": { "Magic": 50, "Firemaking": 50, "Thieving": 53, "Slayer": 10 },
+      "quests": ["the-restless-ghost", "priest-in-peril", "waterfall-quest", "fight-arena"]
+    },
+    "rewards": {
+      "questPoints": 3,
+      "experience": { "Magic": 20000 },
+      "items": ["Ancient Magicks spellbook", "Ring of visibility"]
+    },
+    "youtubeVideoId": "E3c0P7rV2kQ"
+  },
+  {
+    "id": "lunar-diplomacy",
+    "name": "Lunar Diplomacy",
+    "difficulty": "Experienced",
+    "questPoints": 2,
+    "optimalOrder": 21,
+    "members": true,
+    "requirements": {
+      "skills": { "Crafting": 61, "Defence": 40, "Firemaking": 49, "Magic": 65, "Mining": 60, "Woodcutting": 55 },
+      "quests": ["lost-city", "the-restless-ghost"]
+    },
+    "rewards": {
+      "questPoints": 2,
+      "experience": { "Magic": 5000, "Runecraft": 5000 },
+      "items": ["Lunar spellbook", "Lunar equipment", "Moonclan teleport"]
+    },
+    "youtubeVideoId": "xV6b8Z1jK4o"
+  },
+  {
+    "id": "dream-mentor",
+    "name": "Dream Mentor",
+    "difficulty": "Master",
+    "questPoints": 2,
+    "optimalOrder": 22,
+    "members": true,
+    "requirements": {
+      "skills": { "Combat": 85 },
+      "quests": ["lunar-diplomacy", "nature-spirit"]
+    },
+    "rewards": {
+      "questPoints": 2,
+      "experience": { "Hitpoints": 15000, "Magic": 10000 },
+      "items": ["Additional Lunar spells (Humidify, NPC Contact, etc.)"]
+    },
+    "youtubeVideoId": "1aB3c4D5e6F"
+  },
+  {
+    "id": "mournings-end-part-i",
+    "name": "Mourning's End Part I",
+    "difficulty": "Master",
+    "questPoints": 2,
+    "optimalOrder": 23,
+    "members": true,
+    "requirements": {
+      "skills": { "Ranged": 60, "Thieving": 50 },
+      "quests": ["priest-in-peril"]
+    },
+    "rewards": {
+      "questPoints": 2,
+      "experience": { "Hitpoints": 40000, "Thieving": 25000 },
+      "items": ["Teleport crystal recharge", "Mourner gear"]
+    },
+    "youtubeVideoId": "2bC4d5E6f7G"
+  },
+  {
+    "id": "mournings-end-part-ii",
+    "name": "Mourning's End Part II",
+    "difficulty": "Master",
+    "questPoints": 2,
+    "optimalOrder": 24,
+    "members": true,
+    "requirements": {
+      "skills": { "Agility": 60 },
+      "quests": ["mournings-end-part-i"]
+    },
+    "rewards": {
+      "questPoints": 2,
+      "experience": { "Agility": 20000 },
+      "items": ["Access to Death Altar", "Death talisman"]
+    },
+    "youtubeVideoId": "3cD5e6F7g8H"
+  },
+  {
+    "id": "sins-of-the-father",
+    "name": "Sins of the Father",
+    "difficulty": "Master",
+    "questPoints": 2,
+    "optimalOrder": 25,
+    "members": true,
+    "requirements": {
+      "skills": { "Woodcutting": 62, "Fletching": 60, "Crafting": 56, "Agility": 52, "Attack": 50, "Slayer": 50, "Magic": 49 },
+      "quests": ["priest-in-peril", "nature-spirit"]
+    },
+    "rewards": {
+      "questPoints": 2,
+      "experience": { "Woodcutting": 15000, "Fletching": 15000, "Attack": 15000, "Slayer": 15000 },
+      "items": ["Blisterwood flail", "Access to Darkmeyer", "Drakan's medallion upgrade"]
+    },
+    "youtubeVideoId": "4dE6f7G8h9I"
+  },
+  {
+    "id": "a-kingdom-divided",
+    "name": "A Kingdom Divided",
+    "difficulty": "Experienced",
+    "questPoints": 2,
+    "optimalOrder": 26,
+    "members": true,
+    "requirements": {
+      "skills": { "Agility": 54, "Thieving": 52, "Woodcutting": 52, "Herblore": 50, "Mining": 42, "Crafting": 38, "Magic": 35 },
+      "quests": ["x-marks-the-spot"]
+    },
+    "rewards": {
+      "questPoints": 2,
+      "experience": { "Agility": 10000, "Herblore": 10000, "Mining": 10000, "Thieving": 10000, "Woodcutting": 10000 },
+      "items": ["Arceuus spellbook rebalance (Thralls)", "Kharedst's memoirs upgrade"]
+    },
+    "youtubeVideoId": "5eF7g8H9i0J"
+  },
+  {
+    "id": "monkey-madness-ii",
+    "name": "Monkey Madness II",
+    "difficulty": "Grandmaster",
+    "questPoints": 4,
+    "optimalOrder": 27,
+    "members": true,
+    "requirements": {
+      "skills": { "Slayer": 69, "Crafting": 70, "Hunter": 60, "Agility": 55, "Thieving": 55, "Firemaking": 60 },
+      "quests": ["monkey-madness-i", "the-grand-tree", "tree-gnome-village", "recipe-for-disaster"]
+    },
+    "rewards": {
+      "questPoints": 4,
+      "experience": { "Slayer": 25000, "Agility": 20000, "Thieving": 15000, "Hunter": 15000 },
+      "items": ["Heavy ballista & Light ballista", "Access to Demonic Gorillas", "Royal seed pod"]
+    },
+    "youtubeVideoId": "6fG8h9I0j1K"
+  },
+  {
+    "id": "dragon-slayer-ii",
+    "name": "Dragon Slayer II",
+    "difficulty": "Grandmaster",
+    "questPoints": 5,
+    "optimalOrder": 28,
+    "members": true,
+    "requirements": {
+      "skills": { "Magic": 75, "Smithing": 70, "Mining": 68, "Crafting": 62, "Agility": 60, "Thieving": 60, "Construction": 50 },
+      "quests": ["dragon-slayer-i", "legends-quest", "dream-mentor", "fairytale-ii"]
+    },
+    "rewards": {
+      "questPoints": 5,
+      "experience": { "Mining": 25000, "Smithing": 25000, "Agility": 18000, "Thieving": 18000 },
+      "items": ["Access to Myths' Guild", "Vorkath boss access", "Mythical cape", "Dragon platebody & kiteshield"]
+    },
+    "youtubeVideoId": "7gH9i0J1k2L"
+  },
+  {
+    "id": "song-of-the-elves",
+    "name": "Song of the Elves",
+    "difficulty": "Grandmaster",
+    "questPoints": 4,
+    "optimalOrder": 29,
+    "members": true,
+    "requirements": {
+      "skills": { "Agility": 70, "Construction": 70, "Farming": 70, "Herblore": 70, "Hunter": 70, "Mining": 70, "Smithing": 70, "Woodcutting": 70 },
+      "quests": ["mournings-end-part-ii", "waterfall-quest", "priest-in-peril"]
+    },
+    "rewards": {
+      "questPoints": 4,
+      "experience": { "Agility": 40000, "Construction": 40000, "Farming": 40000, "Herblore": 40000, "Hunter": 40000, "Mining": 40000, "Smithing": 40000, "Woodcutting": 40000 },
+      "items": ["Access to Prifddinas", "The Gauntlet & Corrupted Gauntlet", "Zalcano", "Crystal equipment craft"]
+    },
+    "youtubeVideoId": "8hI0j1K2l3M"
+  },
+  {
+    "id": "desert-treasure-ii",
+    "name": "Desert Treasure II - The Fallen Empire",
+    "difficulty": "Grandmaster",
+    "questPoints": 5,
+    "optimalOrder": 30,
+    "members": true,
+    "requirements": {
+      "skills": { "Magic": 75, "Firemaking": 75, "Thieving": 70, "Herblore": 62, "Runecraft": 60, "Construction": 60 },
+      "quests": ["desert-treasure-i", "a-kingdom-divided", "sins-of-the-father"]
+    },
+    "rewards": {
+      "questPoints": 5,
+      "experience": { "Magic": 100000, "Thieving": 70000, "Herblore": 50000, "Runecraft": 40000 },
+      "items": ["Ancient Ancient Magicks (Ring of Shadows)", "Access to 4 DT2 bosses (Vardorvis, Duke Sucellus, Leviathan, Whisperer)", "Soulreaper axe & Virtus robes drops"]
+    },
+    "youtubeVideoId": "9iJ1k2L3m4N"
+  },
+  {
+    "id": "while-guthix-sleeps",
+    "name": "While Guthix Sleeps",
+    "difficulty": "Grandmaster",
+    "questPoints": 5,
+    "optimalOrder": 31,
+    "members": true,
+    "requirements": {
+      "skills": { "Thieving": 72, "Magic": 75, "Agility": 71, "Herblore": 65, "Hunter": 65, "Farming": 65 },
+      "quests": ["mournings-end-part-ii", "legends-quest", "recipe-for-disaster", "desert-treasure-i"]
+    },
+    "rewards": {
+      "questPoints": 5,
+      "experience": { "Combat": 400000 },
+      "items": ["Tormented Demons access", "Burning claws", "Purified synapses"]
+    },
+    "youtubeVideoId": "0jK2l3M4n5O"
+  }
+]

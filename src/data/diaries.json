@@ -1,0 +1,569 @@
+[
+  {
+    "id": "ardougne",
+    "name": "Ardougne",
+    "rewardItemName": "Ardougne cloak",
+    "tiers": {
+      "Easy": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Ardougne_cloak_1.png",
+        "youtubeVideoId": "8J5aX4n0b2s",
+        "tasks": [
+          { "id": "ard-e-1", "description": "Have Wizard Cromperty teleport you to the Rune Essence mine", "skills": {} },
+          { "id": "ard-e-2", "description": "Steal a cake from the East Ardougne market stall", "skills": { "Thieving": 5 } },
+          { "id": "ard-e-3", "description": "Sell silk to the Silk trader in East Ardougne for 60 coins", "skills": { "Thieving": 5 } },
+          { "id": "ard-e-4", "description": "Use the altar in East Ardougne's church", "skills": {} },
+          { "id": "ard-e-5", "description": "Go out fishing on the fishing trawler", "skills": { "Fishing": 15 } },
+          { "id": "ard-e-6", "description": "Enter the Combat Training Camp north of West Ardougne", "skills": {} }
+        ]
+      },
+      "Medium": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Ardougne_cloak_2.png",
+        "youtubeVideoId": "xV2J6m4J_mQ",
+        "tasks": [
+          { "id": "ard-m-1", "description": "Grapple over the Yanille wall", "skills": { "Agility": 39, "Strength": 38, "Ranged": 21 } },
+          { "id": "ard-m-2", "description": "Harvest strawberries from the Ardougne farming patch", "skills": { "Farming": 31 } },
+          { "id": "ard-m-3", "description": "Cast the Ardougne Teleport spell", "skills": { "Magic": 51 } },
+          { "id": "ard-m-4", "description": "Catch a red salamander near the Ourania altar", "skills": { "Hunter": 59 } },
+          { "id": "ard-m-5", "description": "Steal from the Master Farmer in East Ardougne", "skills": { "Thieving": 38 } }
+        ]
+      },
+      "Hard": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Ardougne_cloak_3.png",
+        "youtubeVideoId": "eN5lY9M2DqU",
+        "tasks": [
+          { "id": "ard-h-1", "description": "Recharge skills at the Legends' Guild totem pole", "skills": {} },
+          { "id": "ard-h-2", "description": "Steal from a hero in East Ardougne", "skills": { "Thieving": 80 } },
+          { "id": "ard-h-3", "description": "Cast Ice Barrage on another player in Castle Wars", "skills": { "Magic": 94 } },
+          { "id": "ard-h-4", "description": "Catch a red chinchompa in the hunting grounds", "skills": { "Hunter": 63 } },
+          { "id": "ard-h-5", "description": "Smith a Mithril platebody in Ardougne", "skills": { "Smithing": 68 } }
+        ]
+      },
+      "Elite": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Ardougne_cloak_4.png",
+        "youtubeVideoId": "9b6n-3K4h8U",
+        "tasks": [
+          { "id": "ard-el-1", "description": "Catch a manta ray at the Fishing Trawler and cook it in Port Khazard", "skills": { "Fishing": 81, "Cooking": 91 } },
+          { "id": "ard-el-2", "description": "Pickpocket a knight in East Ardougne 50 times without failing", "skills": { "Thieving": 82 } },
+          { "id": "ard-el-3", "description": "Craft 140 or more Death runes at once", "skills": { "Runecraft": 99 } },
+          { "id": "ard-el-4", "description": "Make a Torstol potion at the Gu'Tanoth herb patch", "skills": { "Herblore": 77, "Farming": 85 } }
+        ]
+      }
+    }
+  },
+  {
+    "id": "desert",
+    "name": "Desert",
+    "rewardItemName": "Desert amulet",
+    "tiers": {
+      "Easy": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Desert_amulet_1.png",
+        "youtubeVideoId": "z8pG2_r1N7g",
+        "tasks": [
+          { "id": "des-e-1", "description": "Catch a Golden Warbler in the Uzer desert", "skills": { "Hunter": 5 } },
+          { "id": "des-e-2", "description": "Mine 5 clay in the north-eastern desert", "skills": { "Mining": 5 } },
+          { "id": "des-e-3", "description": "Open a sarcophagus inside the Pyramid Plunder minigame", "skills": { "Thieving": 21 } },
+          { "id": "des-e-4", "description": "Ride the magic carpet from Shantay Pass to Pollnivneach", "skills": {} }
+        ]
+      },
+      "Medium": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Desert_amulet_2.png",
+        "youtubeVideoId": "pX2Qe84A4n0",
+        "tasks": [
+          { "id": "des-m-1", "description": "Scale the cliff using the agility shortcut near the Agility Pyramid", "skills": { "Agility": 30 } },
+          { "id": "des-m-2", "description": "Steal from the Pollnivneach spice stall", "skills": { "Thieving": 65 } },
+          { "id": "des-m-3", "description": "Teleport to Enakhra's Temple with the Camulet", "skills": {} },
+          { "id": "des-m-4", "description": "Slay a dust devil in the Smoke Dungeon", "skills": { "Slayer": 65 } }
+        ]
+      },
+      "Hard": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Desert_amulet_3.png",
+        "youtubeVideoId": "xV2J6m4J_mQ",
+        "tasks": [
+          { "id": "des-h-1", "description": "Defeat the Kalphite Queen", "skills": {} },
+          { "id": "des-h-2", "description": "Cast Ice Plateau Teleport with Ancient Magicks", "skills": { "Magic": 96 } },
+          { "id": "des-h-3", "description": "Refill your waterskins with the Humidify spell", "skills": { "Magic": 68 } },
+          { "id": "des-h-4", "description": "Burn a yew log at the top of the Agility Pyramid", "skills": { "Firemaking": 60, "Agility": 70 } }
+        ]
+      },
+      "Elite": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Desert_amulet_4.png",
+        "youtubeVideoId": "eN5lY9M2DqU",
+        "tasks": [
+          { "id": "des-el-1", "description": "Bake a wild pie in the Nardah bakery", "skills": { "Cooking": 85 } },
+          { "id": "des-el-2", "description": "Cast Ice Barrage against a foe in the desert", "skills": { "Magic": 94 } },
+          { "id": "des-el-3", "description": "Fletch a Dragon dart at the Bedabin camp", "skills": { "Fletching": 95 } },
+          { "id": "des-el-4", "description": "Speak to the Sphinx with a Cat or Hellcat follower and 99 Prayer", "skills": { "Prayer": 99 } }
+        ]
+      }
+    }
+  },
+  {
+    "id": "falador",
+    "name": "Falador",
+    "rewardItemName": "Falador shield",
+    "tiers": {
+      "Easy": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Falador_shield_1.png",
+        "youtubeVideoId": "Y3E2bC6Jc1U",
+        "tasks": [
+          { "id": "fal-e-1", "description": "Find out what your family crest is from Sir Renitee", "skills": {} },
+          { "id": "fal-e-2", "description": "Climb over the western Falador wall", "skills": { "Agility": 5 } },
+          { "id": "fal-e-3", "description": "Recharge your prayer at the altar in south-west Falador", "skills": {} },
+          { "id": "fal-e-4", "description": "Mine 1 copper ore in the Dwarven Mines", "skills": { "Mining": 1 } },
+          { "id": "fal-e-5", "description": "Browse the security book from the barber in Falador", "skills": {} }
+        ]
+      },
+      "Medium": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Falador_shield_2.png",
+        "youtubeVideoId": "2mU79rU7JzY",
+        "tasks": [
+          { "id": "fal-m-1", "description": "Light a bullseye lantern in the Chemistry lab", "skills": { "Firemaking": 49 } },
+          { "id": "fal-m-2", "description": "Teleport to Falador using standard spellbook", "skills": { "Magic": 37 } },
+          { "id": "fal-m-3", "description": "Grapple across the river south of Falador", "skills": { "Agility": 11, "Strength": 19, "Ranged": 19 } },
+          { "id": "fal-m-4", "description": "Place a Scarecrow in the Falador farming patch", "skills": { "Farming": 23 } }
+        ]
+      },
+      "Hard": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Falador_shield_3.png",
+        "youtubeVideoId": "gI7qE_R6aWk",
+        "tasks": [
+          { "id": "fal-h-1", "description": "Craft 140 Mind runes simultaneously", "skills": { "Runecraft": 56 } },
+          { "id": "fal-h-2", "description": "Kill the Giant Mole beneath Falador Park", "skills": {} },
+          { "id": "fal-h-3", "description": "Kill a Blue Dragon in the Heroes' Guild dungeon", "skills": {} },
+          { "id": "fal-h-4", "description": "Recharge your Prayer points at the altar in the Port Sarim monastery with 70 Prayer", "skills": { "Prayer": 70 } }
+        ]
+      },
+      "Elite": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Falador_shield_4.png",
+        "youtubeVideoId": "9b6n-3K4h8U",
+        "tasks": [
+          { "id": "fal-el-1", "description": "Craft 252 Air runes in a single essence trip", "skills": { "Runecraft": 88 } },
+          { "id": "fal-el-2", "description": "Chop Magic logs in the Mage Training Arena / Falador park", "skills": { "Woodcutting": 75 } },
+          { "id": "fal-el-3", "description": "Find at least 3 Magic roots in the Falador tree patch", "skills": { "Farming": 91 } },
+          { "id": "fal-el-4", "description": "Perform the Skillcape emote in the White Knights' Castle", "skills": {} }
+        ]
+      }
+    }
+  },
+  {
+    "id": "fremennik",
+    "name": "Fremennik",
+    "rewardItemName": "Fremennik sea boots",
+    "tiers": {
+      "Easy": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Fremennik_sea_boots_1.png",
+        "youtubeVideoId": "6mZ9wJ6B3qU",
+        "tasks": [
+          { "id": "fre-e-1", "description": "Catch a Cerulean twitch in the Rellekka hunter area", "skills": { "Hunter": 9 } },
+          { "id": "fre-e-2", "description": "Kill 5 Rock Crabs along the Rellekka coast", "skills": {} },
+          { "id": "fre-e-3", "description": "Fill a bucket with water from the well in Rellekka", "skills": {} },
+          { "id": "fre-e-4", "description": "Steal a fish from a Rellekka market stall", "skills": { "Thieving": 42 } }
+        ]
+      },
+      "Medium": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Fremennik_sea_boots_2.png",
+        "youtubeVideoId": "zQ0Jp0Q7o1E",
+        "tasks": [
+          { "id": "fre-m-1", "description": "Slay a Cave horror in the Mos Le'Harmless caves", "skills": { "Slayer": 58 } },
+          { "id": "fre-m-2", "description": "Travel to the Lighthouse by shortcut", "skills": { "Agility": 35 } },
+          { "id": "fre-m-3", "description": "Mine some coal in the mountain camp", "skills": { "Mining": 30 } },
+          { "id": "fre-m-4", "description": "Bake a lobster on the fire in Neitiznot", "skills": { "Cooking": 40 } }
+        ]
+      },
+      "Hard": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Fremennik_sea_boots_3.png",
+        "youtubeVideoId": "wB5h1nE4c8A",
+        "tasks": [
+          { "id": "fre-h-1", "description": "Teleport to Waterbirth Island with the Lunar spellbook", "skills": { "Magic": 72 } },
+          { "id": "fre-h-2", "description": "Defeat all three Dagannoth Kings (Rex, Prime, Supreme)", "skills": {} },
+          { "id": "fre-h-3", "description": "Catch a Sabre-toothed Kyatt in the polar area", "skills": { "Hunter": 55 } },
+          { "id": "fre-h-4", "description": "Mix a Super defence potion in the Rellekka apothecary", "skills": { "Herblore": 66 } }
+        ]
+      },
+      "Elite": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Fremennik_sea_boots_4.png",
+        "youtubeVideoId": "Vw0R6h7Y2qM",
+        "tasks": [
+          { "id": "fre-el-1", "description": "Craft 56 Astral runes at once", "skills": { "Runecraft": 82 } },
+          { "id": "fre-el-2", "description": "Kill each of the God Wars Dungeon generals", "skills": { "Agility": 70, "Strength": 70, "Hitpoints": 70 } },
+          { "id": "fre-el-3", "description": "Slay a Spiritual mage within the God Wars Dungeon", "skills": { "Slayer": 83 } }
+        ]
+      }
+    }
+  },
+  {
+    "id": "kandarin",
+    "name": "Kandarin",
+    "rewardItemName": "Kandarin headgear",
+    "tiers": {
+      "Easy": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Kandarin_headgear_1.png",
+        "youtubeVideoId": "Fk8Y2h_3K4U",
+        "tasks": [
+          { "id": "kan-e-1", "description": "Catch a mackerel at Catherby beach", "skills": { "Fishing": 16 } },
+          { "id": "kan-e-2", "description": "Buy a candle from the candle maker in Catherby", "skills": {} },
+          { "id": "kan-e-3", "description": "Play the organ in the church of Seers' Village", "skills": {} },
+          { "id": "kan-e-4", "description": "Cross the log balance south of the McGrubor Wood", "skills": { "Agility": 20 } }
+        ]
+      },
+      "Medium": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Kandarin_headgear_2.png",
+        "youtubeVideoId": "Kj9H3d4G8aM",
+        "tasks": [
+          { "id": "kan-m-1", "description": "Complete a lap of the Barbarian Agility Course", "skills": { "Agility": 35 } },
+          { "id": "kan-m-2", "description": "Catch a bass on the Catherby beach and cook it on the range", "skills": { "Fishing": 46, "Cooking": 43 } },
+          { "id": "kan-m-3", "description": "Teleport to Camelot using modern spellbook", "skills": { "Magic": 45 } },
+          { "id": "kan-m-4", "description": "Pick some flax in the Seers' Village flax field", "skills": {} }
+        ]
+      },
+      "Hard": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Kandarin_headgear_3.png",
+        "youtubeVideoId": "8J5aX4n0b2s",
+        "tasks": [
+          { "id": "kan-h-1", "description": "Catch a leaping sturgeon using Barbarian fishing", "skills": { "Fishing": 70, "Agility": 45, "Strength": 45 } },
+          { "id": "kan-h-2", "description": "Complete a lap of the Seers' Village Rooftop Course", "skills": { "Agility": 60 } },
+          { "id": "kan-h-3", "description": "Purchase a granite body from the Barbarian Assault reward shop", "skills": {} },
+          { "id": "kan-h-4", "description": "Burn a maple log with a bow in Seers' Village", "skills": { "Firemaking": 65 } }
+        ]
+      },
+      "Elite": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Kandarin_headgear_4.png",
+        "youtubeVideoId": "E3c0P7rV2kQ",
+        "tasks": [
+          { "id": "kan-el-1", "description": "Pick a dwarf weed in the Catherby farming patch", "skills": { "Farming": 79 } },
+          { "id": "kan-el-2", "description": "Fish 5 Sharks in Catherby with bare hands", "skills": { "Fishing": 96, "Strength": 76 } },
+          { "id": "kan-el-3", "description": "Mix a Stamina potion in the Seers' Village bank", "skills": { "Herblore": 77 } },
+          { "id": "kan-el-4", "description": "Smith a Rune Hasta at Otto Godblessed's workshop", "skills": { "Smithing": 90 } }
+        ]
+      }
+    }
+  },
+  {
+    "id": "karamja",
+    "name": "Karamja",
+    "rewardItemName": "Karamja gloves",
+    "tiers": {
+      "Easy": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Karamja_gloves_1.png",
+        "youtubeVideoId": "xV6b8Z1jK4o",
+        "tasks": [
+          { "id": "kar-e-1", "description": "Pick 5 bananas from the plantation on Musa Point", "skills": {} },
+          { "id": "kar-e-2", "description": "Use the rope swing to travel across the river in the jungle", "skills": { "Agility": 10 } },
+          { "id": "kar-e-3", "description": "Mine 1 gold ore on the northern volcano", "skills": { "Mining": 40 } },
+          { "id": "kar-e-4", "description": "Catch a Karambwanji in the lake south of Tai Bwo Wannai", "skills": { "Fishing": 5 } }
+        ]
+      },
+      "Medium": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Karamja_gloves_2.png",
+        "youtubeVideoId": "1aB3c4D5e6F",
+        "tasks": [
+          { "id": "kar-m-1", "description": "Claim tickets from the Brimhaven Agility Arena", "skills": { "Agility": 40 } },
+          { "id": "kar-m-2", "description": "Cook a spider on a stick at the Tai Bwo Wannai village", "skills": { "Cooking": 16 } },
+          { "id": "kar-m-3", "description": "Charter a ship from Musa Point to Port Sarim", "skills": {} },
+          { "id": "kar-m-4", "description": "Chop some Teak logs on Karamja", "skills": { "Woodcutting": 35 } }
+        ]
+      },
+      "Hard": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Karamja_gloves_3.png",
+        "youtubeVideoId": "2bC4d5E6f7G",
+        "tasks": [
+          { "id": "kar-h-1", "description": "Kill a Steel Dragon inside the Brimhaven Dungeon", "skills": {} },
+          { "id": "kar-h-2", "description": "Craft 56 Nature runes in one trip at the Nature Altar", "skills": { "Runecraft": 91 } },
+          { "id": "kar-h-3", "description": "Catch a raw Karambwan using raw Karambwanji", "skills": { "Fishing": 65 } },
+          { "id": "kar-h-4", "description": "Collect 5 Palm leaves from the tree patch in Brimhaven", "skills": { "Farming": 68 } }
+        ]
+      },
+      "Elite": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Karamja_gloves_4.png",
+        "youtubeVideoId": "3cD5e6F7g8H",
+        "tasks": [
+          { "id": "kar-el-1", "description": "Equip a Fire cape or Infernal cape in the Mor Ul Rek city", "skills": {} },
+          { "id": "kar-el-2", "description": "Craft 56 Nature runes without using the Abyss", "skills": { "Runecraft": 91 } },
+          { "id": "kar-el-3", "description": "Check the health of a Calquat tree in Tai Bwo Wannai", "skills": { "Farming": 72 } }
+        ]
+      }
+    }
+  },
+  {
+    "id": "kourend",
+    "name": "Kourend & Kebos",
+    "rewardItemName": "Rada's blessing",
+    "tiers": {
+      "Easy": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Rada%27s_blessing_1.png",
+        "youtubeVideoId": "4dE6f7G8h9I",
+        "tasks": [
+          { "id": "kou-e-1", "description": "Mine some iron ore at the Mount Karuulm mine", "skills": { "Mining": 15 } },
+          { "id": "kou-e-2", "description": "Kill a Sand Crab in Hosidius", "skills": {} },
+          { "id": "kou-e-3", "description": "Steal from a fruit stall in Hosidius", "skills": { "Thieving": 25 } },
+          { "id": "kou-e-4", "description": "Enter your player-owned house from Hosidius", "skills": { "Construction": 25 } }
+        ]
+      },
+      "Medium": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Rada%27s_blessing_2.png",
+        "youtubeVideoId": "5eF7g8H9i0J",
+        "tasks": [
+          { "id": "kou-m-1", "description": "Teleport to Kourend using the Kourend Castle Teleport", "skills": { "Magic": 69 } },
+          { "id": "kou-m-2", "description": "Defeat a Lizardman Shaman inside the Lizardman Canyon", "skills": {} },
+          { "id": "kou-m-3", "description": "Catch a Bluegill at Molch Lake", "skills": { "Fishing": 43, "Hunter": 35 } },
+          { "id": "kou-m-4", "description": "Mine 1 volcanic sulphur in Lovakengj", "skills": { "Mining": 42 } }
+        ]
+      },
+      "Hard": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Rada%27s_blessing_3.png",
+        "youtubeVideoId": "6fG8h9I0j1K",
+        "tasks": [
+          { "id": "kou-h-1", "description": "Cast Monster Examine on a Mountain Troll in Mount Quidamortem", "skills": { "Magic": 86 } },
+          { "id": "kou-h-2", "description": "Defeat Skotizo in the Catacombs of Kourend", "skills": {} },
+          { "id": "kou-h-3", "description": "Steal an artefact for Captain Khaled in Port Piscarilius", "skills": { "Thieving": 49 } },
+          { "id": "kou-h-4", "description": "Chop some Juniper logs in Hosidius", "skills": { "Woodcutting": 42 } }
+        ]
+      },
+      "Elite": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Rada%27s_blessing_4.png",
+        "youtubeVideoId": "7gH9i0J1k2L",
+        "tasks": [
+          { "id": "kou-el-1", "description": "Craft 1 Blood rune at the Blood Altar", "skills": { "Runecraft": 77 } },
+          { "id": "kou-el-2", "description": "Chop Redwood logs in the Woodcutting Guild", "skills": { "Woodcutting": 90 } },
+          { "id": "kou-el-3", "description": "Defeat the Alchemical Hydra on task in Mount Karuulm", "skills": { "Slayer": 95 } },
+          { "id": "kou-el-4", "description": "Catch an Anglerfish in Port Piscarilius", "skills": { "Fishing": 82 } }
+        ]
+      }
+    }
+  },
+  {
+    "id": "lumbridge",
+    "name": "Lumbridge & Draynor",
+    "rewardItemName": "Explorer's ring",
+    "tiers": {
+      "Easy": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Explorer%27s_ring_1.png",
+        "youtubeVideoId": "8hI0j1K2l3M",
+        "tasks": [
+          { "id": "lum-e-1", "description": "Climb to the top of the Lumbridge Castle tower", "skills": {} },
+          { "id": "lum-e-2", "description": "Catch an anchovy in Al Kharid or Lumbridge river", "skills": { "Fishing": 15 } },
+          { "id": "lum-e-3", "description": "Pickpocket a man or woman in Lumbridge", "skills": { "Thieving": 1 } },
+          { "id": "lum-e-4", "description": "Smith an iron dagger in Lumbridge", "skills": { "Smithing": 15 } }
+        ]
+      },
+      "Medium": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Explorer%27s_ring_2.png",
+        "youtubeVideoId": "9iJ1k2L3m4N",
+        "tasks": [
+          { "id": "lum-m-1", "description": "Complete a lap of the Draynor Village Rooftop Course", "skills": { "Agility": 10 } },
+          { "id": "lum-m-2", "description": "Cast Lumbridge Teleport", "skills": { "Magic": 31 } },
+          { "id": "lum-m-3", "description": "Chop some Willow logs in Draynor Village", "skills": { "Woodcutting": 30 } },
+          { "id": "lum-m-4", "description": "Craft a coif in the Lumbridge cow pen", "skills": { "Crafting": 38 } }
+        ]
+      },
+      "Hard": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Explorer%27s_ring_3.png",
+        "youtubeVideoId": "0jK2l3M4n5O",
+        "tasks": [
+          { "id": "lum-h-1", "description": "Cast Bones to Peaches in the Al Kharid palace", "skills": { "Magic": 60 } },
+          { "id": "lum-h-2", "description": "Craft 140 or more Cosmic runes at once", "skills": { "Runecraft": 59 } },
+          { "id": "lum-h-3", "description": "Light a willow fire on top of Lumbridge castle", "skills": { "Firemaking": 65 } },
+          { "id": "lum-h-4", "description": "Catch a raw salmon in the river Lum and cook it on the Lumbridge range", "skills": { "Fishing": 30, "Cooking": 25 } }
+        ]
+      },
+      "Elite": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Explorer%27s_ring_4.png",
+        "youtubeVideoId": "Y3E2bC6Jc1U",
+        "tasks": [
+          { "id": "lum-el-1", "description": "Perform the Quest Cape emote in the Wise Old Man's house", "skills": {} },
+          { "id": "lum-el-2", "description": "Craft 140 Water runes at the Water Altar", "skills": { "Runecraft": 76 } },
+          { "id": "lum-el-3", "description": "Chop some Magic logs near the Mage Training Arena", "skills": { "Woodcutting": 75 } },
+          { "id": "lum-el-4", "description": "Smith an Adamant platebody in Draynor Sewer", "skills": { "Smithing": 88 } }
+        ]
+      }
+    }
+  },
+  {
+    "id": "morytania",
+    "name": "Morytania",
+    "rewardItemName": "Morytania legs",
+    "tiers": {
+      "Easy": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Morytania_legs_1.png",
+        "youtubeVideoId": "2mU79rU7JzY",
+        "tasks": [
+          { "id": "mor-e-1", "description": "Craft a Snelm in Mort Myre swamp", "skills": { "Crafting": 15 } },
+          { "id": "mor-e-2", "description": "Cook a thin snail on the range in Port Phasmatys", "skills": { "Cooking": 12 } },
+          { "id": "mor-e-3", "description": "Kill a Banshee in the Slayer Tower", "skills": { "Slayer": 15 } },
+          { "id": "mor-e-4", "description": "Open a coffin in the Barrows minigame", "skills": {} }
+        ]
+      },
+      "Medium": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Morytania_legs_2.png",
+        "youtubeVideoId": "gI7qE_R6aWk",
+        "tasks": [
+          { "id": "mor-m-1", "description": "Board the swamp boat to Mort'ton", "skills": {} },
+          { "id": "mor-m-2", "description": "Catch a swamp lizard in Canifis", "skills": { "Hunter": 29 } },
+          { "id": "mor-m-3", "description": "Complete a lap of the Canifis Rooftop Agility Course", "skills": { "Agility": 40 } },
+          { "id": "mor-m-4", "description": "Teleport to the Slayer Tower with a Slayer ring", "skills": { "Crafting": 75 } }
+        ]
+      },
+      "Hard": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Morytania_legs_3.png",
+        "youtubeVideoId": "z8pG2_r1N7g",
+        "tasks": [
+          { "id": "mor-h-1", "description": "Loot the Barrows chest wearing a full set of Barrows armor", "skills": { "Defence": 70 } },
+          { "id": "mor-h-2", "description": "Kill an Abyssal demon in the Slayer Tower", "skills": { "Slayer": 85 } },
+          { "id": "mor-h-3", "description": "Harvest watermelon in the Harmony Island farming patch", "skills": { "Farming": 47 } },
+          { "id": "mor-h-4", "description": "Burn a mahogany log on a pyre ship in Mort'ton", "skills": { "Firemaking": 50, "Crafting": 50 } }
+        ]
+      },
+      "Elite": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Morytania_legs_4.png",
+        "youtubeVideoId": "pX2Qe84A4n0",
+        "tasks": [
+          { "id": "mor-el-1", "description": "Catch a shark in Port Phasmatys barehanded", "skills": { "Fishing": 96, "Strength": 76 } },
+          { "id": "mor-el-2", "description": "Craft a black dragonhide body in the Canifis tannery", "skills": { "Crafting": 84 } },
+          { "id": "mor-el-3", "description": "Defeat the Theatre of Blood or looting the final chest", "skills": {} },
+          { "id": "mor-el-4", "description": "Cure an infected bloodveld in Darkmeyer", "skills": { "Herblore": 78 } }
+        ]
+      }
+    }
+  },
+  {
+    "id": "varrock",
+    "name": "Varrock",
+    "rewardItemName": "Varrock armour",
+    "tiers": {
+      "Easy": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Varrock_armour_1.png",
+        "youtubeVideoId": "xV2J6m4J_mQ",
+        "tasks": [
+          { "id": "var-e-1", "description": "Have Thessalia change your clothing style in Varrock center", "skills": {} },
+          { "id": "var-e-2", "description": "Browse the museum and give Orlando Smith 5 correct answers", "skills": {} },
+          { "id": "var-e-3", "description": "Mine 15 iron ores in the south-west Varrock mine", "skills": { "Mining": 15 } },
+          { "id": "var-e-4", "description": "Enter the earth altar south of Varrock", "skills": {} }
+        ]
+      },
+      "Medium": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Varrock_armour_2.png",
+        "youtubeVideoId": "eN5lY9M2DqU",
+        "tasks": [
+          { "id": "var-m-1", "description": "Complete a lap of the Varrock Rooftop Agility Course", "skills": { "Agility": 30 } },
+          { "id": "var-m-2", "description": "Teleport to the Grand Exchange with the Spirit tree", "skills": { "Farming": 83 } },
+          { "id": "var-m-3", "description": "Cast Varrock Teleport", "skills": { "Magic": 25 } },
+          { "id": "var-m-4", "description": "Chop 20 Willow logs in the lumber yard", "skills": { "Woodcutting": 30 } }
+        ]
+      },
+      "Hard": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Varrock_armour_3.png",
+        "youtubeVideoId": "9b6n-3K4h8U",
+        "tasks": [
+          { "id": "var-h-1", "description": "Teleport to the Grand Exchange using the Varrock Teleport redirect", "skills": { "Magic": 25 } },
+          { "id": "var-h-2", "description": "Craft 140 or more Earth runes at once", "skills": { "Runecraft": 78 } },
+          { "id": "var-h-3", "description": "Slay a Bloodveld in the God Wars Dungeon or Slayer Tower", "skills": { "Slayer": 50 } },
+          { "id": "var-h-4", "description": "Chop and burn a Yew log in Varrock palace gardens", "skills": { "Woodcutting": 60, "Firemaking": 60 } }
+        ]
+      },
+      "Elite": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Varrock_armour_4.png",
+        "youtubeVideoId": "6mZ9wJ6B3qU",
+        "tasks": [
+          { "id": "var-el-1", "description": "Fletch a Rune dart in the Varrock archery store", "skills": { "Fletching": 81 } },
+          { "id": "var-el-2", "description": "Smith an Adamant platebody on the anvil in West Varrock", "skills": { "Smithing": 88 } },
+          { "id": "var-el-3", "description": "Craft 100 or more Mahogany planks in one go at the sawmill", "skills": { "Woodcutting": 50 } },
+          { "id": "var-el-4", "description": "Steal from the Varrock gem stall with 75 Thieving", "skills": { "Thieving": 75 } }
+        ]
+      }
+    }
+  },
+  {
+    "id": "western",
+    "name": "Western Provinces",
+    "rewardItemName": "Western banner",
+    "tiers": {
+      "Easy": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Western_banner_1.png",
+        "youtubeVideoId": "zQ0Jp0Q7o1E",
+        "tasks": [
+          { "id": "wes-e-1", "description": "Catch a copper longtail in the Piscatoris hunting ground", "skills": { "Hunter": 9 } },
+          { "id": "wes-e-2", "description": "Kill an elf in the Elf Camp", "skills": {} },
+          { "id": "wes-e-3", "description": "Travel by gnome glider to the Feldip Hills", "skills": {} },
+          { "id": "wes-e-4", "description": "Mine 1 gold ore near the Tree Gnome Stronghold", "skills": { "Mining": 40 } }
+        ]
+      },
+      "Medium": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Western_banner_2.png",
+        "youtubeVideoId": "wB5h1nE4c8A",
+        "tasks": [
+          { "id": "wes-m-1", "description": "Complete a lap of the Gnome Agility Course", "skills": { "Agility": 1 } },
+          { "id": "wes-m-2", "description": "Catch a prickly kebabbit in the Feldip Hills", "skills": { "Hunter": 37 } },
+          { "id": "wes-m-3", "description": "Teleport to the Tree Gnome Stronghold using the Spirit tree", "skills": {} },
+          { "id": "wes-m-4", "description": "Kill a Terrorbird in the Tree Gnome Stronghold pen", "skills": {} }
+        ]
+      },
+      "Hard": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Western_banner_3.png",
+        "youtubeVideoId": "Vw0R6h7Y2qM",
+        "tasks": [
+          { "id": "wes-h-1", "description": "Kill Zulrah, the snake boss of Zul-Andra", "skills": {} },
+          { "id": "wes-h-2", "description": "Catch a raw monkfish at the Piscatoris Fishing Colony", "skills": { "Fishing": 62, "Cooking": 62 } },
+          { "id": "wes-h-3", "description": "Chop some Magic logs inside the Tree Gnome Stronghold", "skills": { "Woodcutting": 75 } },
+          { "id": "wes-h-4", "description": "Place an Void Knight seal at the Void Knights' Outpost", "skills": { "Combat": 100 } }
+        ]
+      },
+      "Elite": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Western_banner_4.png",
+        "youtubeVideoId": "Fk8Y2h_3K4U",
+        "tasks": [
+          { "id": "wes-el-1", "description": "Equip a full set of Void Knight armour with an elite top or bottom", "skills": { "Combat": 100 } },
+          { "id": "wes-el-2", "description": "Kill the Thermonuclear smoke devil in the Smoke Devil dungeon", "skills": { "Slayer": 93 } },
+          { "id": "wes-el-3", "description": "Fletch an Magic longbow in the Piscatoris Fishing Colony", "skills": { "Fletching": 85 } },
+          { "id": "wes-el-4", "description": "Kill a Chompy bird with 1,000 recorded kills", "skills": {} }
+        ]
+      }
+    }
+  },
+  {
+    "id": "wilderness",
+    "name": "Wilderness",
+    "rewardItemName": "Wilderness sword",
+    "tiers": {
+      "Easy": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Wilderness_sword_1.png",
+        "youtubeVideoId": "Kj9H3d4G8aM",
+        "tasks": [
+          { "id": "wil-e-1", "description": "Cast Low Alchemy at the Chaos Temple in Level 38 Wilderness", "skills": { "Magic": 21 } },
+          { "id": "wil-e-2", "description": "Kill an Earth Warrior in the Wilderness Underground", "skills": {} },
+          { "id": "wil-e-3", "description": "Mine 1 iron ore in the Wilderness mine", "skills": { "Mining": 15 } },
+          { "id": "wil-e-4", "description": "Pray at the Chaos Altar in level 38 Wilderness", "skills": {} }
+        ]
+      },
+      "Medium": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Wilderness_sword_2.png",
+        "youtubeVideoId": "8J5aX4n0b2s",
+        "tasks": [
+          { "id": "wil-m-1", "description": "Complete a lap of the Wilderness Agility Course", "skills": { "Agility": 52 } },
+          { "id": "wil-m-2", "description": "Kill a Green Dragon in the Wilderness", "skills": {} },
+          { "id": "wil-m-3", "description": "Mine 1 mithril ore in the level 46 Wilderness resource area", "skills": { "Mining": 55 } },
+          { "id": "wil-m-4", "description": "Steal from the rogue chest inside the Rogues' Castle", "skills": { "Thieving": 84 } }
+        ]
+      },
+      "Hard": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Wilderness_sword_3.png",
+        "youtubeVideoId": "E3c0P7rV2kQ",
+        "tasks": [
+          { "id": "wil-h-1", "description": "Defeat the Chaos Elemental", "skills": {} },
+          { "id": "wil-h-2", "description": "Catch a Black Chinchompa in the level 33 Wilderness", "skills": { "Hunter": 73 } },
+          { "id": "wil-h-3", "description": "Kill the Crazy Archaeologist in the Forgotten Cemetery", "skills": {} },
+          { "id": "wil-h-4", "description": "Fish a raw dark crab in the Wilderness Resource Area", "skills": { "Fishing": 85 } }
+        ]
+      },
+      "Elite": {
+        "rewardIconUrl": "https://oldschool.runescape.wiki/images/Wilderness_sword_4.png",
+        "youtubeVideoId": "xV6b8Z1jK4o",
+        "tasks": [
+          { "id": "wil-el-1", "description": "Defeat Callisto, Venenatis, and Vet'ion in deep Wilderness", "skills": {} },
+          { "id": "wil-el-2", "description": "Steal from the chest at the Rogues' Castle with 84 Thieving", "skills": { "Thieving": 84 } },
+          { "id": "wil-el-3", "description": "Smith a rune scimitar in the Resource Area", "skills": { "Smithing": 90 } },
+          { "id": "wil-el-4", "description": "Fish and cook a raw dark crab in the Resource Area without leaving", "skills": { "Fishing": 85, "Cooking": 90 } }
+        ]
+      }
+    }
+  }
+]
