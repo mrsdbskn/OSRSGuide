@@ -5,7 +5,7 @@ import { usePlayerStore } from '@/stores/playerStore';
 import { getDiaryEquipmentSprite, handleImageFallback } from '@/utils/assets';
 import { fireMilestoneConfetti } from '@/utils/confetti';
 import VideoFacade from './VideoFacade.vue';
-import { CheckCircle2, Circle, AlertCircle, Video } from 'lucide-vue-next';
+import { CheckCircle2, Circle, AlertCircle, Video, CheckCheck, RotateCcw, Package } from 'lucide-vue-next';
 
 const props = defineProps<{
   region: DiaryRegion;
@@ -36,6 +36,9 @@ const currentTierProgressPercent = computed(() => {
   return Math.round((currentTierCompletedCount.value / currentTierTasks.value.length) * 100);
 });
 
+// Items for active tier
+const currentTierItems = computed(() => props.region.tiers[activeTier.value]?.items?.required || []);
+
 // Check if player meets skill requirements for a task
 function getSkillCheck(skills: Record<string, number>) {
   const result: { skill: string; required: number; current: number; met: boolean }[] = [];
@@ -65,6 +68,12 @@ function handleToggleTask(taskId: string) {
       fireMilestoneConfetti(`${props.region.name} ${activeTier.value} Diary Complete!`);
     }
   }
+}
+
+function toggleEntireTier() {
+  const taskIds = currentTierTasks.value.map((t) => t.id);
+  const allCompleted = isTierCompleted(activeTier.value);
+  playerStore.batchCompleteDiaryTasks(taskIds, !allCompleted);
 }
 
 // Current tier video ID
@@ -150,18 +159,32 @@ const currentTierVideoId = computed(() => props.region.tiers[activeTier.value]?.
 
     <!-- Card Content: Tier Progress & Task Checklist -->
     <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
-      <!-- Tier Progress Header -->
-      <div class="flex items-center justify-between mb-3 text-xs">
-        <span class="font-medium text-gray-400">
-          {{ activeTier }} Tasks ({{ currentTierCompletedCount }} / {{ currentTierTasks.length }})
-        </span>
-        <span class="font-bold" :class="currentTierProgressPercent === 100 ? 'text-osrs-completed' : 'text-osrs-gold'">
-          {{ currentTierProgressPercent }}%
-        </span>
+      <!-- Tier Progress Header with Complete All Button -->
+      <div class="flex items-center justify-between mb-3 text-xs gap-2">
+        <div class="flex items-center gap-2">
+          <span class="font-medium text-gray-400">
+            {{ activeTier }} Tasks ({{ currentTierCompletedCount }} / {{ currentTierTasks.length }})
+          </span>
+          <span class="font-bold" :class="currentTierProgressPercent === 100 ? 'text-osrs-completed' : 'text-osrs-gold'">
+            {{ currentTierProgressPercent }}%
+          </span>
+        </div>
+
+        <!-- Complete All / Reset Tier Button -->
+        <button
+          type="button"
+          @click="toggleEntireTier"
+          class="px-2.5 py-1 rounded-lg text-xs font-semibold border transition-all flex items-center gap-1.5"
+          :class="isTierCompleted(activeTier) ? 'bg-osrs-completed/10 text-osrs-completed border-osrs-completed/30 hover:bg-osrs-completed/20' : 'bg-osrs-gold/10 text-osrs-gold border-osrs-gold/30 hover:bg-osrs-gold/20'"
+        >
+          <CheckCheck v-if="!isTierCompleted(activeTier)" class="w-3.5 h-3.5" />
+          <RotateCcw v-else class="w-3.5 h-3.5" />
+          <span>{{ isTierCompleted(activeTier) ? 'Reset Tier' : 'Complete All' }}</span>
+        </button>
       </div>
 
       <!-- Mini progress bar -->
-      <div class="w-full h-1.5 bg-black/40 rounded-full overflow-hidden mb-4">
+      <div class="w-full h-1.5 bg-black/40 rounded-full overflow-hidden mb-3">
         <div
           class="h-full transition-all duration-300 rounded-full"
           :class="currentTierProgressPercent === 100 ? 'bg-osrs-completed' : 'bg-osrs-gold'"
@@ -169,8 +192,25 @@ const currentTierVideoId = computed(() => props.region.tiers[activeTier.value]?.
         />
       </div>
 
+      <!-- Tier Items Needed Summary -->
+      <div v-if="currentTierItems.length > 0" class="mb-4 p-2.5 rounded-xl bg-black/40 border border-white/5">
+        <div class="text-[11px] font-semibold text-osrs-gold flex items-center gap-1.5 mb-1.5">
+          <Package class="w-3.5 h-3.5 text-osrs-gold" />
+          <span>Items Needed for {{ activeTier }} Tier:</span>
+        </div>
+        <div class="flex flex-wrap gap-1">
+          <span
+            v-for="(item, idx) in currentTierItems"
+            :key="idx"
+            class="text-[10px] sm:text-[11px] bg-white/[0.04] text-gray-300 border border-white/10 px-2 py-0.5 rounded"
+          >
+            {{ item }}
+          </span>
+        </div>
+      </div>
+
       <!-- Task Item Checklist -->
-      <div class="space-y-2.5 flex-1">
+      <div class="space-y-2.5 flex-1 max-h-[450px] overflow-y-auto pr-1">
         <div
           v-for="task in currentTierTasks"
           :key="task.id"
@@ -194,7 +234,7 @@ const currentTierVideoId = computed(() => props.region.tiers[activeTier.value]?.
             />
           </div>
 
-          <!-- Task Description & Skill Badges -->
+          <!-- Task Description & Requirements -->
           <div class="flex-1 min-w-0">
             <p
               class="text-xs sm:text-sm font-normal leading-relaxed"
@@ -203,11 +243,9 @@ const currentTierVideoId = computed(() => props.region.tiers[activeTier.value]?.
               {{ task.description }}
             </p>
 
-            <!-- Skill Level Requirements Verification -->
-            <div
-              v-if="Object.keys(task.skills).length > 0"
-              class="flex flex-wrap items-center gap-1.5 mt-2"
-            >
+            <!-- Skill & Item Badges -->
+            <div class="flex flex-wrap items-center gap-1.5 mt-2">
+              <!-- Skill Badges -->
               <div
                 v-for="check in getSkillCheck(task.skills)"
                 :key="check.skill"
@@ -223,6 +261,15 @@ const currentTierVideoId = computed(() => props.region.tiers[activeTier.value]?.
                 <span class="text-[10px] opacity-75">({{ check.current }})</span>
                 <AlertCircle v-if="!check.met" class="w-3 h-3 text-red-400" />
               </div>
+
+              <!-- Task Item Badges -->
+              <span
+                v-for="(item, idx) in (task.items?.required || [])"
+                :key="idx"
+                class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] bg-black/40 text-gray-400 border border-white/5"
+              >
+                🎒 {{ item }}
+              </span>
             </div>
           </div>
         </div>

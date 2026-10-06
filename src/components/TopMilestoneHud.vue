@@ -60,7 +60,7 @@ function toggleDensity() {
                 <span class="text-gray-400 font-medium">Quests</span>
                 <span class="font-bold text-gray-200">
                   <span class="text-osrs-gold">{{ questPoints }}</span>
-                  <span class="text-gray-500 font-normal"> / {{ TOTAL_QP_TARGET }}</span>
+                  <span class="text-gray-500 font-normal"> / {{ milestoneStore.totalPossibleQuestPoints }}</span>
                 </span>
               </div>
               <!-- Mini Progress Bar -->

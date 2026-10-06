@@ -1,16 +1,23 @@
 export type DiaryTier = 'Easy' | 'Medium' | 'Hard' | 'Elite';
 export type CATier = 'Easy' | 'Medium' | 'Hard' | 'Elite' | 'Master' | 'Grandmaster';
 
+export interface ItemRequirements {
+  required: string[];
+  recommended: string[];
+}
+
 export interface DiaryTask {
   id: string;
   description: string;
   skills: Record<string, number>;
+  items?: ItemRequirements;
 }
 
 export interface DiaryTierData {
   tasks: DiaryTask[];
   rewardIconUrl: string; // Static sprite URL
   youtubeVideoId?: string | null;
+  items?: ItemRequirements;
 }
 
 export interface DiaryRegion {
@@ -44,6 +51,7 @@ export interface Quest {
     skills: Record<string, number>; 
     quests: string[];
   };
+  items?: ItemRequirements;
   rewards: { 
     questPoints: number; 
     experience?: Record<string, number>; 
@@ -60,7 +68,7 @@ export type SkillName =
   | 'Prayer' | 'Crafting' | 'Firemaking'
   | 'Magic' | 'Fletching' | 'Woodcutting'
   | 'Runecraft' | 'Slayer' | 'Farming'
-  | 'Construction' | 'Hunter';
+  | 'Construction' | 'Hunter' | 'Sailing';
 
 export interface PlayerSkills {
   [skill: string]: number;

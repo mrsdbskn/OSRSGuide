@@ -126,8 +126,12 @@ async function handleSync(e?: Event) {
           <h3 class="text-sm font-bold text-white">Manual Skill Levels</h3>
           <p class="text-xs text-gray-400">Adjust levels to test quest eligibility and diary task requirements.</p>
         </div>
-        <div class="text-xs text-osrs-gold font-bold">
-          Total Level: {{ playerStore.totalLevel }} | Combat: {{ playerStore.combatLevel }}
+        <div class="text-xs text-osrs-gold font-bold flex flex-wrap items-center gap-2">
+          <span>Total Level: {{ playerStore.totalLevel }}</span>
+          <span v-if="playerStore.skills['Sailing'] > 1" class="text-gray-400 font-normal">
+            (Classic 23: {{ playerStore.totalLevelClassic23 }} + Sailing: {{ playerStore.skills['Sailing'] }})
+          </span>
+          <span>| Combat: {{ playerStore.combatLevel }}</span>
         </div>
       </div>
 
@@ -201,7 +205,7 @@ async function handleSync(e?: Event) {
               <span class="text-gray-400">Quest Points</span>
               <span class="font-bold text-gray-200">
                 <span class="text-blue-400">{{ milestoneStore.completedQuestPoints }}</span>
-                <span class="text-gray-500 font-normal"> / {{ TOTAL_QP_TARGET }} QP</span>
+                <span class="text-gray-500 font-normal"> / {{ milestoneStore.totalPossibleQuestPoints }} QP</span>
               </span>
             </div>
             <div class="w-full h-2 bg-black/50 rounded-full overflow-hidden">

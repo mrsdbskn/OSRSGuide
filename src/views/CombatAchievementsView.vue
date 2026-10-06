@@ -6,7 +6,7 @@ import { useMilestoneStore, CA_THRESHOLDS, TOTAL_CA_POINTS } from '@/stores/mile
 import { usePlayerStore } from '@/stores/playerStore';
 import { getCATierSwordSprite, handleImageFallback } from '@/utils/assets';
 import CombatTaskRow from '@/components/CombatTaskRow.vue';
-import { Swords, Search, Filter, Layers, CheckCircle2, ShieldAlert } from 'lucide-vue-next';
+import { Swords, Search, Filter, Layers, CheckCircle2, ShieldAlert, CheckCheck, RotateCcw } from 'lucide-vue-next';
 
 const route = useRoute();
 const milestoneStore = useMilestoneStore();
@@ -88,6 +88,15 @@ const tasksByBoss = computed(() => {
     .map(([monster, tasks]) => ({ monster, tasks }))
     .sort((a, b) => a.monster.localeCompare(b.monster));
 });
+
+function isGroupCompleted(tasks: CombatTask[]): boolean {
+  return tasks.length > 0 && tasks.every((t) => playerStore.isCombatTaskCompleted(t.id));
+}
+
+function toggleGroupTasks(tasks: CombatTask[]) {
+  const allComp = isGroupCompleted(tasks);
+  playerStore.batchCompleteCombatTasks(tasks.map((t) => t.id), !allComp);
+}
 </script>
 
 <template>
@@ -251,7 +260,7 @@ const tasksByBoss = computed(() => {
         :key="group.tier"
         class="bg-osrs-surface/80 rounded-2xl border border-white/10 p-5 shadow-sm space-y-3"
       >
-        <div class="flex items-center justify-between pb-3 border-b border-white/5">
+        <div class="flex items-center justify-between pb-3 border-b border-white/5 gap-2">
           <div class="flex items-center gap-3">
             <img
               :src="getCATierSwordSprite(group.tier)"
@@ -265,9 +274,23 @@ const tasksByBoss = computed(() => {
             </h2>
           </div>
 
-          <span class="text-xs font-semibold text-gray-400">
-            {{ group.tasks.filter(t => playerStore.isCombatTaskCompleted(t.id)).length }} / {{ group.tasks.length }} Tasks
-          </span>
+          <div class="flex items-center gap-3">
+            <span class="text-xs font-semibold text-gray-400">
+              {{ group.tasks.filter(t => playerStore.isCombatTaskCompleted(t.id)).length }} / {{ group.tasks.length }} Tasks
+            </span>
+
+            <!-- Complete All / Reset Tier Button -->
+            <button
+              type="button"
+              @click="toggleGroupTasks(group.tasks)"
+              class="px-2.5 py-1 rounded-lg text-xs font-semibold border transition-all flex items-center gap-1"
+              :class="isGroupCompleted(group.tasks) ? 'bg-osrs-completed/10 text-osrs-completed border-osrs-completed/30 hover:bg-osrs-completed/20' : 'bg-osrs-gold/10 text-osrs-gold border-osrs-gold/30 hover:bg-osrs-gold/20'"
+            >
+              <CheckCheck v-if="!isGroupCompleted(group.tasks)" class="w-3.5 h-3.5" />
+              <RotateCcw v-else class="w-3.5 h-3.5" />
+              <span>{{ isGroupCompleted(group.tasks) ? 'Reset' : 'Complete All' }}</span>
+            </button>
+          </div>
         </div>
 
         <div class="space-y-2">
@@ -287,14 +310,28 @@ const tasksByBoss = computed(() => {
         :key="group.monster"
         class="bg-osrs-surface/80 rounded-2xl border border-white/10 p-5 shadow-sm space-y-3"
       >
-        <div class="flex items-center justify-between pb-3 border-b border-white/5">
+        <div class="flex items-center justify-between pb-3 border-b border-white/5 gap-2">
           <h2 class="text-base font-bold font-cinzel text-white flex items-center gap-2">
             <span>{{ group.monster }}</span>
           </h2>
 
-          <span class="text-xs font-semibold text-gray-400">
-            {{ group.tasks.filter(t => playerStore.isCombatTaskCompleted(t.id)).length }} / {{ group.tasks.length }} Tasks
-          </span>
+          <div class="flex items-center gap-3">
+            <span class="text-xs font-semibold text-gray-400">
+              {{ group.tasks.filter(t => playerStore.isCombatTaskCompleted(t.id)).length }} / {{ group.tasks.length }} Tasks
+            </span>
+
+            <!-- Complete All / Reset Boss Button -->
+            <button
+              type="button"
+              @click="toggleGroupTasks(group.tasks)"
+              class="px-2.5 py-1 rounded-lg text-xs font-semibold border transition-all flex items-center gap-1"
+              :class="isGroupCompleted(group.tasks) ? 'bg-osrs-completed/10 text-osrs-completed border-osrs-completed/30 hover:bg-osrs-completed/20' : 'bg-osrs-gold/10 text-osrs-gold border-osrs-gold/30 hover:bg-osrs-gold/20'"
+            >
+              <CheckCheck v-if="!isGroupCompleted(group.tasks)" class="w-3.5 h-3.5" />
+              <RotateCcw v-else class="w-3.5 h-3.5" />
+              <span>{{ isGroupCompleted(group.tasks) ? 'Reset' : 'Complete All' }}</span>
+            </button>
+          </div>
         </div>
 
         <div class="space-y-2">

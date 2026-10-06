@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import type { ViewDensity, PlayerSkills } from '@/types/osrs';
+import type { ViewDensity, PlayerSkills, DiaryTier, CATier } from '@/types/osrs';
 import { fireMilestoneConfetti } from '@/utils/confetti';
 
 const STORAGE_KEY = 'osrs_progress_tracker_state_v1';
@@ -12,8 +12,10 @@ export const ALL_SKILLS = [
   'Prayer', 'Crafting', 'Firemaking',
   'Magic', 'Fletching', 'Woodcutting',
   'Runecraft', 'Slayer', 'Farming',
-  'Construction', 'Hunter'
+  'Construction', 'Hunter', 'Sailing'
 ];
+
+export const CLASSIC_23_SKILLS = ALL_SKILLS.filter((s) => s !== 'Sailing');
 
 function getDefaultSkills(): PlayerSkills {
   const skills: PlayerSkills = {};
@@ -67,6 +69,14 @@ export const usePlayerStore = defineStore('player', {
     isQuestCompleted: (state) => (id: string) => state.completedQuests.includes(id),
     isDiaryTaskCompleted: (state) => (id: string) => state.completedDiaryTasks.includes(id),
     isCombatTaskCompleted: (state) => (id: string) => state.completedCombatTasks.includes(id),
+
+    totalLevelClassic23: (state) => {
+      let sum = 0;
+      for (const s of CLASSIC_23_SKILLS) {
+        sum += state.skills[s] || 1;
+      }
+      return sum;
+    },
   },
 
   actions: {
@@ -119,7 +129,23 @@ export const usePlayerStore = defineStore('player', {
       this.womError = null;
 
       try {
-        const response = await fetch(`https://api.wiseoldman.net/v2/players/${encodeURIComponent(username.trim())}`, {
+        const trimmed = username.trim();
+
+        // 1. Try to request WOM to update from official hiscores first
+        try {
+          await fetch(`https://api.wiseoldman.net/v2/players/${encodeURIComponent(trimmed)}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'User-Agent': 'OSRSGuide-Progress-Tracker/1.0',
+            },
+          });
+        } catch (_) {
+          // ignore error if rate limited or recent
+        }
+
+        // 2. Fetch the updated profile
+        const response = await fetch(`https://api.wiseoldman.net/v2/players/${encodeURIComponent(trimmed)}`, {
           headers: {
             'User-Agent': 'OSRSGuide-Progress-Tracker/1.0',
           },
@@ -139,15 +165,23 @@ export const usePlayerStore = defineStore('player', {
         if (data.latestSnapshot?.data?.skills) {
           const snapshotSkills = data.latestSnapshot.data.skills;
           let calculatedTotal = 0;
+
           for (const skillName of ALL_SKILLS) {
-            const key = skillName.toLowerCase();
+            let key = skillName.toLowerCase();
+            // Handle Wise Old Man naming difference: runecrafting vs Runecraft
+            if (skillName === 'Runecraft') {
+              key = snapshotSkills.runecrafting ? 'runecrafting' : 'runecraft';
+            }
+
             if (snapshotSkills[key]?.level) {
               const lvl = snapshotSkills[key].level;
               this.skills[skillName] = lvl;
               calculatedTotal += lvl;
             }
           }
-          this.totalLevel = calculatedTotal > 0 ? calculatedTotal : (snapshotSkills.overall?.level || this.totalLevel);
+
+          // Use the verified overall level from WOM / Hiscores if present
+          this.totalLevel = snapshotSkills.overall?.level || (calculatedTotal > 0 ? calculatedTotal : this.totalLevel);
         }
 
         this.lastSynced = new Date().toISOString();
@@ -193,6 +227,20 @@ export const usePlayerStore = defineStore('player', {
       this.persist();
     },
 
+    batchCompleteDiaryTasks(taskIds: string[], complete = true) {
+      if (complete) {
+        for (const id of taskIds) {
+          if (!this.completedDiaryTasks.includes(id)) {
+            this.completedDiaryTasks.push(id);
+          }
+        }
+        fireMilestoneConfetti('Achievement Diary Tier Completed!');
+      } else {
+        this.completedDiaryTasks = this.completedDiaryTasks.filter((id) => !taskIds.includes(id));
+      }
+      this.persist();
+    },
+
     toggleCombatTask(taskId: string) {
       const idx = this.completedCombatTasks.indexOf(taskId);
       if (idx >= 0) {
@@ -203,9 +251,23 @@ export const usePlayerStore = defineStore('player', {
       this.persist();
     },
 
+    batchCompleteCombatTasks(taskIds: string[], complete = true) {
+      if (complete) {
+        for (const id of taskIds) {
+          if (!this.completedCombatTasks.includes(id)) {
+            this.completedCombatTasks.push(id);
+          }
+        }
+        fireMilestoneConfetti('Combat Tasks Batch Completed!');
+      } else {
+        this.completedCombatTasks = this.completedCombatTasks.filter((id) => !taskIds.includes(id));
+      }
+      this.persist();
+    },
+
     exportData(): string {
       return JSON.stringify({
-        version: 1,
+        version: 2,
         exportedAt: new Date().toISOString(),
         rsn: this.rsn,
         combatLevel: this.combatLevel,
@@ -221,14 +283,12 @@ export const usePlayerStore = defineStore('player', {
       try {
         const data = JSON.parse(jsonString);
         
-        // Handle custom format or RuneLite Quest Helper format
         if (data.skills) {
           this.skills = { ...this.skills, ...data.skills };
         }
         if (Array.isArray(data.completedQuests)) {
           this.completedQuests = Array.from(new Set([...this.completedQuests, ...data.completedQuests]));
         } else if (data.quests && typeof data.quests === 'object') {
-          // RuneLite quest helper format
           const questIds: string[] = [];
           for (const [k, v] of Object.entries(data.quests)) {
             if (v === 'FINISHED' || v === 'COMPLETED' || v === true) {

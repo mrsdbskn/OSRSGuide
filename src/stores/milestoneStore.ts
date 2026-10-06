@@ -15,7 +15,7 @@ export const CA_THRESHOLDS: { tier: CATier; points: number }[] = [
   { tier: 'Grandmaster', points: 2005 },
 ];
 
-export const TOTAL_QP_TARGET = 300;
+export const TOTAL_QP_TARGET = 349;
 export const TOTAL_DIARY_TIERS = 48;
 export const TOTAL_CA_POINTS = 2005;
 
@@ -42,11 +42,12 @@ export const useMilestoneStore = defineStore('milestones', {
     },
 
     qpNeededForCape(): number {
-      return Math.max(0, TOTAL_QP_TARGET - this.completedQuestPoints);
+      return Math.max(0, this.totalPossibleQuestPoints - this.completedQuestPoints);
     },
 
     questProgressPercent(): number {
-      return Math.min(100, Math.round((this.completedQuestPoints / TOTAL_QP_TARGET) * 100));
+      const total = this.totalPossibleQuestPoints || TOTAL_QP_TARGET;
+      return Math.min(100, Math.round((this.completedQuestPoints / total) * 100));
     },
 
     // --- DIARIES METRICS ---

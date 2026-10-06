@@ -195,7 +195,7 @@ function openDrawer(quest: Quest) {
         <div class="text-right">
           <div class="text-xs text-gray-400">Total Quest Points</div>
           <div class="text-xl font-black text-osrs-gold">
-            {{ milestoneStore.completedQuestPoints }} <span class="text-xs text-gray-500 font-normal">/ {{ TOTAL_QP_TARGET }}</span>
+            {{ milestoneStore.completedQuestPoints }} <span class="text-xs text-gray-500 font-normal">/ {{ milestoneStore.totalPossibleQuestPoints }}</span>
           </div>
         </div>
       </div>

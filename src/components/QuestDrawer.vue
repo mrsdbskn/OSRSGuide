@@ -4,7 +4,7 @@ import type { Quest } from '@/types/osrs';
 import { usePlayerStore } from '@/stores/playerStore';
 import { useMilestoneStore } from '@/stores/milestoneStore';
 import VideoFacade from './VideoFacade.vue';
-import { X, CheckCircle2, Circle, Scroll, Award, AlertCircle, ExternalLink } from 'lucide-vue-next';
+import { X, CheckCircle2, Circle, Scroll, Award, AlertCircle, ExternalLink, Package } from 'lucide-vue-next';
 
 const props = defineProps<{
   quest: Quest | null;
@@ -199,6 +199,44 @@ const wikiUrl = computed(() => {
               <p v-else class="text-xs text-gray-500 italic">
                 None.
               </p>
+            </div>
+
+            <!-- Items Required & Recommended -->
+            <div v-if="(quest.items?.required?.length || 0) > 0 || (quest.items?.recommended?.length || 0) > 0">
+              <h3 class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2.5 flex items-center gap-1.5">
+                <Package class="w-3.5 h-3.5 text-osrs-gold" />
+                <span>Items</span>
+              </h3>
+
+              <div class="space-y-3">
+                <!-- Required items -->
+                <div v-if="quest.items?.required && quest.items.required.length > 0">
+                  <div class="text-[11px] font-semibold text-osrs-gold mb-1.5">Required Items:</div>
+                  <div class="flex flex-wrap gap-1.5">
+                    <span
+                      v-for="(item, idx) in quest.items.required"
+                      :key="idx"
+                      class="px-2.5 py-1 rounded-lg bg-black/40 border border-osrs-gold/20 text-xs text-gray-200"
+                    >
+                      {{ item }}
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Recommended items -->
+                <div v-if="quest.items?.recommended && quest.items.recommended.length > 0">
+                  <div class="text-[11px] font-semibold text-cyan-400 mb-1.5">Recommended Items:</div>
+                  <div class="flex flex-wrap gap-1.5">
+                    <span
+                      v-for="(item, idx) in quest.items.recommended"
+                      :key="idx"
+                      class="px-2.5 py-1 rounded-lg bg-black/40 border border-cyan-400/20 text-xs text-gray-300"
+                    >
+                      {{ item }}
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <!-- Quest Rewards -->
