@@ -17,7 +17,9 @@ import {
   ChevronRight,
   Video,
   Sparkles,
-  ExternalLink
+  ExternalLink,
+  LayoutGrid,
+  Rows3
 } from 'lucide-vue-next';
 
 const route = useRoute();
@@ -218,9 +220,9 @@ function openDrawer(quest: Quest) {
           />
         </div>
 
-        <!-- Sort Select -->
+        <!-- Sort Select & View Density Toggle -->
         <div class="flex items-center gap-2">
-          <div class="flex items-center gap-2 bg-black/40 px-3 py-2 rounded-xl border border-white/10 text-xs">
+          <div class="flex items-center gap-2 bg-black/40 px-3 py-2 rounded-xl border border-white/10 text-xs flex-1 sm:flex-initial">
             <ArrowUpDown class="w-3.5 h-3.5 text-osrs-gold" />
             <span class="text-gray-400 font-medium">Sort:</span>
             <select
@@ -232,6 +234,18 @@ function openDrawer(quest: Quest) {
               <option value="alphabetical" class="bg-osrs-surface text-gray-200">Alphabetical (A-Z)</option>
             </select>
           </div>
+
+          <!-- View Density Button -->
+          <button
+            type="button"
+            @click="playerStore.setViewDensity(playerStore.viewDensity === 'compact' ? 'detailed' : 'compact')"
+            class="p-2 sm:px-3 sm:py-2 rounded-xl bg-black/40 border border-white/10 text-gray-300 hover:text-osrs-gold text-xs font-semibold flex items-center gap-1.5 transition-colors flex-shrink-0"
+            :title="playerStore.viewDensity === 'compact' ? 'Switch to Detailed View' : 'Switch to Compact View'"
+          >
+            <Rows3 v-if="playerStore.viewDensity === 'compact'" class="w-4 h-4 text-osrs-gold" />
+            <LayoutGrid v-else class="w-4 h-4 text-osrs-gold" />
+            <span class="hidden sm:inline">{{ playerStore.viewDensity === 'compact' ? 'Compact' : 'Detailed' }}</span>
+          </button>
         </div>
 
       </div>

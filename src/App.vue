@@ -5,6 +5,7 @@ import AppHeader from '@/components/AppHeader.vue';
 import TopMilestoneHud from '@/components/TopMilestoneHud.vue';
 import CommandPalette from '@/components/CommandPalette.vue';
 import ImportExportModal from '@/components/ImportExportModal.vue';
+import FloatingBottomNav from '@/components/FloatingBottomNav.vue';
 
 const isCommandPaletteOpen = ref(false);
 const isImportOpen = ref(false);
@@ -34,9 +35,15 @@ onUnmounted(() => {
     <TopMilestoneHud @open-command-palette="isCommandPaletteOpen = true" />
 
     <!-- Main Content Area -->
-    <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 pt-4 sm:pt-6 pb-24 md:pb-8">
+    <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 pt-4 sm:pt-6 pb-28 md:pb-8">
       <RouterView />
     </main>
+
+    <!-- Floating Bottom Navigation Pill (Image 1 Style) -->
+    <FloatingBottomNav
+      @open-command-palette="isCommandPaletteOpen = true"
+      @open-import="isImportOpen = true"
+    />
 
     <!-- Global Command Palette (Ctrl+K) -->
     <CommandPalette

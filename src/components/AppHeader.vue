@@ -144,52 +144,5 @@ async function handleQuickSync() {
       </div>
     </div>
 
-    <!-- Fixed Mobile Bottom Navigation Bar (Thumb & Touch-Optimized for iOS / Android) -->
-    <nav class="fixed bottom-0 inset-x-0 md:hidden z-40 bg-[#10121A]/95 backdrop-blur-xl border-t border-white/10 px-2 py-1.5 flex items-center justify-around shadow-2xl pb-[max(0.375rem,env(safe-area-inset-bottom))] select-none">
-      <RouterLink
-        to="/"
-        class="flex flex-col items-center justify-center flex-1 py-1 rounded-xl transition-all"
-        :class="route.path === '/' ? 'text-osrs-gold font-bold' : 'text-gray-400 hover:text-gray-200'"
-      >
-        <Home class="w-5 h-5 mb-0.5" />
-        <span class="text-[10px] tracking-tight">Overview</span>
-      </RouterLink>
-
-      <RouterLink
-        to="/quests"
-        class="flex flex-col items-center justify-center flex-1 py-1 rounded-xl transition-all"
-        :class="route.path.startsWith('/quests') ? 'text-osrs-gold font-bold' : 'text-gray-400 hover:text-gray-200'"
-      >
-        <img :src="COMMON_SPRITES.questIcon" alt="Quests" class="w-5 h-5 object-contain mb-0.5" />
-        <span class="text-[10px] tracking-tight">Quests</span>
-      </RouterLink>
-
-      <RouterLink
-        to="/diaries"
-        class="flex flex-col items-center justify-center flex-1 py-1 rounded-xl transition-all"
-        :class="route.path.startsWith('/diaries') ? 'text-osrs-gold font-bold' : 'text-gray-400 hover:text-gray-200'"
-      >
-        <img :src="COMMON_SPRITES.diariesIcon" alt="Diaries" class="w-5 h-5 object-contain mb-0.5" />
-        <span class="text-[10px] tracking-tight">Diaries</span>
-      </RouterLink>
-
-      <RouterLink
-        to="/combat-achievements"
-        class="flex flex-col items-center justify-center flex-1 py-1 rounded-xl transition-all"
-        :class="route.path.startsWith('/combat-achievements') ? 'text-osrs-gold font-bold' : 'text-gray-400 hover:text-gray-200'"
-      >
-        <img :src="COMMON_SPRITES.combatIcon" alt="Combat" class="w-5 h-5 object-contain mb-0.5" />
-        <span class="text-[10px] tracking-tight">Combat</span>
-      </RouterLink>
-
-      <button
-        type="button"
-        @click="emit('open-import')"
-        class="flex flex-col items-center justify-center flex-1 py-1 rounded-xl transition-all text-gray-400 hover:text-osrs-gold"
-      >
-        <Upload class="w-5 h-5 mb-0.5 text-osrs-gold" />
-        <span class="text-[10px] tracking-tight text-gray-300">Sync/Data</span>
-      </button>
-    </nav>
   </header>
 </template>
