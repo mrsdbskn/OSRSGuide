@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia';
-import type { ViewDensity, PlayerSkills, DiaryTier, CATier } from '@/types/osrs';
+import type { ViewDensity, PlayerSkills, DiaryTier, CATier, Quest, DiaryRegion } from '@/types/osrs';
+import questsRaw from '@/data/quests.json';
+import diariesRaw from '@/data/diaries.json';
 import { fireMilestoneConfetti } from '@/utils/confetti';
 
 const STORAGE_KEY = 'osrs_progress_tracker_state_v1';
@@ -43,6 +45,7 @@ export const usePlayerStore = defineStore('player', {
           viewDensity: (parsed.viewDensity || 'detailed') as ViewDensity,
           isLoadingWom: false,
           womError: null as string | null,
+          syncSource: (parsed.syncSource || null) as 'wikisync' | 'wom' | 'manual' | null,
           lastSynced: parsed.lastSynced || null as string | null,
         };
       } catch (e) {
@@ -61,6 +64,7 @@ export const usePlayerStore = defineStore('player', {
       viewDensity: 'detailed' as ViewDensity,
       isLoadingWom: false,
       womError: null as string | null,
+      syncSource: null as 'wikisync' | 'wom' | 'manual' | null,
       lastSynced: null as string | null,
     };
   },
@@ -92,6 +96,7 @@ export const usePlayerStore = defineStore('player', {
           completedDiaryTasks: this.completedDiaryTasks,
           completedCombatTasks: this.completedCombatTasks,
           viewDensity: this.viewDensity,
+          syncSource: this.syncSource,
           lastSynced: this.lastSynced,
         })
       );
@@ -123,6 +128,140 @@ export const usePlayerStore = defineStore('player', {
       this.combatLevel = Math.floor(base + Math.max(melee, range, mage));
     },
 
+    async triggerWomUpdate(username: string) {
+      try {
+        await fetch(`https://api.wiseoldman.net/v2/players/${encodeURIComponent(username.trim())}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'User-Agent': 'OSRSGuide-Progress-Tracker/1.0',
+          },
+        });
+      } catch (_) {}
+    },
+
+    /**
+     * Live sync using the official OSRS WikiSync public API
+     * Automatically extracts real-time completed quests, diary tasks, combat achievements, and levels!
+     */
+    async fetchWikiSyncProfile(username: string) {
+      const trimmed = username.trim();
+      const url = `https://sync.runescape.wiki/runelite/player/${encodeURIComponent(trimmed)}/STANDARD`;
+      const response = await fetch(url, {
+        headers: { 'User-Agent': 'OSRSGuide-Progress-Tracker/1.0' }
+      });
+
+      if (!response.ok) {
+        throw new Error(`WikiSync returned status ${response.status}`);
+      }
+
+      const data = await response.json();
+      if (!data || (!data.quests && !data.levels)) {
+        throw new Error('No player data returned from WikiSync.');
+      }
+
+      this.rsn = data.username || trimmed;
+
+      // 1. Quests (status 2 = completed)
+      const completedQuestIds: string[] = [];
+      const quests = questsRaw as unknown as Quest[];
+      if (data.quests && typeof data.quests === 'object') {
+        for (const q of quests) {
+          if (data.quests[q.name] === 2) {
+            completedQuestIds.push(q.id);
+          }
+        }
+      }
+      this.completedQuests = completedQuestIds;
+
+      // 2. Achievement Diaries (all 12 regions mapped)
+      const completedDiaryTaskIds: string[] = [];
+      const diaries = diariesRaw as unknown as DiaryRegion[];
+      if (data.achievement_diaries && typeof data.achievement_diaries === 'object') {
+        for (const region of diaries) {
+          let wikiRegionName = region.name;
+          if (region.id === 'kourend') wikiRegionName = 'Kourend & Kebos';
+          if (region.id === 'lumbridge') wikiRegionName = 'Lumbridge & Draynor';
+          if (region.id === 'western') wikiRegionName = 'Western Provinces';
+
+          const regionData = data.achievement_diaries[wikiRegionName];
+          if (regionData) {
+            for (const tier of ['Easy', 'Medium', 'Hard', 'Elite'] as DiaryTier[]) {
+              const tierTasks = region.tiers[tier]?.tasks || [];
+              const wikiTierTasks = regionData[tier]?.tasks || [];
+              for (let i = 0; i < tierTasks.length; i++) {
+                if (wikiTierTasks[i] === true) {
+                  completedDiaryTaskIds.push(tierTasks[i].id);
+                }
+              }
+            }
+          }
+        }
+      }
+      this.completedDiaryTasks = completedDiaryTaskIds;
+
+      // 3. Combat Achievements
+      if (Array.isArray(data.combat_achievements)) {
+        this.completedCombatTasks = data.combat_achievements.map((id: number) => `ca-${id}`);
+      }
+
+      // 4. Player Levels
+      if (data.levels && typeof data.levels === 'object') {
+        for (const skillName of ALL_SKILLS) {
+          if (data.levels[skillName] != null) {
+            this.skills[skillName] = Number(data.levels[skillName]);
+          }
+        }
+        this.recalculateTotalAndCombat();
+      }
+
+      this.syncSource = 'wikisync';
+      this.lastSynced = new Date().toISOString();
+      this.persist();
+
+      return {
+        source: 'wikisync' as const,
+        questsCount: completedQuestIds.length,
+        diariesCount: completedDiaryTaskIds.length,
+        caCount: this.completedCombatTasks.length,
+      };
+    },
+
+    /**
+     * Primary smart sync: tries live WikiSync first for 100% full quest & diary sync;
+     * gracefully falls back to Wise Old Man for stats if player hasn't turned on WikiSync in RuneLite.
+     */
+    async fetchProfile(username: string) {
+      if (!username.trim()) return;
+      this.isLoadingWom = true;
+      this.womError = null;
+
+      try {
+        // Attempt WikiSync first
+        try {
+          const wikiRes = await this.fetchWikiSyncProfile(username);
+          // Trigger WOM update in background to refresh hiscores indexing
+          this.triggerWomUpdate(username).catch(() => {});
+          return wikiRes;
+        } catch (wikiErr) {
+          console.info('WikiSync not active for player, falling back to Wise Old Man stats:', wikiErr);
+        }
+
+        // Fallback to Wise Old Man
+        await this.fetchWomProfile(username);
+        this.syncSource = 'wom';
+        this.persist();
+        return {
+          source: 'wom' as const,
+          questsCount: this.completedQuests.length,
+          diariesCount: this.completedDiaryTasks.length,
+          caCount: this.completedCombatTasks.length,
+        };
+      } finally {
+        this.isLoadingWom = false;
+      }
+    },
+
     async fetchWomProfile(username: string) {
       if (!username.trim()) return;
       this.isLoadingWom = true;
@@ -130,21 +269,8 @@ export const usePlayerStore = defineStore('player', {
 
       try {
         const trimmed = username.trim();
+        await this.triggerWomUpdate(trimmed);
 
-        // 1. Try to request WOM to update from official hiscores first
-        try {
-          await fetch(`https://api.wiseoldman.net/v2/players/${encodeURIComponent(trimmed)}`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'User-Agent': 'OSRSGuide-Progress-Tracker/1.0',
-            },
-          });
-        } catch (_) {
-          // ignore error if rate limited or recent
-        }
-
-        // 2. Fetch the updated profile
         const response = await fetch(`https://api.wiseoldman.net/v2/players/${encodeURIComponent(trimmed)}`, {
           headers: {
             'User-Agent': 'OSRSGuide-Progress-Tracker/1.0',
@@ -168,7 +294,6 @@ export const usePlayerStore = defineStore('player', {
 
           for (const skillName of ALL_SKILLS) {
             let key = skillName.toLowerCase();
-            // Handle Wise Old Man naming difference: runecrafting vs Runecraft
             if (skillName === 'Runecraft') {
               key = snapshotSkills.runecrafting ? 'runecrafting' : 'runecraft';
             }
@@ -180,10 +305,10 @@ export const usePlayerStore = defineStore('player', {
             }
           }
 
-          // Use the verified overall level from WOM / Hiscores if present
           this.totalLevel = snapshotSkills.overall?.level || (calculatedTotal > 0 ? calculatedTotal : this.totalLevel);
         }
 
+        this.syncSource = 'wom';
         this.lastSynced = new Date().toISOString();
         this.persist();
       } catch (err: any) {

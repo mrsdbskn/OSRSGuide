@@ -17,7 +17,7 @@ const isSynced = computed(() => !!playerStore.rsn);
 async function handleQuickSync() {
   if (playerStore.rsn) {
     try {
-      await playerStore.fetchWomProfile(playerStore.rsn);
+      await playerStore.fetchProfile(playerStore.rsn);
     } catch (e) {
       // error handled in store
     }

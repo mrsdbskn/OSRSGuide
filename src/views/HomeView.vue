@@ -32,11 +32,15 @@ async function handleSync(e?: Event) {
   }
 
   try {
-    await playerStore.fetchWomProfile(username);
-    successMsg.value = `Successfully synced stats for ${playerStore.rsn}!`;
+    const res = await playerStore.fetchProfile(username);
+    if (res?.source === 'wikisync') {
+      successMsg.value = `✨ Live Synced via WikiSync! Loaded ${res.questsCount} quests, ${res.diariesCount} diary tasks, and ${res.caCount} combat tasks!`;
+    } else {
+      successMsg.value = `Synced stats for ${playerStore.rsn} via Wise Old Man. (Tip: Enable 'WikiSync' in RuneLite to auto-sync quests & diaries!)`;
+    }
     searchRsn.value = '';
   } catch (err: any) {
-    errorMsg.value = err.message || 'Player not found on Wise Old Man. Check spelling or try again.';
+    errorMsg.value = err.message || 'Player not found. Check spelling or try again.';
   }
 }
 </script>
@@ -60,7 +64,7 @@ async function handleSync(e?: Event) {
         </h1>
 
         <p class="text-gray-400 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
-          Synchronize your verified account stats via Wise Old Man, check quest eligibility cascades, master all 12 regional achievement diaries, and unlock combat achievement tier swords.
+          Synchronize your verified account stats, quests, and diaries via WikiSync & Wise Old Man, check quest eligibility cascades, master all 12 regional achievement diaries, and unlock combat achievement tier swords.
         </p>
 
         <!-- RSN Sync Input Form -->
@@ -81,7 +85,7 @@ async function handleSync(e?: Event) {
               class="flex items-center gap-2 bg-osrs-gold hover:bg-osrs-gold-light text-black font-bold text-xs uppercase tracking-wider px-4 py-2.5 rounded-xl shadow-gold-glow transition-all flex-shrink-0"
             >
               <RefreshCw v-if="isSyncing" class="w-4 h-4 animate-spin text-black" />
-              <span>{{ isSyncing ? 'Syncing...' : 'Sync WOM' }}</span>
+              <span>{{ isSyncing ? 'Syncing...' : 'Sync Account' }}</span>
             </button>
           </div>
         </form>
@@ -94,7 +98,7 @@ async function handleSync(e?: Event) {
             class="hover:text-osrs-gold inline-flex items-center gap-1 underline underline-offset-4 transition-colors"
           >
             <Upload class="w-3.5 h-3.5" />
-            <span>Import RuneLite Data / JSON</span>
+            <span>How to Sync with RuneLite / Import JSON</span>
           </button>
           <span>•</span>
           <button
