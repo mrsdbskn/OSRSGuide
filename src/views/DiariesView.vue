@@ -4,7 +4,7 @@ import { useRoute } from 'vue-router';
 import { useMilestoneStore, TOTAL_DIARY_TIERS } from '@/stores/milestoneStore';
 import DiaryCard from '@/components/DiaryCard.vue';
 import { COMMON_SPRITES, handleImageFallback } from '@/utils/assets';
-import { Search, Filter, ShieldCheck, Sparkles } from 'lucide-vue-next';
+import { Search, Filter, ShieldCheck, Sparkles, ExternalLink } from 'lucide-vue-next';
 
 const route = useRoute();
 const milestoneStore = useMilestoneStore();
@@ -38,7 +38,7 @@ const filteredDiaries = computed(() => {
   <div class="space-y-6 pb-20">
     <!-- Header Banner -->
     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-osrs-surface p-6 rounded-2xl border border-white/10 shadow-lg">
-      <div>
+      <div class="space-y-1.5">
         <h1 class="text-2xl sm:text-3xl font-bold font-cinzel text-white flex items-center gap-3">
           <img
             :src="COMMON_SPRITES.diariesIcon"
@@ -48,9 +48,20 @@ const filteredDiaries = computed(() => {
           />
           <span>Achievement Diaries</span>
         </h1>
-        <p class="text-xs sm:text-sm text-gray-400 mt-1">
-          Complete regional tasks across Gielinor to empower your tiered equipment rewards.
-        </p>
+        <div class="flex flex-wrap items-center gap-2">
+          <p class="text-xs sm:text-sm text-gray-400">
+            Complete regional tasks across Gielinor to empower your tiered equipment rewards.
+          </p>
+          <a
+            href="https://www.youtube.com/@KaozOSRS"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-red-950/40 border border-red-500/30 text-red-300 hover:text-white hover:border-red-500/60 transition-colors text-[11px] font-semibold"
+          >
+            <span>Guides by @KaozOSRS</span>
+            <ExternalLink class="w-3 h-3 text-red-400" />
+          </a>
+        </div>
       </div>
 
       <div class="flex items-center gap-3">

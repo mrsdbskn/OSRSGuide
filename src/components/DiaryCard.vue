@@ -5,7 +5,7 @@ import { usePlayerStore } from '@/stores/playerStore';
 import { getDiaryEquipmentSprite, handleImageFallback } from '@/utils/assets';
 import { fireMilestoneConfetti } from '@/utils/confetti';
 import VideoFacade from './VideoFacade.vue';
-import { CheckCircle2, Circle, AlertCircle, Video, CheckCheck, RotateCcw, Package, ChevronDown, ChevronUp } from 'lucide-vue-next';
+import { CheckCircle2, Circle, AlertCircle, Video, CheckCheck, RotateCcw, Package, ChevronDown, ChevronUp, ExternalLink } from 'lucide-vue-next';
 
 const props = defineProps<{
   region: DiaryRegion;
@@ -173,10 +173,24 @@ const currentTierVideoId = computed(() => props.region.tiers[activeTier.value]?.
     </div>
 
     <!-- Video Facade Accordion/Panel -->
-    <div v-if="showVideo && !isCollapsed" class="p-4 bg-black/20 border-b border-white/5 transition-all">
+    <div v-if="showVideo" class="p-4 bg-black/30 border-b border-white/5 transition-all">
+      <div class="flex items-center justify-between mb-2.5 text-xs">
+        <span class="font-semibold text-gray-200">
+          {{ region.name }} {{ activeTier }} Quick Guide
+        </span>
+        <a
+          href="https://www.youtube.com/@KaozOSRS"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-osrs-gold hover:text-osrs-gold-light inline-flex items-center gap-1 font-semibold transition-colors"
+        >
+          <span>Guide by @KaozOSRS</span>
+          <ExternalLink class="w-3 h-3" />
+        </a>
+      </div>
       <VideoFacade
         :video-id="currentTierVideoId"
-        :title="`${region.name} ${activeTier} Diary Guide`"
+        :title="`${region.name} ${activeTier} Diary Quick Guide by Kaoz OSRS`"
       />
     </div>
 
