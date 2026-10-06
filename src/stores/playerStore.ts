@@ -141,38 +141,28 @@ export const usePlayerStore = defineStore('player', {
     },
 
     /**
-     * Live sync using the official OSRS WikiSync public API
-     * Automatically extracts real-time completed quests, diary tasks, combat achievements, and levels!
+     * Applies raw WikiSync JSON data (from API response or user paste)
+     * Preserves manually completed items by smart-merging sets!
      */
-    async fetchWikiSyncProfile(username: string) {
-      const trimmed = username.trim();
-      const url = `https://sync.runescape.wiki/runelite/player/${encodeURIComponent(trimmed)}/STANDARD`;
-      const response = await fetch(url, {
-        headers: { 'User-Agent': 'OSRSGuide-Progress-Tracker/1.0' }
-      });
+    applyWikiSyncData(data: any, fallbackUsername?: string) {
+      if (!data) return null;
 
-      if (!response.ok) {
-        throw new Error(`WikiSync returned status ${response.status}`);
+      if (data.username || fallbackUsername) {
+        this.rsn = data.username || fallbackUsername || this.rsn;
       }
 
-      const data = await response.json();
-      if (!data || (!data.quests && !data.levels)) {
-        throw new Error('No player data returned from WikiSync.');
-      }
-
-      this.rsn = data.username || trimmed;
-
-      // 1. Quests (status 2 = completed)
+      // 1. Quests (status 2 = completed, or boolean true)
       const completedQuestIds: string[] = [];
       const quests = questsRaw as unknown as Quest[];
       if (data.quests && typeof data.quests === 'object') {
         for (const q of quests) {
-          if (data.quests[q.name] === 2) {
+          if (data.quests[q.name] === 2 || data.quests[q.name] === true) {
             completedQuestIds.push(q.id);
           }
         }
       }
-      this.completedQuests = completedQuestIds;
+      // Smart Merge: Preserve manual completions!
+      this.completedQuests = Array.from(new Set([...this.completedQuests, ...completedQuestIds]));
 
       // 2. Achievement Diaries (all 12 regions mapped)
       const completedDiaryTaskIds: string[] = [];
@@ -198,14 +188,16 @@ export const usePlayerStore = defineStore('player', {
           }
         }
       }
-      this.completedDiaryTasks = completedDiaryTaskIds;
+      // Smart Merge: Preserve manual completions!
+      this.completedDiaryTasks = Array.from(new Set([...this.completedDiaryTasks, ...completedDiaryTaskIds]));
 
       // 3. Combat Achievements
       if (Array.isArray(data.combat_achievements)) {
-        this.completedCombatTasks = data.combat_achievements.map((id: number) => `ca-${id}`);
+        const caIds = data.combat_achievements.map((id: number) => `ca-${id}`);
+        this.completedCombatTasks = Array.from(new Set([...this.completedCombatTasks, ...caIds]));
       }
 
-      // 4. Player Levels
+      // 4. Player Levels (including Sailing)
       if (data.levels && typeof data.levels === 'object') {
         for (const skillName of ALL_SKILLS) {
           if (data.levels[skillName] != null) {
@@ -223,8 +215,51 @@ export const usePlayerStore = defineStore('player', {
         source: 'wikisync' as const,
         questsCount: completedQuestIds.length,
         diariesCount: completedDiaryTaskIds.length,
-        caCount: this.completedCombatTasks.length,
+        caCount: (data.combat_achievements || []).length,
       };
+    },
+
+    /**
+     * Live sync using the official OSRS WikiSync public API
+     * Automatically extracts real-time completed quests, diary tasks, combat achievements, and levels!
+     */
+    async fetchWikiSyncProfile(username: string) {
+      const trimmed = username.trim();
+      if (!trimmed) throw new Error('Username required');
+
+      let data: any = null;
+
+      // Try local Vite proxy first (for local development / companion mode)
+      try {
+        const proxyRes = await fetch(`/api/wikisync/${encodeURIComponent(trimmed)}/STANDARD`);
+        if (proxyRes.ok) {
+          const contentType = proxyRes.headers.get('content-type') || '';
+          if (contentType.includes('application/json')) {
+            data = await proxyRes.json();
+          }
+        }
+      } catch (_) {}
+
+      // If proxy didn't return data, try direct fetch
+      if (!data) {
+        const directUrl = `https://sync.runescape.wiki/runelite/player/${encodeURIComponent(trimmed)}/STANDARD`;
+        const directRes = await fetch(directUrl);
+        if (!directRes.ok) {
+          throw new Error(`WikiSync returned status ${directRes.status}`);
+        }
+        const text = await directRes.text();
+        if (text.startsWith('<')) {
+          // Cloudflare challenge or bot protection
+          throw new Error('WikiSync requires browser verification. Open sync URL or use Import.');
+        }
+        data = JSON.parse(text);
+      }
+
+      if (!data || (!data.quests && !data.levels)) {
+        throw new Error('No player data returned from WikiSync.');
+      }
+
+      return this.applyWikiSyncData(data, trimmed);
     },
 
     /**
@@ -408,6 +443,13 @@ export const usePlayerStore = defineStore('player', {
       try {
         const data = JSON.parse(jsonString);
         
+        // 1. Check if raw WikiSync data format (has data.achievement_diaries or data.quests object with numeric/boolean flags)
+        if (data && (data.achievement_diaries || (data.quests && typeof data.quests === 'object' && !Array.isArray(data.completedQuests)))) {
+          this.applyWikiSyncData(data);
+          return true;
+        }
+
+        // 2. Standard OSRSGuide export format
         if (data.skills) {
           this.skills = { ...this.skills, ...data.skills };
         }
@@ -416,7 +458,7 @@ export const usePlayerStore = defineStore('player', {
         } else if (data.quests && typeof data.quests === 'object') {
           const questIds: string[] = [];
           for (const [k, v] of Object.entries(data.quests)) {
-            if (v === 'FINISHED' || v === 'COMPLETED' || v === true) {
+            if (v === 'FINISHED' || v === 'COMPLETED' || v === true || v === 2) {
               questIds.push(k.toLowerCase().replace(/[^a-z0-9]/g, '-'));
             }
           }
@@ -431,7 +473,7 @@ export const usePlayerStore = defineStore('player', {
           this.completedCombatTasks = Array.from(new Set([...this.completedCombatTasks, ...data.completedCombatTasks]));
         }
 
-        if (data.rsn) this.rsn = data.rsn;
+        if (data.rsn || data.username) this.rsn = data.rsn || data.username;
         if (data.combatLevel) this.combatLevel = data.combatLevel;
         if (data.totalLevel) this.totalLevel = data.totalLevel;
 

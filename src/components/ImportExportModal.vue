@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { usePlayerStore } from '@/stores/playerStore';
 import {
   X,
@@ -13,7 +13,8 @@ import {
   ExternalLink,
   FolderOpen,
   RefreshCw,
-  HelpCircle
+  HelpCircle,
+  Sparkles
 } from 'lucide-vue-next';
 
 defineProps<{
@@ -38,6 +39,12 @@ const jsonInput = ref('');
 const errorMsg = ref('');
 const successMsg = ref('');
 const copiedTemplate = ref(false);
+const showBrowserHelper = ref(false);
+
+const wikiSyncUrl = computed(() => {
+  const username = wikiSyncRsn.value.trim() || playerStore.rsn || 'mrsdbskn';
+  return `https://sync.runescape.wiki/runelite/player/${encodeURIComponent(username)}/STANDARD`;
+});
 
 async function handleModalWikiSync() {
   wikiSyncError.value = '';
@@ -53,13 +60,39 @@ async function handleModalWikiSync() {
     const res = await playerStore.fetchProfile(username);
     if (res?.source === 'wikisync') {
       wikiSyncMsg.value = `✨ Success! Loaded ${res.questsCount} completed quests, ${res.diariesCount} diary tasks, and ${res.caCount} combat achievements directly from WikiSync!`;
+      showBrowserHelper.value = false;
     } else {
-      wikiSyncMsg.value = `Synced levels for ${playerStore.rsn} via Wise Old Man. (Note: To auto-sync quest & diary completions, make sure WikiSync is turned ON in RuneLite!)`;
+      wikiSyncMsg.value = `Synced levels for ${playerStore.rsn} via Wise Old Man. (Note: OSRS Wiki blocks direct website API requests for quests/diaries — use the 10-second Browser Sync helper below to complete all quests!)`;
+      showBrowserHelper.value = true;
     }
   } catch (err: any) {
     wikiSyncError.value = err.message || 'Player not found on WikiSync or Wise Old Man.';
+    showBrowserHelper.value = true;
   } finally {
     isSyncingWiki.value = false;
+  }
+}
+
+async function handlePasteFromClipboard() {
+  wikiSyncError.value = '';
+  wikiSyncMsg.value = '';
+  try {
+    const text = await navigator.clipboard.readText();
+    if (!text || !text.trim()) {
+      wikiSyncError.value = 'Clipboard is empty. Please copy your WikiSync data first!';
+      return;
+    }
+    const success = playerStore.importData(text.trim());
+    if (success) {
+      wikiSyncMsg.value = `✨ Auto-Completed! Loaded ${playerStore.completedQuests.length} quests, ${playerStore.completedDiaryTasks.length} diary tasks, and all skill levels!`;
+      showBrowserHelper.value = false;
+    } else {
+      wikiSyncError.value = 'Could not parse data from clipboard. Please make sure you copied the JSON text.';
+    }
+  } catch (_) {
+    // If browser blocks clipboard access, switch to backup tab with focus
+    activeTab.value = 'backup';
+    errorMsg.value = 'Clipboard access was blocked by your browser. Please paste your JSON directly into the box below!';
   }
 }
 
@@ -309,6 +342,46 @@ function copySampleTemplate() {
               <div v-if="wikiSyncError" class="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs flex items-center gap-2">
                 <AlertCircle class="w-4 h-4 flex-shrink-0" />
                 <span>{{ wikiSyncError }}</span>
+              </div>
+
+              <!-- 10-Second Instant Sync Helper (Bypasses OSRS Wiki 3rd-party Cloudflare block) -->
+              <div class="mt-3 p-3.5 rounded-xl bg-black/60 border border-osrs-gold/30 space-y-2.5">
+                <div class="flex items-center justify-between">
+                  <div class="font-bold text-osrs-gold flex items-center gap-1.5 text-xs">
+                    <Sparkles class="w-4 h-4 text-osrs-gold" />
+                    <span>Instant 100% Autocomplete Helper</span>
+                  </div>
+                  <span class="text-[10px] bg-osrs-gold/20 text-osrs-gold px-2 py-0.5 rounded-full font-semibold">10-Second Setup</span>
+                </div>
+                
+                <p class="text-gray-300 text-[11px] leading-relaxed">
+                  The OSRS Wiki blocks external websites from directly reading their API to fight bots. You can instantly bypass this restriction in your own browser in 2 clicks:
+                </p>
+
+                <div class="flex flex-wrap items-center gap-2 pt-1">
+                  <a
+                    :href="wikiSyncUrl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 bg-osrs-surface hover:bg-white/10 text-white font-semibold text-xs px-3.5 py-2 rounded-xl border border-white/15 hover:border-osrs-gold/50 transition-all"
+                  >
+                    <ExternalLink class="w-3.5 h-3.5 text-osrs-gold" />
+                    <span>1. Open WikiSync Profile in Browser ↗</span>
+                  </a>
+
+                  <button
+                    type="button"
+                    @click="handlePasteFromClipboard"
+                    class="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-4 py-2 rounded-xl transition-all shadow-sm"
+                  >
+                    <Copy class="w-3.5 h-3.5" />
+                    <span>2. Paste & Auto-Complete All</span>
+                  </button>
+                </div>
+                
+                <p class="text-[10px] text-gray-400 italic">
+                  Step 1 opens your official WikiSync page. Press <kbd class="bg-black/80 px-1 py-0.5 rounded text-gray-200">Ctrl+A</kbd> then <kbd class="bg-black/80 px-1 py-0.5 rounded text-gray-200">Ctrl+C</kbd>, then click Step 2! Any quests you manually checked are safely preserved and merged.
+                </p>
               </div>
             </div>
           </div>

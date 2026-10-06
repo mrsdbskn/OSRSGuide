@@ -36,7 +36,7 @@ async function handleSync(e?: Event) {
     if (res?.source === 'wikisync') {
       successMsg.value = `✨ Live Synced via WikiSync! Loaded ${res.questsCount} quests, ${res.diariesCount} diary tasks, and ${res.caCount} combat tasks!`;
     } else {
-      successMsg.value = `Synced stats for ${playerStore.rsn} via Wise Old Man. (Tip: Enable 'WikiSync' in RuneLite to auto-sync quests & diaries!)`;
+      successMsg.value = `Synced levels for ${playerStore.rsn}! (To autocomplete all completed quests & diaries without restriction, click "RuneLite Sync & Data" below)`;
     }
     searchRsn.value = '';
   } catch (err: any) {
