@@ -17,13 +17,17 @@ import {
   Sparkles
 } from 'lucide-vue-next';
 
-defineProps<{
+import { useBodyScrollLock } from '@/composables/useBodyScrollLock';
+
+const props = defineProps<{
   isOpen: boolean;
 }>();
 
 const emit = defineEmits<{
   (e: 'close'): void;
 }>();
+
+useBodyScrollLock(computed(() => props.isOpen));
 
 const playerStore = usePlayerStore();
 const activeTab = ref<'wikisync' | 'extraction' | 'backup'>('wikisync');
@@ -198,10 +202,11 @@ function copySampleTemplate() {
   <Teleport to="body">
     <div
       v-if="isOpen"
-      class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md transition-opacity"
+      class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md transition-opacity overscroll-contain"
       @click.self="emit('close')"
+      @touchmove.prevent
     >
-      <div class="relative w-full max-w-2xl bg-osrs-surface border border-osrs-gold/40 rounded-2xl shadow-2xl flex flex-col max-h-[90vh] overflow-hidden">
+      <div class="relative w-full max-w-2xl bg-osrs-surface border border-osrs-gold/40 rounded-2xl shadow-2xl flex flex-col max-h-[92vh] sm:max-h-[90vh] overflow-hidden overscroll-contain">
         
         <!-- Header -->
         <div class="p-5 border-b border-white/10 flex items-center justify-between bg-osrs-elevated/70">
@@ -256,7 +261,7 @@ function copySampleTemplate() {
         </div>
 
         <!-- Modal Body Content -->
-        <div class="p-5 overflow-y-auto space-y-4 flex-1 text-xs">
+        <div class="p-5 overflow-y-auto space-y-4 flex-1 text-xs overscroll-contain">
           
           <!-- TAB 1: 1-CLICK WIKISYNC -->
           <div v-if="activeTab === 'wikisync'" class="space-y-4">

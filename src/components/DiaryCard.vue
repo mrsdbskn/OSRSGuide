@@ -247,7 +247,7 @@ const currentTierVideoId = computed(() => props.region.tiers[activeTier.value]?.
       </div>
 
       <!-- Task Item Checklist -->
-      <div class="space-y-2.5 flex-1 max-h-[450px] overflow-y-auto pr-1">
+      <div class="space-y-2.5 flex-1 max-h-[450px] overflow-y-auto pr-1 overscroll-contain">
         <div
           v-for="task in currentTierTasks"
           :key="task.id"

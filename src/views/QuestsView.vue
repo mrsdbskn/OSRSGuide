@@ -236,12 +236,12 @@ function openDrawer(quest: Quest) {
 
       </div>
 
-      <!-- Status Chips -->
-      <div class="flex flex-wrap items-center gap-2 pt-1">
+      <!-- Status Chips (Horizontal Swipe on Mobile) -->
+      <div class="flex items-center gap-2 pt-1 overflow-x-auto pb-1.5 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
         <button
           type="button"
           @click="statusFilter = 'all'"
-          class="px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all"
+          class="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all"
           :class="statusFilter === 'all' ? 'bg-osrs-gold text-black border-osrs-gold' : 'bg-osrs-elevated text-gray-400 border-white/5 hover:text-white'"
         >
           All ({{ milestoneStore.quests.length }})
@@ -250,7 +250,7 @@ function openDrawer(quest: Quest) {
         <button
           type="button"
           @click="statusFilter = 'eligible'"
-          class="px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all flex items-center gap-1.5"
+          class="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all flex items-center gap-1.5"
           :class="statusFilter === 'eligible' ? 'bg-emerald-500 text-black border-emerald-400' : 'bg-osrs-elevated text-emerald-400 border-white/5 hover:bg-emerald-500/10'"
         >
           <Sparkles class="w-3.5 h-3.5" />
@@ -260,7 +260,7 @@ function openDrawer(quest: Quest) {
         <button
           type="button"
           @click="statusFilter = 'uncompleted'"
-          class="px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all"
+          class="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all"
           :class="statusFilter === 'uncompleted' ? 'bg-osrs-gold text-black border-osrs-gold' : 'bg-osrs-elevated text-gray-400 border-white/5 hover:text-white'"
         >
           Incomplete
@@ -269,7 +269,7 @@ function openDrawer(quest: Quest) {
         <button
           type="button"
           @click="statusFilter = 'completed'"
-          class="px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all flex items-center gap-1"
+          class="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all flex items-center gap-1"
           :class="statusFilter === 'completed' ? 'bg-osrs-completed text-black border-osrs-completed' : 'bg-osrs-elevated text-osrs-completed border-white/5 hover:bg-osrs-completed/10'"
         >
           <CheckCircle2 class="w-3.5 h-3.5" />
@@ -279,7 +279,7 @@ function openDrawer(quest: Quest) {
         <button
           type="button"
           @click="statusFilter = 'missing-stats'"
-          class="px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all flex items-center gap-1"
+          class="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all flex items-center gap-1"
           :class="statusFilter === 'missing-stats' ? 'bg-red-500 text-white border-red-500' : 'bg-osrs-elevated text-red-400 border-white/5 hover:bg-red-500/10'"
         >
           <AlertCircle class="w-3.5 h-3.5" />
@@ -289,7 +289,7 @@ function openDrawer(quest: Quest) {
         <button
           type="button"
           @click="statusFilter = 'missing-prereqs'"
-          class="px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all"
+          class="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all"
           :class="statusFilter === 'missing-prereqs' ? 'bg-amber-500 text-black border-amber-500' : 'bg-osrs-elevated text-amber-400 border-white/5 hover:bg-amber-500/10'"
         >
           Missing Prerequisites
@@ -298,7 +298,7 @@ function openDrawer(quest: Quest) {
         <button
           type="button"
           @click="statusFilter = 'unreleased'"
-          class="px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all flex items-center gap-1"
+          class="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all flex items-center gap-1"
           :class="statusFilter === 'unreleased' ? 'bg-amber-500 text-black border-amber-400 font-bold' : 'bg-osrs-elevated text-amber-300 border-white/5 hover:bg-amber-500/10'"
         >
           <span>Upcoming / Unreleased (4)</span>
@@ -362,11 +362,11 @@ function openDrawer(quest: Quest) {
                 </span>
               </div>
 
-              <!-- Completion Checkbox (stops propagation so drawer doesn't open) -->
+              <!-- Completion Checkbox (generous 44px touch target on mobile) -->
               <button
                 type="button"
                 @click="(e) => handleQuestToggle(quest, e)"
-                class="p-1 text-gray-400 hover:text-osrs-gold transition-colors"
+                class="p-2.5 -m-2 sm:p-1 sm:m-0 min-w-[44px] min-h-[44px] flex items-center justify-center text-gray-400 hover:text-osrs-gold transition-colors z-10"
                 title="Toggle Completion"
               >
                 <CheckCircle2
@@ -454,11 +454,11 @@ function openDrawer(quest: Quest) {
           ]"
         >
           <div class="flex items-center gap-3 min-w-0">
-            <!-- Toggle Checkbox -->
+            <!-- Toggle Checkbox (generous 44px touch target on mobile) -->
             <button
               type="button"
               @click="(e) => handleQuestToggle(quest, e)"
-              class="p-0.5 flex-shrink-0"
+              class="p-2.5 -m-2 sm:p-0.5 sm:m-0 min-w-[44px] min-h-[44px] flex items-center justify-center flex-shrink-0 z-10"
             >
               <CheckCircle2
                 v-if="playerStore.isQuestCompleted(quest.id)"

@@ -3,6 +3,7 @@ import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { useMilestoneStore } from '@/stores/milestoneStore';
 import { usePlayerStore } from '@/stores/playerStore';
+import { useBodyScrollLock } from '@/composables/useBodyScrollLock';
 import { Search, X, Scroll, BookOpen, Swords, CheckCircle2 } from 'lucide-vue-next';
 
 const props = defineProps<{
@@ -12,6 +13,8 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: 'close'): void;
 }>();
+
+useBodyScrollLock(computed(() => props.isOpen));
 
 const router = useRouter();
 const milestoneStore = useMilestoneStore();
@@ -138,11 +141,12 @@ onUnmounted(() => {
   <Teleport to="body">
     <div
       v-if="isOpen"
-      class="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-black/70 backdrop-blur-sm"
+      class="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-black/70 backdrop-blur-sm overscroll-contain"
       @click.self="emit('close')"
+      @touchmove.prevent
     >
       <div
-        class="relative w-full max-w-xl bg-osrs-surface border border-osrs-gold/30 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[80vh] transition-all animate-in fade-in zoom-in-95 duration-150"
+        class="relative w-full max-w-xl bg-osrs-surface border border-osrs-gold/30 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[80vh] transition-all animate-in fade-in zoom-in-95 duration-150 overscroll-contain"
       >
         <!-- Search Input Bar -->
         <div class="flex items-center px-4 py-3.5 border-b border-white/10 bg-osrs-elevated/80 gap-3">
@@ -167,7 +171,7 @@ onUnmounted(() => {
         </div>
 
         <!-- Search Results List -->
-        <div class="overflow-y-auto p-2 divide-y divide-white/5 space-y-1">
+        <div class="overflow-y-auto p-2 divide-y divide-white/5 space-y-1 overscroll-contain">
           <div
             v-for="item in filteredResults"
             :key="item.id"

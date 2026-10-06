@@ -3,6 +3,7 @@ import { computed } from 'vue';
 import type { Quest } from '@/types/osrs';
 import { useMilestoneStore } from '@/stores/milestoneStore';
 import { usePlayerStore } from '@/stores/playerStore';
+import { useBodyScrollLock } from '@/composables/useBodyScrollLock';
 import { AlertTriangle, CheckCheck, X } from 'lucide-vue-next';
 
 const props = defineProps<{
@@ -15,6 +16,8 @@ const emit = defineEmits<{
   (e: 'confirm-single', questId: string): void;
   (e: 'close'): void;
 }>();
+
+useBodyScrollLock(computed(() => props.isOpen && !!props.targetQuest));
 
 const milestoneStore = useMilestoneStore();
 const playerStore = usePlayerStore();
@@ -47,10 +50,11 @@ const missingPrerequisites = computed<Quest[]>(() => {
   <Teleport to="body">
     <div
       v-if="isOpen && targetQuest"
-      class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm overscroll-contain"
       @click.self="emit('close')"
+      @touchmove.prevent
     >
-      <div class="relative w-full max-w-lg bg-osrs-surface border border-osrs-gold/40 rounded-2xl shadow-2xl p-6 overflow-hidden">
+      <div class="relative w-full max-w-lg bg-osrs-surface border border-osrs-gold/40 rounded-2xl shadow-2xl p-6 overflow-hidden overscroll-contain">
         <!-- Header -->
         <div class="flex items-start gap-3 mb-4">
           <div class="w-10 h-10 rounded-full bg-osrs-gold/15 flex items-center justify-center text-osrs-gold flex-shrink-0">
@@ -77,7 +81,7 @@ const missingPrerequisites = computed<Quest[]>(() => {
           <p class="text-xs text-gray-300 font-medium mb-2">
             Would you like to mark all {{ missingPrerequisites.length }} prerequisite quests as complete as well?
           </p>
-          <div class="max-h-36 overflow-y-auto space-y-1.5 pr-1">
+          <div class="max-h-36 overflow-y-auto space-y-1.5 pr-1 overscroll-contain">
             <div
               v-for="q in missingPrerequisites"
               :key="q.id"

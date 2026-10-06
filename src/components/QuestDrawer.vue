@@ -3,6 +3,7 @@ import { computed } from 'vue';
 import type { Quest } from '@/types/osrs';
 import { usePlayerStore } from '@/stores/playerStore';
 import { useMilestoneStore } from '@/stores/milestoneStore';
+import { useBodyScrollLock } from '@/composables/useBodyScrollLock';
 import VideoFacade from './VideoFacade.vue';
 import { X, CheckCircle2, Circle, Scroll, Award, AlertCircle, ExternalLink, Package } from 'lucide-vue-next';
 
@@ -15,6 +16,9 @@ const emit = defineEmits<{
   (e: 'close'): void;
   (e: 'toggle', quest: Quest): void;
 }>();
+
+// Lock background scrolling on mobile & desktop when drawer is open
+useBodyScrollLock(computed(() => props.isOpen && !!props.quest));
 
 const playerStore = usePlayerStore();
 const milestoneStore = useMilestoneStore();
@@ -63,15 +67,16 @@ const wikiUrl = computed(() => {
     <!-- Backdrop -->
     <div
       v-if="isOpen && quest"
-      class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm transition-opacity"
+      class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm transition-opacity overscroll-contain"
       @click="emit('close')"
+      @touchmove.prevent
     >
       <!-- Slide-over Drawer Panel -->
       <div
-        class="fixed inset-y-0 right-0 max-w-full flex pl-10"
+        class="fixed inset-y-0 right-0 max-w-full flex pl-0 sm:pl-10"
         @click.stop
       >
-        <div class="w-screen max-w-md bg-osrs-surface border-l border-white/10 shadow-2xl flex flex-col h-full overflow-hidden">
+        <div class="w-screen max-w-full sm:max-w-md bg-osrs-surface border-l border-white/10 shadow-2xl flex flex-col h-full overflow-hidden overscroll-contain">
           
           <!-- Drawer Header -->
           <div class="p-5 border-b border-white/10 bg-osrs-elevated/70 flex items-start justify-between gap-4">
@@ -113,7 +118,7 @@ const wikiUrl = computed(() => {
           </div>
 
           <!-- Drawer Body (Scrollable) -->
-          <div class="p-5 overflow-y-auto space-y-6 flex-1">
+          <div class="p-5 overflow-y-auto space-y-6 flex-1 overscroll-contain">
             <!-- Unreleased / Upcoming Content Disclaimer Banner -->
             <div
               v-if="quest.isUnreleased"
@@ -307,6 +312,27 @@ const wikiUrl = computed(() => {
               <ExternalLink class="w-3.5 h-3.5 text-osrs-gold" />
             </a>
 
+          </div>
+
+          <!-- Sticky Drawer Footer Action -->
+          <div class="p-3.5 sm:p-4 border-t border-white/10 bg-osrs-elevated/95 backdrop-blur-md flex items-center gap-2.5">
+            <button
+              type="button"
+              @click="emit('toggle', quest)"
+              class="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold text-xs sm:text-sm uppercase tracking-wider transition-all min-h-[48px] select-none"
+              :class="isCompleted ? 'bg-osrs-completed hover:bg-emerald-600 text-black shadow-emerald-900/40' : 'bg-osrs-gold hover:bg-osrs-gold-light text-black shadow-gold-glow'"
+            >
+              <CheckCircle2 v-if="isCompleted" class="w-4 h-4 text-black" />
+              <Circle v-else class="w-4 h-4 text-black/60" />
+              <span>{{ isCompleted ? 'Quest Completed' : 'Mark Completed' }}</span>
+            </button>
+            <button
+              type="button"
+              @click="emit('close')"
+              class="px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white border border-white/10 text-xs sm:text-sm font-semibold min-h-[48px] select-none"
+            >
+              Close
+            </button>
           </div>
 
         </div>

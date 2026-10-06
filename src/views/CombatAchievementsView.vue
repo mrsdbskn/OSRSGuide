@@ -207,11 +207,12 @@ function toggleGroupTasks(tasks: CombatTask[]) {
       </div>
 
       <!-- Category Filter Chips -->
-      <div class="flex flex-wrap items-center gap-2 pt-1">
+      <!-- Category Filter Chips (Horizontal Swipe on Mobile) -->
+      <div class="flex items-center gap-2 pt-1 overflow-x-auto pb-1.5 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
         <button
           type="button"
           @click="selectedCategory = 'all'"
-          class="px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all"
+          class="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all"
           :class="selectedCategory === 'all' ? 'bg-osrs-gold text-black border-osrs-gold' : 'bg-osrs-elevated text-gray-400 border-white/5 hover:text-white'"
         >
           All Types
@@ -222,19 +223,19 @@ function toggleGroupTasks(tasks: CombatTask[]) {
           :key="cat"
           type="button"
           @click="selectedCategory = cat"
-          class="px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all"
+          class="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all"
           :class="selectedCategory === cat ? 'bg-red-500 text-white border-red-500' : 'bg-osrs-elevated text-gray-400 border-white/5 hover:text-white'"
         >
           {{ cat }}
         </button>
 
-        <div class="h-4 w-px bg-white/10 mx-1 hidden sm:block" />
+        <div class="h-4 w-px bg-white/10 mx-1 hidden sm:block flex-shrink-0" />
 
         <!-- Status filter -->
         <button
           type="button"
           @click="statusFilter = 'all'"
-          class="px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all"
+          class="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all"
           :class="statusFilter === 'all' ? 'bg-white/10 text-white border-white/20' : 'text-gray-500 hover:text-gray-300 border-transparent'"
         >
           All ({{ filteredTasks.length }})
@@ -242,7 +243,7 @@ function toggleGroupTasks(tasks: CombatTask[]) {
         <button
           type="button"
           @click="statusFilter = 'uncompleted'"
-          class="px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all"
+          class="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all"
           :class="statusFilter === 'uncompleted' ? 'bg-white/10 text-white border-white/20' : 'text-gray-500 hover:text-gray-300 border-transparent'"
         >
           Incomplete
@@ -250,7 +251,7 @@ function toggleGroupTasks(tasks: CombatTask[]) {
         <button
           type="button"
           @click="statusFilter = 'completed'"
-          class="px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all"
+          class="flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all"
           :class="statusFilter === 'completed' ? 'bg-osrs-completed text-black border-osrs-completed' : 'text-gray-500 hover:text-gray-300 border-transparent'"
         >
           Completed
