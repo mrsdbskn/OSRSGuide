@@ -6,17 +6,44 @@ import { useMilestoneStore, CA_THRESHOLDS, TOTAL_CA_POINTS } from '@/stores/mile
 import { usePlayerStore } from '@/stores/playerStore';
 import { getCATierSwordSprite, COMMON_SPRITES, handleImageFallback } from '@/utils/assets';
 import CombatTaskRow from '@/components/CombatTaskRow.vue';
-import { Swords, Search, Filter, Layers, CheckCircle2, ShieldAlert, CheckCheck, RotateCcw } from 'lucide-vue-next';
+import {
+  Swords,
+  Search,
+  Filter,
+  Layers,
+  CheckCircle2,
+  ShieldAlert,
+  CheckCheck,
+  RotateCcw,
+  ChevronsDownUp,
+  ChevronsUpDown,
+  ChevronDown,
+  ChevronUp
+} from 'lucide-vue-next';
+import { usePreferencesStore, type CAGroupBy, type CAStatusFilter } from '@/stores/preferencesStore';
 
 const route = useRoute();
 const milestoneStore = useMilestoneStore();
 const playerStore = usePlayerStore();
+const preferencesStore = usePreferencesStore();
 
-// Group mode: 'tier' | 'boss'
-const groupBy = ref<'tier' | 'boss'>('tier');
+// Group mode and Filter state persisted via preferencesStore
+const groupBy = computed<CAGroupBy>({
+  get: () => preferencesStore.caGroupBy,
+  set: (val) => preferencesStore.setCAGroupBy(val),
+});
+
+const statusFilter = computed<CAStatusFilter>({
+  get: () => preferencesStore.caStatusFilter,
+  set: (val) => preferencesStore.setCAStatusFilter(val),
+});
+
+const selectedCategory = computed({
+  get: () => preferencesStore.caSelectedCategory,
+  set: (val) => preferencesStore.setCASelectedCategory(val),
+});
+
 const searchQuery = ref('');
-const selectedCategory = ref<string>('all');
-const statusFilter = ref<'all' | 'completed' | 'uncompleted'>('all');
 
 if (route.query.search) {
   searchQuery.value = String(route.query.search);
@@ -96,6 +123,34 @@ function isGroupCompleted(tasks: CombatTask[]): boolean {
 function toggleGroupTasks(tasks: CombatTask[]) {
   const allComp = isGroupCompleted(tasks);
   playerStore.batchCompleteCombatTasks(tasks.map((t) => t.id), !allComp);
+}
+
+const areCurrentGroupsCollapsed = computed(() => {
+  if (groupBy.value === 'tier') {
+    const tiers = tasksByTier.value.map((g) => g.tier);
+    return preferencesStore.areAllCATiersCollapsed(tiers);
+  } else {
+    const bosses = tasksByBoss.value.map((g) => g.monster);
+    return preferencesStore.areAllCABossesCollapsed(bosses);
+  }
+});
+
+function handleToggleAllGroups() {
+  if (groupBy.value === 'tier') {
+    const tiers = tasksByTier.value.map((g) => g.tier);
+    if (areCurrentGroupsCollapsed.value) {
+      preferencesStore.expandAllCATiers();
+    } else {
+      preferencesStore.collapseAllCATiers(tiers);
+    }
+  } else {
+    const bosses = tasksByBoss.value.map((g) => g.monster);
+    if (areCurrentGroupsCollapsed.value) {
+      preferencesStore.expandAllCABosses();
+    } else {
+      preferencesStore.collapseAllCABosses(bosses);
+    }
+  }
 }
 </script>
 
@@ -182,7 +237,7 @@ function toggleGroupTasks(tasks: CombatTask[]) {
           />
         </div>
 
-        <!-- View Group Toggle: By Tier vs By Boss -->
+        <!-- View Group Toggle: By Tier vs By Boss & Global Collapse Button -->
         <div class="flex items-center gap-2">
           <div class="flex items-center bg-black/40 p-1 rounded-xl border border-white/10 text-xs">
             <button
@@ -202,6 +257,18 @@ function toggleGroupTasks(tasks: CombatTask[]) {
               Group by Boss
             </button>
           </div>
+
+          <!-- Global Collapse All / Expand All Toggle -->
+          <button
+            type="button"
+            @click="handleToggleAllGroups"
+            class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-black/40 hover:bg-osrs-elevated border border-white/10 text-xs font-semibold text-gray-200 hover:text-white transition-colors flex-shrink-0"
+            :title="areCurrentGroupsCollapsed ? 'Expand All' : 'Collapse All'"
+          >
+            <ChevronsUpDown v-if="areCurrentGroupsCollapsed" class="w-4 h-4 text-red-400" />
+            <ChevronsDownUp v-else class="w-4 h-4 text-red-400" />
+            <span class="hidden xs:inline">{{ areCurrentGroupsCollapsed ? 'Expand All' : 'Collapse All' }}</span>
+          </button>
         </div>
 
       </div>
@@ -259,28 +326,35 @@ function toggleGroupTasks(tasks: CombatTask[]) {
       </div>
     </div>
 
-    <!-- Tasks Display: Grouped by Tier -->
-    <div v-if="groupBy === 'tier'" class="space-y-6">
+    <!-- Tasks Display: Grouped by Tier (Collapsible) -->
+    <div v-if="groupBy === 'tier'" class="space-y-4">
       <div
         v-for="group in tasksByTier"
         :key="group.tier"
-        class="bg-osrs-surface/80 rounded-2xl border border-white/10 p-5 shadow-sm space-y-3"
+        class="bg-osrs-surface/80 rounded-2xl border border-white/10 shadow-sm overflow-hidden transition-all"
       >
-        <div class="flex items-center justify-between pb-3 border-b border-white/5 gap-2">
-          <div class="flex items-center gap-3">
+        <div class="p-4 sm:p-5 flex items-center justify-between gap-2 border-b border-white/5 bg-gradient-to-b from-white/[0.02] to-transparent">
+          <div
+            @click="preferencesStore.toggleCATierCollapsed(group.tier)"
+            class="flex items-center gap-2.5 sm:gap-3 cursor-pointer select-none flex-1 min-w-0 group"
+          >
             <img
               :src="getCATierSwordSprite(group.tier)"
               :alt="group.tier"
-              class="w-6 h-6 object-contain drop-shadow"
+              class="w-6 h-6 object-contain drop-shadow transition-transform group-hover:scale-105"
               @error="(e) => handleImageFallback(e, 'sword')"
             />
-            <h2 class="text-base font-bold text-white flex items-center gap-2">
+            <h2 class="text-base font-bold text-white group-hover:text-osrs-gold flex items-center gap-2 truncate transition-colors">
               <span>{{ group.tier }} Tier</span>
-              <span class="text-xs font-normal text-gray-400">({{ group.threshold }} pts threshold)</span>
+              <span class="text-xs font-normal text-gray-400 hidden sm:inline">({{ group.threshold }} pts threshold)</span>
             </h2>
+            <component
+              :is="preferencesStore.isCATierCollapsed(group.tier) ? ChevronDown : ChevronUp"
+              class="w-4 h-4 text-gray-400 group-hover:text-osrs-gold transition-colors ml-1 flex-shrink-0"
+            />
           </div>
 
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
             <span class="text-xs font-semibold text-gray-400">
               {{ group.tasks.filter(t => playerStore.isCombatTaskCompleted(t.id)).length }} / {{ group.tasks.length }} Tasks
             </span>
@@ -299,7 +373,7 @@ function toggleGroupTasks(tasks: CombatTask[]) {
           </div>
         </div>
 
-        <div class="space-y-2">
+        <div v-show="!preferencesStore.isCATierCollapsed(group.tier)" class="p-4 sm:p-5 pt-3 space-y-2">
           <CombatTaskRow
             v-for="task in group.tasks"
             :key="task.id"
@@ -309,19 +383,28 @@ function toggleGroupTasks(tasks: CombatTask[]) {
       </div>
     </div>
 
-    <!-- Tasks Display: Grouped by Boss -->
-    <div v-else class="space-y-6">
+    <!-- Tasks Display: Grouped by Boss (Collapsible) -->
+    <div v-else class="space-y-4">
       <div
         v-for="group in tasksByBoss"
         :key="group.monster"
-        class="bg-osrs-surface/80 rounded-2xl border border-white/10 p-5 shadow-sm space-y-3"
+        class="bg-osrs-surface/80 rounded-2xl border border-white/10 shadow-sm overflow-hidden transition-all"
       >
-        <div class="flex items-center justify-between pb-3 border-b border-white/5 gap-2">
-          <h2 class="text-base font-bold font-cinzel text-white flex items-center gap-2">
-            <span>{{ group.monster }}</span>
-          </h2>
+        <div class="p-4 sm:p-5 flex items-center justify-between gap-2 border-b border-white/5 bg-gradient-to-b from-white/[0.02] to-transparent">
+          <div
+            @click="preferencesStore.toggleCABossCollapsed(group.monster)"
+            class="flex items-center gap-2 sm:gap-2.5 cursor-pointer select-none flex-1 min-w-0 group"
+          >
+            <h2 class="text-base font-bold font-cinzel text-white group-hover:text-red-400 truncate transition-colors">
+              {{ group.monster }}
+            </h2>
+            <component
+              :is="preferencesStore.isCABossCollapsed(group.monster) ? ChevronDown : ChevronUp"
+              class="w-4 h-4 text-gray-400 group-hover:text-red-400 transition-colors ml-1 flex-shrink-0"
+            />
+          </div>
 
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
             <span class="text-xs font-semibold text-gray-400">
               {{ group.tasks.filter(t => playerStore.isCombatTaskCompleted(t.id)).length }} / {{ group.tasks.length }} Tasks
             </span>
@@ -340,7 +423,7 @@ function toggleGroupTasks(tasks: CombatTask[]) {
           </div>
         </div>
 
-        <div class="space-y-2">
+        <div v-show="!preferencesStore.isCABossCollapsed(group.monster)" class="p-4 sm:p-5 pt-3 space-y-2">
           <CombatTaskRow
             v-for="task in group.tasks"
             :key="task.id"

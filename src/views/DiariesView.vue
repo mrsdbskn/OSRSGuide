@@ -2,18 +2,24 @@
 import { ref, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useMilestoneStore, TOTAL_DIARY_TIERS } from '@/stores/milestoneStore';
+import { usePreferencesStore } from '@/stores/preferencesStore';
 import DiaryCard from '@/components/DiaryCard.vue';
 import { COMMON_SPRITES, handleImageFallback } from '@/utils/assets';
-import { Search, Filter, ShieldCheck, Sparkles, ExternalLink } from 'lucide-vue-next';
+import { Search, Filter, ShieldCheck, Sparkles, ExternalLink, ChevronsDownUp, ChevronsUpDown } from 'lucide-vue-next';
 
 const route = useRoute();
 const milestoneStore = useMilestoneStore();
+const preferencesStore = usePreferencesStore();
 
 const searchQuery = ref('');
-const selectedRegion = ref<string>('all');
+
+const selectedRegion = computed({
+  get: () => preferencesStore.diarySelectedRegion,
+  set: (val: string) => preferencesStore.setDiarySelectedRegion(val),
+});
 
 if (route.query.region) {
-  selectedRegion.value = String(route.query.region);
+  preferencesStore.setDiarySelectedRegion(String(route.query.region));
 }
 
 const filteredDiaries = computed(() => {
@@ -32,6 +38,20 @@ const filteredDiaries = computed(() => {
 
   return list;
 });
+
+const allDiariesCollapsed = computed(() => {
+  const ids = filteredDiaries.value.map((d) => d.id);
+  return preferencesStore.areAllDiariesCollapsed(ids);
+});
+
+function handleToggleAllDiaries() {
+  const ids = filteredDiaries.value.map((d) => d.id);
+  if (allDiariesCollapsed.value) {
+    preferencesStore.expandAllDiaries();
+  } else {
+    preferencesStore.collapseAllDiaries(ids);
+  }
+}
 </script>
 
 <template>
@@ -87,9 +107,9 @@ const filteredDiaries = computed(() => {
         />
       </div>
 
-      <!-- Region dropdown -->
+      <!-- Region dropdown & Collapse All Button -->
       <div class="flex items-center gap-2">
-        <div class="flex items-center gap-2 bg-black/40 px-3 py-2 rounded-xl border border-white/10 text-xs">
+        <div class="flex items-center gap-2 bg-black/40 px-3 py-2 rounded-xl border border-white/10 text-xs flex-1 sm:flex-initial">
           <Filter class="w-3.5 h-3.5 text-emerald-400" />
           <span class="text-gray-400 font-medium">Region:</span>
           <select
@@ -107,6 +127,18 @@ const filteredDiaries = computed(() => {
             </option>
           </select>
         </div>
+
+        <!-- Global Collapse All / Expand All Button -->
+        <button
+          type="button"
+          @click="handleToggleAllDiaries"
+          class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-black/40 hover:bg-osrs-elevated border border-white/10 text-xs font-semibold text-gray-200 hover:text-white transition-colors flex-shrink-0"
+          :title="allDiariesCollapsed ? 'Expand All Diary Task Checklists' : 'Collapse All Diary Task Checklists'"
+        >
+          <ChevronsUpDown v-if="allDiariesCollapsed" class="w-4 h-4 text-emerald-400" />
+          <ChevronsDownUp v-else class="w-4 h-4 text-emerald-400" />
+          <span>{{ allDiariesCollapsed ? 'Expand All' : 'Collapse All' }}</span>
+        </button>
       </div>
     </div>
 
@@ -116,6 +148,8 @@ const filteredDiaries = computed(() => {
         v-for="region in filteredDiaries"
         :key="region.id"
         :region="region"
+        :is-collapsed="preferencesStore.isDiaryCollapsed(region.id)"
+        @toggle-collapse="preferencesStore.toggleDiaryCollapsed(region.id)"
       />
     </div>
 

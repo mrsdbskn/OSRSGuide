@@ -7,14 +7,23 @@ import { fireMilestoneConfetti } from '@/utils/confetti';
 import VideoFacade from './VideoFacade.vue';
 import { CheckCircle2, Circle, AlertCircle, Video, CheckCheck, RotateCcw, Package, ChevronDown, ChevronUp, ExternalLink } from 'lucide-vue-next';
 
-const props = defineProps<{
-  region: DiaryRegion;
+const props = withDefaults(
+  defineProps<{
+    region: DiaryRegion;
+    isCollapsed?: boolean;
+  }>(),
+  {
+    isCollapsed: false,
+  }
+);
+
+const emit = defineEmits<{
+  (e: 'toggle-collapse'): void;
 }>();
 
 const playerStore = usePlayerStore();
 const activeTier = ref<DiaryTier>('Easy');
 const showVideo = ref(false);
-const isCollapsed = ref(false);
 
 const tiers: DiaryTier[] = ['Easy', 'Medium', 'Hard', 'Elite'];
 
@@ -162,7 +171,7 @@ const currentTierVideoId = computed(() => props.region.tiers[activeTier.value]?.
 
         <button
           type="button"
-          @click="isCollapsed = !isCollapsed"
+          @click="emit('toggle-collapse')"
           class="flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-semibold bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white transition-colors"
           :title="isCollapsed ? 'Expand tasks checklist' : 'Collapse tasks checklist'"
         >

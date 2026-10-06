@@ -22,14 +22,25 @@ import {
   Rows3
 } from 'lucide-vue-next';
 
+import { usePreferencesStore, type QuestStatusFilter, type QuestSortOption } from '@/stores/preferencesStore';
+
 const route = useRoute();
 const milestoneStore = useMilestoneStore();
 const playerStore = usePlayerStore();
+const preferencesStore = usePreferencesStore();
 
-// Filter & Sort State
+// Filter & Sort State (Persisted in localStorage via preferencesStore)
 const searchQuery = ref('');
-const statusFilter = ref<'all' | 'completed' | 'uncompleted' | 'eligible' | 'missing-stats' | 'missing-prereqs' | 'unreleased'>('all');
-const sortBy = ref<'optimal' | 'difficulty' | 'alphabetical'>('optimal');
+
+const statusFilter = computed<QuestStatusFilter>({
+  get: () => preferencesStore.questStatusFilter,
+  set: (val) => preferencesStore.setQuestStatusFilter(val),
+});
+
+const sortBy = computed<QuestSortOption>({
+  get: () => preferencesStore.questSortBy,
+  set: (val) => preferencesStore.setQuestSortBy(val),
+});
 
 // Active Quest for Drawer and Cascade Modal
 const selectedQuest = ref<Quest | null>(null);
