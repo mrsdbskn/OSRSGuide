@@ -5,7 +5,7 @@ import { usePlayerStore } from '@/stores/playerStore';
 import { getDiaryEquipmentSprite, handleImageFallback } from '@/utils/assets';
 import { fireMilestoneConfetti } from '@/utils/confetti';
 import VideoFacade from './VideoFacade.vue';
-import { CheckCircle2, Circle, AlertCircle, Video, CheckCheck, RotateCcw, Package } from 'lucide-vue-next';
+import { CheckCircle2, Circle, AlertCircle, Video, CheckCheck, RotateCcw, Package, ChevronDown, ChevronUp } from 'lucide-vue-next';
 
 const props = defineProps<{
   region: DiaryRegion;
@@ -14,6 +14,7 @@ const props = defineProps<{
 const playerStore = usePlayerStore();
 const activeTier = ref<DiaryTier>('Easy');
 const showVideo = ref(false);
+const isCollapsed = ref(false);
 
 const tiers: DiaryTier[] = ['Easy', 'Medium', 'Hard', 'Elite'];
 
@@ -147,18 +148,40 @@ const currentTierVideoId = computed(() => props.region.tiers[activeTier.value]?.
           <span class="text-[11px] sm:text-xs truncate">{{ tier }}</span>
         </button>
       </div>
+
+      <!-- Collapse / Expand Tasks Toggle Bar -->
+      <div class="mt-2.5 flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-black/40 border border-white/5">
+        <div class="flex items-center gap-2 text-xs">
+          <span class="text-gray-400">
+            {{ activeTier }} Tasks ({{ currentTierCompletedCount }} / {{ currentTierTasks.length }})
+          </span>
+          <span class="font-bold text-xs" :class="currentTierProgressPercent === 100 ? 'text-osrs-completed' : 'text-osrs-gold'">
+            {{ currentTierProgressPercent }}%
+          </span>
+        </div>
+
+        <button
+          type="button"
+          @click="isCollapsed = !isCollapsed"
+          class="flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-semibold bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white transition-colors"
+          :title="isCollapsed ? 'Expand tasks checklist' : 'Collapse tasks checklist'"
+        >
+          <component :is="isCollapsed ? ChevronDown : ChevronUp" class="w-3.5 h-3.5 text-osrs-gold" />
+          <span>{{ isCollapsed ? 'Show Tasks' : 'Collapse Tasks' }}</span>
+        </button>
+      </div>
     </div>
 
     <!-- Video Facade Accordion/Panel -->
-    <div v-if="showVideo" class="p-4 bg-black/20 border-b border-white/5 transition-all">
+    <div v-if="showVideo && !isCollapsed" class="p-4 bg-black/20 border-b border-white/5 transition-all">
       <VideoFacade
         :video-id="currentTierVideoId"
         :title="`${region.name} ${activeTier} Diary Guide`"
       />
     </div>
 
-    <!-- Card Content: Tier Progress & Task Checklist -->
-    <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+    <!-- Card Content: Tier Progress & Task Checklist (Collapsible) -->
+    <div v-show="!isCollapsed" class="p-4 sm:p-5 flex-1 flex flex-col justify-between transition-all">
       <!-- Tier Progress Header with Complete All Button -->
       <div class="flex items-center justify-between mb-3 text-xs gap-2">
         <div class="flex items-center gap-2">

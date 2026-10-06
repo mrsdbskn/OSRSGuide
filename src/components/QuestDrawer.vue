@@ -95,6 +95,9 @@ const wikiUrl = computed(() => {
                 <span v-if="quest.members" class="text-[10px] bg-amber-500/10 text-amber-400 px-1.5 py-0.2 rounded border border-amber-500/20">
                   Members
                 </span>
+                <span v-if="quest.isUnreleased" class="text-[10px] bg-amber-500/20 text-amber-300 font-bold px-1.5 py-0.5 rounded border border-amber-500/40 uppercase">
+                  Upcoming / Unreleased
+                </span>
               </div>
               <h2 class="text-xl font-bold font-cinzel text-white leading-tight">
                 {{ quest.name }}
@@ -111,7 +114,21 @@ const wikiUrl = computed(() => {
 
           <!-- Drawer Body (Scrollable) -->
           <div class="p-5 overflow-y-auto space-y-6 flex-1">
-            
+            <!-- Unreleased / Upcoming Content Disclaimer Banner -->
+            <div
+              v-if="quest.isUnreleased"
+              class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs space-y-1.5 shadow-sm"
+            >
+              <div class="flex items-center gap-1.5 font-bold text-amber-400 text-sm">
+                <AlertCircle class="w-4 h-4 text-amber-400 flex-shrink-0" />
+                <span>Unreleased Quest Notice</span>
+              </div>
+              <p class="text-xs leading-relaxed text-amber-200/90">
+                This quest was revealed by Jagex (e.g. at the Summer/Winter Summit) but has not yet been released into Old School RuneScape.
+                Prerequisites, skill requirements, and rewards are tentative and do not count toward the official 343 Quest Point Cape.
+              </p>
+            </div>
+
             <!-- Completion Status Button -->
             <button
               type="button"
@@ -141,6 +158,7 @@ const wikiUrl = computed(() => {
               <VideoFacade
                 :video-id="quest.youtubeVideoId"
                 :title="`${quest.name} Quick Guide`"
+                :is-unreleased="quest.isUnreleased"
               />
             </div>
 

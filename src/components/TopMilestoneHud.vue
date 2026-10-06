@@ -78,15 +78,15 @@ function toggleDensity() {
             </div>
           </div>
 
-          <!-- 2. Diaries Metric Pill -->
+          <!-- 2. Diaries Metric Pill (Achievement Diary Cape) -->
           <div
             class="group relative flex items-center gap-2.5 bg-osrs-surface/90 hover:bg-osrs-elevated border border-white/5 hover:border-osrs-gold/40 px-3 py-1.5 rounded-xl transition-all shadow-sm cursor-default"
             :title="`${diaryRemaining} Diary Tiers needed for Achievement Diary Cape`"
           >
             <div class="relative w-7 h-7 flex-shrink-0 flex items-center justify-center">
               <img
-                :src="diarySprite"
-                alt="Diary Equipment"
+                :src="COMMON_SPRITES.diariesCape"
+                alt="Achievement Diary Cape"
                 class="w-6 h-6 object-contain drop-shadow transition-transform group-hover:scale-110"
                 @error="(e) => handleImageFallback(e, 'shield')"
               />
@@ -114,15 +114,15 @@ function toggleDensity() {
             </div>
           </div>
 
-          <!-- 3. Combat Achievements Metric Pill -->
+          <!-- 3. Combat Achievements Metric Pill (Ghommal's Hilt 6) -->
           <div
             class="group relative flex items-center gap-2.5 bg-osrs-surface/90 hover:bg-osrs-elevated border border-white/5 hover:border-osrs-gold/40 px-3 py-1.5 rounded-xl transition-all shadow-sm cursor-default"
             :title="nextCATier ? `${nextCATier.pointsAway} pts away from ${nextCATier.tier} Sword` : 'Grandmaster Tier Unlocked!'"
           >
             <div class="relative w-7 h-7 flex-shrink-0 flex items-center justify-center">
               <img
-                :src="caSwordSprite"
-                alt="Combat Tier Sword"
+                :src="COMMON_SPRITES.ghommalsHilt6"
+                alt="Ghommal's Hilt 6"
                 class="w-6 h-6 object-contain drop-shadow"
                 @error="(e) => handleImageFallback(e, 'sword')"
               />

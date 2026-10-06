@@ -30,14 +30,14 @@ async function handleQuickSync() {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16 gap-4">
         
-        <!-- Logo and Title -->
+        <!-- Logo and Title with Official OSRS OS Icon -->
         <RouterLink to="/" class="flex items-center gap-3 group">
-          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-osrs-gold via-amber-500 to-amber-700 flex items-center justify-center p-1.5 shadow-gold-glow group-hover:scale-105 transition-transform">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-400/20 via-osrs-gold/10 to-amber-700/20 border border-osrs-gold/40 flex items-center justify-center p-1 shadow-gold-glow group-hover:scale-105 transition-transform">
             <img
-              :src="COMMON_SPRITES.questScroll"
+              :src="COMMON_SPRITES.osrsLogo"
               alt="OSRS Logo"
               class="w-full h-full object-contain drop-shadow"
-              @error="(e) => handleImageFallback(e, 'scroll')"
+              @error="(e) => handleImageFallback(e, 'shield')"
             />
           </div>
           <div class="flex flex-col">
@@ -50,7 +50,7 @@ async function handleQuickSync() {
           </div>
         </RouterLink>
 
-        <!-- Navigation Links -->
+        <!-- Navigation Links with Official Icons -->
         <nav class="hidden md:flex items-center gap-1.5 bg-black/30 p-1 rounded-xl border border-white/5">
           <RouterLink
             to="/"
@@ -66,7 +66,7 @@ async function handleQuickSync() {
             class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all"
             :class="route.path.startsWith('/quests') ? 'bg-osrs-elevated text-osrs-gold shadow-sm border border-osrs-gold/30' : 'text-gray-400 hover:text-white hover:bg-white/5'"
           >
-            <Scroll class="w-3.5 h-3.5 text-blue-400" />
+            <img :src="COMMON_SPRITES.questIcon" alt="Quests" class="w-4 h-4 object-contain" />
             <span>Quests</span>
           </RouterLink>
 
@@ -75,7 +75,7 @@ async function handleQuickSync() {
             class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all"
             :class="route.path.startsWith('/diaries') ? 'bg-osrs-elevated text-osrs-gold shadow-sm border border-osrs-gold/30' : 'text-gray-400 hover:text-white hover:bg-white/5'"
           >
-            <BookOpen class="w-3.5 h-3.5 text-emerald-400" />
+            <img :src="COMMON_SPRITES.diariesIcon" alt="Diaries" class="w-4 h-4 object-contain" />
             <span>Diaries</span>
           </RouterLink>
 
@@ -84,7 +84,7 @@ async function handleQuickSync() {
             class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all"
             :class="route.path.startsWith('/combat-achievements') ? 'bg-osrs-elevated text-osrs-gold shadow-sm border border-osrs-gold/30' : 'text-gray-400 hover:text-white hover:bg-white/5'"
           >
-            <Swords class="w-3.5 h-3.5 text-red-400" />
+            <img :src="COMMON_SPRITES.combatIcon" alt="Combat Tasks" class="w-4 h-4 object-contain" />
             <span>Combat Tasks</span>
           </RouterLink>
         </nav>

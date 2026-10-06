@@ -49,9 +49,16 @@ export const CA_HILT_SPRITES: Record<CATier, string> = {
 
 // Common Icons
 export const COMMON_SPRITES = {
-  questScroll: `${WIKI_IMG_BASE}/Quests.png`,
+  osrsLogo: `${WIKI_IMG_BASE}/Old_School_RuneScape_Mobile_icon.png`,
+  questIcon: `${WIKI_IMG_BASE}/Quests.png`,
+  questCape: `${WIKI_IMG_BASE}/Quest_point_cape.png`,
   questPointCape: `${WIKI_IMG_BASE}/Quest_point_cape.png`,
+  diariesIcon: `${WIKI_IMG_BASE}/Achievement_Diaries.png`,
+  diariesCape: `${WIKI_IMG_BASE}/Achievement_diary_cape.png`,
   diaryCape: `${WIKI_IMG_BASE}/Achievement_diary_cape.png`,
+  combatIcon: `${WIKI_IMG_BASE}/Combat_achievements_detail.png`,
+  ghommalsHilt6: `${WIKI_IMG_BASE}/Ghommal%27s_hilt_6.png`,
+  questScroll: `${WIKI_IMG_BASE}/Quests.png`,
   barrowsGloves: `${WIKI_IMG_BASE}/Barrows_gloves.png`,
   coins: `${WIKI_IMG_BASE}/Coins_10000.png`,
 };

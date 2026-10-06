@@ -178,17 +178,25 @@ async function handleSync(e?: Event) {
 
           <div>
             <div class="flex items-center justify-between mb-4">
-              <div class="w-12 h-12 rounded-xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center p-2.5 shadow-sm group-hover:scale-105 transition-transform">
+              <div class="w-12 h-12 rounded-xl bg-blue-500/15 border border-blue-500/30 flex items-center justify-center p-2 shadow-sm group-hover:scale-105 transition-transform">
                 <img
-                  :src="COMMON_SPRITES.questScroll"
-                  alt="Quests"
+                  :src="COMMON_SPRITES.questIcon"
+                  alt="Official Quests Icon"
                   class="w-full h-full object-contain drop-shadow"
                   @error="(e) => handleImageFallback(e, 'scroll')"
                 />
               </div>
-              <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">
-                {{ milestoneStore.questProgressPercent }}% Complete
-              </span>
+              <div class="flex items-center gap-2">
+                <img
+                  :src="COMMON_SPRITES.questCape"
+                  alt="Quest Cape"
+                  class="w-6 h-6 object-contain drop-shadow"
+                  title="Quest Point Cape"
+                />
+                <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                  {{ milestoneStore.questProgressPercent }}% Complete
+                </span>
+              </div>
             </div>
 
             <h3 class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors flex items-center gap-1.5">
@@ -228,15 +236,23 @@ async function handleSync(e?: Event) {
             <div class="flex items-center justify-between mb-4">
               <div class="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center p-2 shadow-sm group-hover:scale-105 transition-transform">
                 <img
-                  :src="milestoneStore.latestUnlockedDiarySprite"
-                  alt="Diaries"
+                  :src="COMMON_SPRITES.diariesIcon"
+                  alt="Achievement Diaries"
                   class="w-full h-full object-contain drop-shadow"
                   @error="(e) => handleImageFallback(e, 'shield')"
                 />
               </div>
-              <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                {{ milestoneStore.diariesProgressPercent }}% Complete
-              </span>
+              <div class="flex items-center gap-2">
+                <img
+                  :src="COMMON_SPRITES.diariesCape"
+                  alt="Diary Cape"
+                  class="w-6 h-6 object-contain drop-shadow"
+                  title="Achievement Diary Cape"
+                />
+                <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                  {{ milestoneStore.diariesProgressPercent }}% Complete
+                </span>
+              </div>
             </div>
 
             <h3 class="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors flex items-center gap-1.5">
@@ -276,15 +292,23 @@ async function handleSync(e?: Event) {
             <div class="flex items-center justify-between mb-4">
               <div class="w-12 h-12 rounded-xl bg-red-500/15 border border-red-500/30 flex items-center justify-center p-2 shadow-sm group-hover:scale-105 transition-transform">
                 <img
-                  :src="milestoneStore.currentUnlockedSwordSprite"
-                  alt="Combat Achievements"
+                  :src="COMMON_SPRITES.combatIcon"
+                  alt="Combat Achievements Book"
                   class="w-full h-full object-contain drop-shadow"
                   @error="(e) => handleImageFallback(e, 'sword')"
                 />
               </div>
-              <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-red-500/10 text-red-400 border border-red-500/20">
-                {{ milestoneStore.combatProgressPercent }}% Complete
-              </span>
+              <div class="flex items-center gap-2">
+                <img
+                  :src="COMMON_SPRITES.ghommalsHilt6"
+                  alt="Ghommal's Hilt 6"
+                  class="w-6 h-6 object-contain drop-shadow"
+                  title="Ghommal's Hilt 6 (Grandmaster)"
+                />
+                <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-red-500/10 text-red-400 border border-red-500/20">
+                  {{ milestoneStore.combatProgressPercent }}% Complete
+                </span>
+              </div>
             </div>
 
             <h3 class="text-lg font-bold text-white group-hover:text-red-400 transition-colors flex items-center gap-1.5">

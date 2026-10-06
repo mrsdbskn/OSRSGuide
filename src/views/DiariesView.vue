@@ -3,7 +3,8 @@ import { ref, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useMilestoneStore, TOTAL_DIARY_TIERS } from '@/stores/milestoneStore';
 import DiaryCard from '@/components/DiaryCard.vue';
-import { BookOpen, Search, Filter, ShieldCheck, Sparkles } from 'lucide-vue-next';
+import { COMMON_SPRITES, handleImageFallback } from '@/utils/assets';
+import { Search, Filter, ShieldCheck, Sparkles } from 'lucide-vue-next';
 
 const route = useRoute();
 const milestoneStore = useMilestoneStore();
@@ -39,7 +40,12 @@ const filteredDiaries = computed(() => {
     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-osrs-surface p-6 rounded-2xl border border-white/10 shadow-lg">
       <div>
         <h1 class="text-2xl sm:text-3xl font-bold font-cinzel text-white flex items-center gap-3">
-          <BookOpen class="w-8 h-8 text-emerald-400" />
+          <img
+            :src="COMMON_SPRITES.diariesIcon"
+            alt="Official Achievement Diaries"
+            class="w-8 h-8 object-contain drop-shadow"
+            @error="(e) => handleImageFallback(e, 'shield')"
+          />
           <span>Achievement Diaries</span>
         </h1>
         <p class="text-xs sm:text-sm text-gray-400 mt-1">

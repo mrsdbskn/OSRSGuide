@@ -4,7 +4,7 @@ import { useRoute } from 'vue-router';
 import type { CombatTask, CATier } from '@/types/osrs';
 import { useMilestoneStore, CA_THRESHOLDS, TOTAL_CA_POINTS } from '@/stores/milestoneStore';
 import { usePlayerStore } from '@/stores/playerStore';
-import { getCATierSwordSprite, handleImageFallback } from '@/utils/assets';
+import { getCATierSwordSprite, COMMON_SPRITES, handleImageFallback } from '@/utils/assets';
 import CombatTaskRow from '@/components/CombatTaskRow.vue';
 import { Swords, Search, Filter, Layers, CheckCircle2, ShieldAlert, CheckCheck, RotateCcw } from 'lucide-vue-next';
 
@@ -105,7 +105,12 @@ function toggleGroupTasks(tasks: CombatTask[]) {
     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-osrs-surface p-6 rounded-2xl border border-white/10 shadow-lg">
       <div>
         <h1 class="text-2xl sm:text-3xl font-bold font-cinzel text-white flex items-center gap-3">
-          <Swords class="w-8 h-8 text-red-400" />
+          <img
+            :src="COMMON_SPRITES.combatIcon"
+            alt="Combat Achievements Book"
+            class="w-8 h-8 object-contain drop-shadow"
+            @error="(e) => handleImageFallback(e, 'sword')"
+          />
           <span>Combat Achievements</span>
         </h1>
         <p class="text-xs sm:text-sm text-gray-400 mt-1">

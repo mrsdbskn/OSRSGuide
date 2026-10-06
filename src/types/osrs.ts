@@ -58,6 +58,7 @@ export interface Quest {
     items?: string[];
   };
   youtubeVideoId?: string | null;
+  isUnreleased?: boolean;
 }
 
 export type SkillName = 

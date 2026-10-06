@@ -7,17 +7,17 @@ import combatTasksRaw from '@/data/combatAchievements.json';
 import { getCATierSwordSprite, getDiaryEquipmentSprite } from '@/utils/assets';
 
 export const CA_THRESHOLDS: { tier: CATier; points: number }[] = [
-  { tier: 'Easy', points: 33 },
-  { tier: 'Medium', points: 115 },
-  { tier: 'Hard', points: 304 },
-  { tier: 'Elite', points: 820 },
-  { tier: 'Master', points: 1465 },
-  { tier: 'Grandmaster', points: 2005 },
+  { tier: 'Easy', points: 41 },
+  { tier: 'Medium', points: 169 },
+  { tier: 'Hard', points: 436 },
+  { tier: 'Elite', points: 1100 },
+  { tier: 'Master', points: 1965 },
+  { tier: 'Grandmaster', points: 2697 },
 ];
 
-export const TOTAL_QP_TARGET = 349;
+export const TOTAL_QP_TARGET = 343; // 184 officially released quests
 export const TOTAL_DIARY_TIERS = 48;
-export const TOTAL_CA_POINTS = 2005;
+export const TOTAL_CA_POINTS = 2697; // 655 official CA tasks
 
 export const useMilestoneStore = defineStore('milestones', {
   state: () => ({
@@ -38,7 +38,7 @@ export const useMilestoneStore = defineStore('milestones', {
     },
 
     totalPossibleQuestPoints(state): number {
-      return state.quests.reduce((sum, q) => sum + (q.questPoints || 0), 0);
+      return state.quests.filter((q) => !q.isUnreleased).reduce((sum, q) => sum + (q.questPoints || 0), 0);
     },
 
     qpNeededForCape(): number {

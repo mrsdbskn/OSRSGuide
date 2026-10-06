@@ -26,7 +26,7 @@ const playerStore = usePlayerStore();
 
 // Filter & Sort State
 const searchQuery = ref('');
-const statusFilter = ref<'all' | 'completed' | 'uncompleted' | 'eligible' | 'missing-stats' | 'missing-prereqs'>('all');
+const statusFilter = ref<'all' | 'completed' | 'uncompleted' | 'eligible' | 'missing-stats' | 'missing-prereqs' | 'unreleased'>('all');
 const sortBy = ref<'optimal' | 'difficulty' | 'alphabetical'>('optimal');
 
 // Active Quest for Drawer and Cascade Modal
@@ -108,6 +108,8 @@ const filteredQuests = computed(() => {
           return !completed && missingSkills.length > 0;
         case 'missing-prereqs':
           return !completed && missingQuests.length > 0;
+        case 'unreleased':
+          return !!item.isUnreleased;
         default:
           return true;
       }
@@ -179,8 +181,8 @@ function openDrawer(quest: Quest) {
       <div>
         <h1 class="text-2xl sm:text-3xl font-bold font-cinzel text-white flex items-center gap-3">
           <img
-            :src="COMMON_SPRITES.questScroll"
-            alt="Quest Scroll"
+            :src="COMMON_SPRITES.questIcon"
+            alt="Official Quests Icon"
             class="w-8 h-8 object-contain drop-shadow"
             @error="(e) => handleImageFallback(e, 'scroll')"
           />
@@ -292,6 +294,15 @@ function openDrawer(quest: Quest) {
         >
           Missing Prerequisites
         </button>
+
+        <button
+          type="button"
+          @click="statusFilter = 'unreleased'"
+          class="px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all flex items-center gap-1"
+          :class="statusFilter === 'unreleased' ? 'bg-amber-500 text-black border-amber-400 font-bold' : 'bg-osrs-elevated text-amber-300 border-white/5 hover:bg-amber-500/10'"
+        >
+          <span>Upcoming / Unreleased (4)</span>
+        </button>
       </div>
     </div>
 
@@ -335,6 +346,14 @@ function openDrawer(quest: Quest) {
                   }"
                 >
                   {{ quest.difficulty }}
+                </span>
+
+                <!-- Unreleased Badge -->
+                <span
+                  v-if="quest.isUnreleased"
+                  class="text-[10px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider bg-amber-500/15 text-amber-300 border border-amber-500/40"
+                >
+                  Unreleased
                 </span>
 
                 <!-- QP Badge -->
@@ -470,6 +489,14 @@ function openDrawer(quest: Quest) {
               class="hidden sm:inline-block text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.2 rounded border border-emerald-500/20"
             >
               Ready
+            </span>
+
+            <!-- Unreleased Indicator -->
+            <span
+              v-if="quest.isUnreleased"
+              class="text-[10px] font-bold text-amber-300 bg-amber-500/10 px-2 py-0.2 rounded border border-amber-500/30 uppercase"
+            >
+              Unreleased
             </span>
           </div>
 

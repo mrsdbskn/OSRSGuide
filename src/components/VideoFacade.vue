@@ -6,6 +6,7 @@ const props = defineProps<{
   videoId?: string | null;
   title?: string;
   aspectRatio?: string;
+  isUnreleased?: boolean;
 }>();
 
 const isPlaying = ref(false);
@@ -84,9 +85,11 @@ function handlePlay() {
       <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center text-gray-400 mb-2">
         <VideoOff class="w-6 h-6" />
       </div>
-      <span class="text-sm font-semibold text-gray-300">Video Guide: Pending</span>
+      <span class="text-sm font-semibold text-gray-300">
+        {{ isUnreleased ? 'Upcoming Content: Video Not Yet Available' : 'Video Guide Pending' }}
+      </span>
       <p class="text-xs text-gray-500 mt-1 max-w-xs">
-        Official walkthrough video will be linked here once published.
+        {{ isUnreleased ? 'Walkthrough guide will be published by @osrsquestguides once Jagex releases this quest in-game.' : 'Walkthrough guide from @osrsquestguides / Quick Guides will be linked here.' }}
       </p>
     </div>
   </div>
