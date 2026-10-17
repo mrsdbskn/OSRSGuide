@@ -1,5 +1,6 @@
 export type DiaryTier = 'Easy' | 'Medium' | 'Hard' | 'Elite';
 export type CATier = 'Easy' | 'Medium' | 'Hard' | 'Elite' | 'Master' | 'Grandmaster';
+export type CATaskType = 'Kill Count' | 'Mechanical' | 'Perfection' | 'Restriction' | 'Speed' | 'Stamina';
 
 export interface ItemRequirements {
   required: string[];
@@ -36,7 +37,7 @@ export interface CombatTask {
   tier: CATier;
   points: number; // 1 to 6
   tierIconUrl: string; // Sword sprite URL
-  type: 'Kill Count' | 'Perfection' | 'Restriction' | 'Speed' | 'Stamina';
+  type: CATaskType;
   description: string;
 }
 

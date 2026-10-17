@@ -69,7 +69,6 @@ const wikiUrl = computed(() => {
       v-if="isOpen && quest"
       class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm transition-opacity overscroll-contain"
       @click="emit('close')"
-      @touchmove.prevent
     >
       <!-- Slide-over Drawer Panel -->
       <div

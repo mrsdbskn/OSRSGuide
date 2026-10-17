@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import type { CombatTask, CATier } from '@/types/osrs';
 import { useMilestoneStore, CA_THRESHOLDS, TOTAL_CA_POINTS } from '@/stores/milestoneStore';
@@ -45,11 +45,17 @@ const selectedCategory = computed({
 
 const searchQuery = ref('');
 
-if (route.query.search) {
-  searchQuery.value = String(route.query.search);
-}
+watch(
+  () => route.query.search,
+  (newSearch) => {
+    if (newSearch !== undefined && newSearch !== null) {
+      searchQuery.value = String(newSearch);
+    }
+  },
+  { immediate: true }
+);
 
-const categories = ['Kill Count', 'Perfection', 'Restriction', 'Speed', 'Stamina'];
+const categories = ['Kill Count', 'Mechanical', 'Perfection', 'Restriction', 'Speed', 'Stamina'];
 
 // Filtered tasks
 const filteredTasks = computed(() => {
@@ -273,7 +279,6 @@ function handleToggleAllGroups() {
 
       </div>
 
-      <!-- Category Filter Chips -->
       <!-- Category Filter Chips (Horizontal Swipe on Mobile) -->
       <div class="flex items-center gap-2 pt-1 overflow-x-auto pb-1.5 scrollbar-none -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap">
         <button

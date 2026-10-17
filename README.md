@@ -9,9 +9,9 @@ Optimized for high-performance static hosting on **GitHub Pages**.
 ## ✨ Key Features
 
 ### 1. 🧭 Sticky Milestone Top HUD (`<TopMilestoneHud.vue>`)
-- **Quests Metric**: Quest Points pill (`XXX / 300 QP`) with mini progress gauge. Hover tooltip indicates QP needed for the Quest Point Cape.
+- **Quests Metric**: Quest Points pill (`XXX / 343 QP`) with mini progress gauge. Hover tooltip indicates QP needed for the Quest Point Cape.
 - **Diaries Metric**: Diary Tiers completion pill (`XX / 48 Tiers`) showing the latest unlocked diary item sprite. Hover indicates tiers remaining for the Achievement Diary Cape.
-- **Combat Achievements Metric**: Total points gauge (`XXXX / 2005 pts`) flanked by the unlocked Tier Sword sprite. Hover displays points required for the next sword upgrade.
+- **Combat Achievements Metric**: Total points gauge (`XXXX / 2697 pts`) flanked by the unlocked Tier Sword sprite. Hover displays points required for the next sword upgrade.
 - **Next Immediate Reward Pin**: Real-time badge identifying the closest unlockable reward (e.g. *"Next Reward: Hard Combat Hilt (14 pts away)"* or *"Next Reward: Barrows Gloves (2 quests away)"*).
 - **View Density Toggle**: Switch effortlessly between **Detailed Cards** and **Compact Row View**.
 - **Universal Command Palette Trigger**: Quick search across all milestones via `Ctrl + K` / `Cmd + K`.
@@ -44,9 +44,9 @@ Optimized for high-performance static hosting on **GitHub Pages**.
 - Region-and-tier video guide embeds.
 
 ### 6. ⚔️ Combat Achievements Section (`/combat-achievements`)
-- Tier points threshold system: Easy (33 pts), Medium (115 pts), Hard (304 pts), Elite (820 pts), Master (1465 pts), Grandmaster (2005 pts).
+- Tier points threshold system: Easy (41 pts), Medium (169 pts), Hard (436 pts), Elite (1100 pts), Master (1965 pts), Grandmaster (2697 pts).
 - Toggle between **Grouped by Tier** and **Grouped by Boss/Monster**.
-- Filter by task category: Kill Count, Perfection, Restriction, Speed, Stamina.
+- Filter by task category: Kill Count, Mechanical, Perfection, Restriction, Speed, Stamina.
 - Compact task rows (`<CombatTaskRow.vue>`) with monster tags and point badges.
 
 ---

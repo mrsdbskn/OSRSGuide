@@ -52,7 +52,6 @@ const missingPrerequisites = computed<Quest[]>(() => {
       v-if="isOpen && targetQuest"
       class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm overscroll-contain"
       @click.self="emit('close')"
-      @touchmove.prevent
     >
       <div class="relative w-full max-w-lg bg-osrs-surface border border-osrs-gold/40 rounded-2xl shadow-2xl p-6 overflow-hidden overscroll-contain">
         <!-- Header -->

@@ -39,6 +39,8 @@ const typeColor = computed(() => {
   switch (props.task.type) {
     case 'Kill Count':
       return 'text-blue-400 bg-blue-500/10 border-blue-500/20';
+    case 'Mechanical':
+      return 'text-cyan-400 bg-cyan-500/10 border-cyan-500/20';
     case 'Perfection':
       return 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20';
     case 'Restriction':

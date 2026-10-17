@@ -11,6 +11,26 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
+  build: {
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks(id: string) {
+          if (id.includes('node_modules')) {
+            if (id.includes('lucide-vue-next')) {
+              return 'vendor-icons';
+            }
+            if (id.includes('canvas-confetti')) {
+              return 'vendor-confetti';
+            }
+            if (id.includes('vue') || id.includes('pinia')) {
+              return 'vendor-vue';
+            }
+          }
+        }
+      }
+    }
+  },
   server: {
     proxy: {
       '/api/wikisync': {

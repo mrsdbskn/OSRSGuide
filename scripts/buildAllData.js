@@ -33,7 +33,7 @@ function extractBulletItems(text) {
   for (let line of lines) {
     line = line.trim();
     if (line.startsWith('*') && !line.startsWith('**')) {
-      const cleaned = cleanWikitext(line.replace(/^\*+\s*/, ''));
+      const cleaned = cleanWikitext(line.replace(/^\*+\\s*/, ''));
       if (cleaned && !cleaned.toLowerCase().includes('none') && cleaned.length > 1) {
         items.push(cleaned);
       }
@@ -54,18 +54,25 @@ async function buildQuests() {
 
   // Parse Lua questReqs
   const questReqsMap = new Map();
-  const questBlocks = reqText.split(/\n\s*\[['"]([^'"]+)['"]\]\s*=\s*\{/);
-  for (let i = 1; i < questBlocks.length; i += 2) {
-    const questName = questBlocks[i];
-    const block = questBlocks[i + 1] || '';
+  // Match only lines with 4 spaces indent before the table key to avoid inner sub-tables
+  const questHeaderRegex = /\n(?: {4}|\t)\[(?:'((?:\\'|[^'])*)'|"((?:\\"|[^"])*)")\]\s*=\s*\{/g;
+  const matches = [...reqText.matchAll(questHeaderRegex)];
+
+  for (let i = 0; i < matches.length; i++) {
+    const rawName = matches[i][1] || matches[i][2];
+    const questName = rawName.replace(/\\'/g, "'").replace(/\\"/g, '"');
+    const start = matches[i].index + matches[i][0].length;
+    const end = (i + 1 < matches.length) ? matches[i + 1].index : reqText.length;
+    const block = reqText.slice(start, end);
 
     // Quests prereqs
     const questsMatch = block.match(/\['quests'\]\s*=\s*\{([^}]*)\}/);
     const subQuests = [];
     if (questsMatch) {
-      const qMatches = questsMatch[1].matchAll(/['"]([^'"]+)['"]/g);
+      const qMatches = questsMatch[1].matchAll(/(?:'((?:\\'|[^'])*)'|"((?:\\"|[^"])*)")/g);
       for (const m of qMatches) {
-        subQuests.push(slugify(m[1]));
+        const qName = (m[1] || m[2]).replace(/\\'/g, "'");
+        subQuests.push(slugify(qName));
       }
     }
 
@@ -81,6 +88,41 @@ async function buildQuests() {
 
     questReqsMap.set(questName, { subQuests, skills });
   }
+
+  // Aggregate Recipe for Disaster subquests into Recipe for Disaster main entry if present
+  const rfdSubquests = [
+    'Recipe for Disaster/Freeing the Mountain Dwarf',
+    'Recipe for Disaster/Freeing the Goblin generals',
+    'Recipe for Disaster/Freeing Pirate Pete',
+    'Recipe for Disaster/Freeing the Lumbridge Guide',
+    'Recipe for Disaster/Freeing Evil Dave',
+    'Recipe for Disaster/Freeing King Awowogei',
+    'Recipe for Disaster/Freeing Sir Amik Varze',
+    'Recipe for Disaster/Defeating the Culinaromancer',
+  ];
+  const rfdCombinedSubQuests = new Set();
+  const rfdCombinedSkills = {};
+  for (const sqName of rfdSubquests) {
+    const sq = questReqsMap.get(sqName);
+    if (sq) {
+      for (const q of sq.subQuests) rfdCombinedSubQuests.add(q);
+      for (const [sk, lvl] of Object.entries(sq.skills)) {
+        rfdCombinedSkills[sk] = Math.max(rfdCombinedSkills[sk] || 0, lvl);
+      }
+    }
+  }
+  if (rfdCombinedSubQuests.size > 0) {
+    const mainRfd = questReqsMap.get('Recipe for Disaster') || { subQuests: [], skills: {} };
+    for (const q of mainRfd.subQuests) rfdCombinedSubQuests.add(q);
+    for (const [sk, lvl] of Object.entries(mainRfd.skills)) {
+      rfdCombinedSkills[sk] = Math.max(rfdCombinedSkills[sk] || 0, lvl);
+    }
+    questReqsMap.set('Recipe for Disaster', {
+      subQuests: Array.from(rfdCombinedSubQuests),
+      skills: rfdCombinedSkills,
+    });
+  }
+
   console.log(`Parsed ${questReqsMap.size} quest requirements from Module:Questreq/data.`);
 
   // Step 1b: Fetch Optimal quest guide
@@ -133,6 +175,20 @@ async function buildQuests() {
 
   allQuestTitles = Array.from(new Set(allQuestTitles));
   console.log(`Found ${allQuestTitles.length} official quest titles to query.`);
+
+  // Load existing YouTube videos if present to preserve them
+  const existingVideoMap = new Map();
+  const outputPath = path.resolve(__dirname, '../src/data/quests.json');
+  if (fs.existsSync(outputPath)) {
+    try {
+      const existingData = JSON.parse(fs.readFileSync(outputPath, 'utf-8'));
+      for (const eq of existingData) {
+        if (eq.id && eq.youtubeVideoId) {
+          existingVideoMap.set(eq.id, eq.youtubeVideoId);
+        }
+      }
+    } catch {}
+  }
 
   // Step 1d: Batch fetch full wikitext for all quests (40 per batch)
   console.log('>>> Step 1d: Batch fetching quest details & items from wiki...');
@@ -196,8 +252,9 @@ async function buildQuests() {
         if (expVal > 0) expRewards[m[1]] = expVal;
       }
 
+      const qId = slugify(name);
       questsResult.push({
-        id: slugify(name),
+        id: qId,
         name,
         difficulty,
         questPoints: qp,
@@ -215,7 +272,7 @@ async function buildQuests() {
           questPoints: qpReward,
           experience: expRewards,
         },
-        youtubeVideoId: null,
+        youtubeVideoId: existingVideoMap.get(qId) || null,
       });
     }
   }
@@ -227,7 +284,6 @@ async function buildQuests() {
   const totalQP = questsResult.reduce((sum, q) => sum + q.questPoints, 0);
   console.log(`Total Quest Points: ${totalQP}`);
 
-  const outputPath = path.resolve(__dirname, '../src/data/quests.json');
   fs.writeFileSync(outputPath, JSON.stringify(questsResult, null, 2), 'utf-8');
   console.log(`Saved quests to ${outputPath}`);
 }

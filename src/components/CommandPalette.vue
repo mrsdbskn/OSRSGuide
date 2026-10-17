@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router';
 import { useMilestoneStore } from '@/stores/milestoneStore';
 import { usePlayerStore } from '@/stores/playerStore';
 import { useBodyScrollLock } from '@/composables/useBodyScrollLock';
-import { Search, X, Scroll, BookOpen, Swords, CheckCircle2 } from 'lucide-vue-next';
+import { Search, X, Scroll, BookOpen, Swords } from 'lucide-vue-next';
 
 const props = defineProps<{
   isOpen: boolean;
@@ -22,18 +22,24 @@ const playerStore = usePlayerStore();
 
 const query = ref('');
 const inputRef = ref<HTMLInputElement | null>(null);
+const selectedIndex = ref(0);
 
 watch(
   () => props.isOpen,
   (open) => {
     if (open) {
       query.value = '';
+      selectedIndex.value = 0;
       nextTick(() => {
         inputRef.value?.focus();
       });
     }
   }
 );
+
+watch(query, () => {
+  selectedIndex.value = 0;
+});
 
 interface SearchResult {
   id: string;
@@ -44,7 +50,7 @@ interface SearchResult {
   completed: boolean;
 }
 
-const filteredResults = computed<SearchResult[]>(() => {
+const allMatchingResults = computed<SearchResult[]>(() => {
   const q = query.value.trim().toLowerCase();
   if (!q) {
     // Show top suggestions
@@ -95,7 +101,9 @@ const filteredResults = computed<SearchResult[]>(() => {
         title: `${diary.name} Diary`,
         subtitle: diary.rewardItemName,
         route: `/diaries?region=${diary.id}`,
-        completed: false,
+        completed: (['Easy', 'Medium', 'Hard', 'Elite'] as const).every((t) =>
+          diary.tiers[t]?.tasks.every((task: { id: string }) => playerStore.completedDiaryTasks.includes(task.id))
+        ),
       });
     }
   }
@@ -114,7 +122,11 @@ const filteredResults = computed<SearchResult[]>(() => {
     }
   }
 
-  return results.slice(0, 15);
+  return results;
+});
+
+const filteredResults = computed<SearchResult[]>(() => {
+  return allMatchingResults.value.slice(0, 15);
 });
 
 function handleSelect(item: SearchResult) {
@@ -123,8 +135,26 @@ function handleSelect(item: SearchResult) {
 }
 
 function handleKeydown(e: KeyboardEvent) {
-  if (e.key === 'Escape' && props.isOpen) {
+  if (!props.isOpen) return;
+
+  if (e.key === 'Escape') {
+    e.preventDefault();
     emit('close');
+  } else if (e.key === 'ArrowDown') {
+    if (filteredResults.value.length > 0) {
+      e.preventDefault();
+      selectedIndex.value = (selectedIndex.value + 1) % filteredResults.value.length;
+    }
+  } else if (e.key === 'ArrowUp') {
+    if (filteredResults.value.length > 0) {
+      e.preventDefault();
+      selectedIndex.value = (selectedIndex.value - 1 + filteredResults.value.length) % filteredResults.value.length;
+    }
+  } else if (e.key === 'Enter') {
+    if (filteredResults.value[selectedIndex.value]) {
+      e.preventDefault();
+      handleSelect(filteredResults.value[selectedIndex.value]);
+    }
   }
 }
 
@@ -143,7 +173,6 @@ onUnmounted(() => {
       v-if="isOpen"
       class="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-4 bg-black/70 backdrop-blur-sm overscroll-contain"
       @click.self="emit('close')"
-      @touchmove.prevent
     >
       <div
         class="relative w-full max-w-xl bg-osrs-surface border border-osrs-gold/30 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[80vh] transition-all animate-in fade-in zoom-in-95 duration-150 overscroll-contain"
@@ -173,10 +202,16 @@ onUnmounted(() => {
         <!-- Search Results List -->
         <div class="overflow-y-auto p-2 divide-y divide-white/5 space-y-1 overscroll-contain">
           <div
-            v-for="item in filteredResults"
+            v-for="(item, idx) in filteredResults"
             :key="item.id"
             @click="handleSelect(item)"
-            class="flex items-center justify-between p-2.5 rounded-xl hover:bg-osrs-elevated cursor-pointer group transition-colors"
+            @mouseenter="selectedIndex = idx"
+            class="flex items-center justify-between p-2.5 rounded-xl cursor-pointer group transition-colors border"
+            :class="[
+              selectedIndex === idx
+                ? 'bg-osrs-elevated border-osrs-gold/40 shadow-sm'
+                : 'border-transparent hover:bg-osrs-elevated'
+            ]"
           >
             <div class="flex items-center gap-3 min-w-0">
               <!-- Type Icon -->
@@ -196,7 +231,10 @@ onUnmounted(() => {
               <!-- Title & Subtitle -->
               <div class="min-w-0">
                 <div class="flex items-center gap-2">
-                  <span class="text-sm font-semibold text-gray-200 group-hover:text-osrs-gold transition-colors truncate">
+                  <span
+                    class="text-sm font-semibold transition-colors truncate"
+                    :class="selectedIndex === idx ? 'text-osrs-gold' : 'text-gray-200 group-hover:text-osrs-gold'"
+                  >
                     {{ item.title }}
                   </span>
                   <span
@@ -213,7 +251,10 @@ onUnmounted(() => {
             </div>
 
             <!-- Action hint -->
-            <span class="text-[11px] text-gray-500 group-hover:text-gray-300 font-medium">
+            <span
+              class="text-[11px] font-medium transition-colors"
+              :class="selectedIndex === idx ? 'text-osrs-gold' : 'text-gray-500 group-hover:text-gray-300'"
+            >
               Jump →
             </span>
           </div>
@@ -228,7 +269,12 @@ onUnmounted(() => {
 
         <!-- Footer -->
         <div class="px-4 py-2 bg-black/40 border-t border-white/5 flex items-center justify-between text-[11px] text-gray-400">
-          <span>Search OSRS Milestones</span>
+          <span v-if="allMatchingResults.length > 15">
+            Showing top 15 of {{ allMatchingResults.length }} results
+          </span>
+          <span v-else>
+            Search OSRS Milestones
+          </span>
           <div class="flex items-center gap-3">
             <span>↑↓ Navigate</span>
             <span>↵ Select</span>

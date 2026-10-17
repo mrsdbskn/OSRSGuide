@@ -453,13 +453,42 @@ export const usePlayerStore = defineStore('player', {
         if (data.skills) {
           this.skills = { ...this.skills, ...data.skills };
         }
+        
+        const allQuests = questsRaw as unknown as Quest[];
+
         if (Array.isArray(data.completedQuests)) {
-          this.completedQuests = Array.from(new Set([...this.completedQuests, ...data.completedQuests]));
+          const normalizedQuests: string[] = [];
+          for (const item of data.completedQuests) {
+            if (typeof item === 'string') {
+              const cleanInput = item.toLowerCase().replace(/[^a-z0-9]/g, '');
+              const found = allQuests.find(
+                (q) =>
+                  q.id === item ||
+                  q.name.toLowerCase() === item.toLowerCase() ||
+                  q.name.toLowerCase().replace(/[^a-z0-9]/g, '') === cleanInput ||
+                  q.id.replace(/[^a-z0-9]/g, '') === cleanInput
+              );
+              normalizedQuests.push(found ? found.id : item);
+            }
+          }
+          this.completedQuests = Array.from(new Set([...this.completedQuests, ...normalizedQuests]));
         } else if (data.quests && typeof data.quests === 'object') {
           const questIds: string[] = [];
           for (const [k, v] of Object.entries(data.quests)) {
             if (v === 'FINISHED' || v === 'COMPLETED' || v === true || v === 2) {
-              questIds.push(k.toLowerCase().replace(/[^a-z0-9]/g, '-'));
+              const cleanInput = k.toLowerCase().replace(/[^a-z0-9]/g, '');
+              const found = allQuests.find(
+                (q) =>
+                  q.id === k ||
+                  q.name.toLowerCase() === k.toLowerCase() ||
+                  q.name.toLowerCase().replace(/[^a-z0-9]/g, '') === cleanInput ||
+                  q.id.replace(/[^a-z0-9]/g, '') === cleanInput
+              );
+              if (found) {
+                questIds.push(found.id);
+              } else {
+                questIds.push(k.toLowerCase().replace(/'/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''));
+              }
             }
           }
           this.completedQuests = Array.from(new Set([...this.completedQuests, ...questIds]));

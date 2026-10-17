@@ -1,8 +1,4 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-import HomeView from '@/views/HomeView.vue';
-import QuestsView from '@/views/QuestsView.vue';
-import DiariesView from '@/views/DiariesView.vue';
-import CombatAchievementsView from '@/views/CombatAchievementsView.vue';
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -10,22 +6,22 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView,
+      component: () => import('@/views/HomeView.vue'),
     },
     {
       path: '/quests',
       name: 'quests',
-      component: QuestsView,
+      component: () => import('@/views/QuestsView.vue'),
     },
     {
       path: '/diaries',
       name: 'diaries',
-      component: DiariesView,
+      component: () => import('@/views/DiariesView.vue'),
     },
     {
       path: '/combat-achievements',
       name: 'combat-achievements',
-      component: CombatAchievementsView,
+      component: () => import('@/views/CombatAchievementsView.vue'),
     },
     {
       path: '/:pathMatch(.*)*',

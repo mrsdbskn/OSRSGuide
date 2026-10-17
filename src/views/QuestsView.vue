@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import type { Quest } from '@/types/osrs';
 import { useMilestoneStore, TOTAL_QP_TARGET } from '@/stores/milestoneStore';
@@ -48,14 +48,20 @@ const isDrawerOpen = ref(false);
 const cascadeQuest = ref<Quest | null>(null);
 const isCascadeOpen = ref(false);
 
-// Highlight query param from command palette
-if (route.query.highlight) {
-  const target = milestoneStore.quests.find((q) => q.id === route.query.highlight);
-  if (target) {
-    selectedQuest.value = target;
-    isDrawerOpen.value = true;
-  }
-}
+// Reactive highlight query param from command palette
+watch(
+  () => route.query.highlight,
+  (newHighlight) => {
+    if (newHighlight) {
+      const target = milestoneStore.quests.find((q) => q.id === String(newHighlight));
+      if (target) {
+        selectedQuest.value = target;
+        isDrawerOpen.value = true;
+      }
+    }
+  },
+  { immediate: true }
+);
 
 // Eligibility Helpers
 function getQuestEligibility(quest: Quest) {

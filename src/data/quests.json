@@ -373,7 +373,9 @@
     "optimalOrder": 18,
     "members": false,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Mining": 15
+      },
       "quests": []
     },
     "items": {
@@ -430,7 +432,11 @@
     "optimalOrder": 20,
     "members": false,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Cooking": 10,
+        "Mining": 15,
+        "Smithing": 15
+      },
       "quests": []
     },
     "items": {
@@ -461,7 +467,10 @@
     "optimalOrder": 21,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Fletching": 10,
+        "Smithing": 20
+      },
       "quests": []
     },
     "items": {
@@ -557,7 +566,10 @@
     "members": true,
     "requirements": {
       "skills": {},
-      "quests": []
+      "quests": [
+        "black-knights-fortress",
+        "druidic-ritual"
+      ]
     },
     "items": {
       "required": [
@@ -609,7 +621,9 @@
     "optimalOrder": 26,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Smithing": 15
+      },
       "quests": []
     },
     "items": {
@@ -785,7 +799,9 @@
     "members": true,
     "requirements": {
       "skills": {},
-      "quests": []
+      "quests": [
+        "plague-city"
+      ]
     },
     "items": {
       "required": [
@@ -813,7 +829,9 @@
     "optimalOrder": 33,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Construction": 10
+      },
       "quests": []
     },
     "items": {
@@ -844,7 +862,9 @@
     "optimalOrder": 34,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Thieving": 21
+      },
       "quests": []
     },
     "items": {
@@ -932,8 +952,12 @@
     "optimalOrder": 37,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Attack": 20
+      },
+      "quests": [
+        "merlins-crystal"
+      ]
     },
     "items": {
       "required": [
@@ -989,7 +1013,9 @@
     "optimalOrder": 39,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Agility": 25
+      },
       "quests": []
     },
     "items": {
@@ -1018,7 +1044,9 @@
     "optimalOrder": 41,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Crafting": 15
+      },
       "quests": []
     },
     "items": {
@@ -1110,8 +1138,13 @@
     "optimalOrder": 44,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Crafting": 18
+      },
+      "quests": [
+        "priest-in-peril",
+        "the-restless-ghost"
+      ]
     },
     "items": {
       "required": [
@@ -1142,8 +1175,14 @@
     "optimalOrder": 45,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 25,
+        "Cooking": 20
+      },
+      "quests": [
+        "priest-in-peril",
+        "the-restless-ghost"
+      ]
     },
     "items": {
       "required": [
@@ -1184,7 +1223,10 @@
     "members": true,
     "requirements": {
       "skills": {},
-      "quests": []
+      "quests": [
+        "priest-in-peril",
+        "the-restless-ghost"
+      ]
     },
     "items": {
       "required": [
@@ -1235,8 +1277,15 @@
     "optimalOrder": 48,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 13,
+        "Mining": 17,
+        "Thieving": 13
+      },
+      "quests": [
+        "goblin-diplomacy",
+        "rune-mysteries"
+      ]
     },
     "items": {
       "required": [
@@ -1264,8 +1313,13 @@
     "optimalOrder": 49,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 23,
+        "Thieving": 23
+      },
+      "quests": [
+        "the-lost-tribe"
+      ]
     },
     "items": {
       "required": [
@@ -1299,7 +1353,11 @@
     "optimalOrder": 50,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Crafting": 20,
+        "Mining": 30,
+        "Smithing": 20
+      },
       "quests": []
     },
     "items": {
@@ -1334,7 +1392,9 @@
     "members": true,
     "requirements": {
       "skills": {},
-      "quests": []
+      "quests": [
+        "gertrudes-cat"
+      ]
     },
     "items": {
       "required": [
@@ -1375,7 +1435,10 @@
     "optimalOrder": 52,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Crafting": 20,
+        "Thieving": 25
+      },
       "quests": []
     },
     "items": {
@@ -1411,8 +1474,12 @@
     "optimalOrder": 53,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Woodcutting": 15
+      },
+      "quests": [
+        "children-of-the-sun"
+      ]
     },
     "items": {
       "required": [
@@ -1435,7 +1502,10 @@
     "optimalOrder": 54,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Crafting": 31,
+        "Woodcutting": 36
+      },
       "quests": []
     },
     "items": {
@@ -1469,7 +1539,10 @@
     "members": true,
     "requirements": {
       "skills": {},
-      "quests": []
+      "quests": [
+        "lost-city",
+        "nature-spirit"
+      ]
     },
     "items": {
       "required": [
@@ -1504,7 +1577,9 @@
     "optimalOrder": 58,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Firemaking": 30
+      },
       "quests": []
     },
     "items": {
@@ -1556,8 +1631,14 @@
     "optimalOrder": 60,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Smithing": 30,
+        "Sailing": 12
+      },
+      "quests": [
+        "pandemonium",
+        "the-knights-sword"
+      ]
     },
     "items": {
       "required": [
@@ -1586,8 +1667,13 @@
     "optimalOrder": 61,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Sailing": 22,
+        "Fishing": 10
+      },
+      "quests": [
+        "pandemonium"
+      ]
     },
     "items": {
       "required": [
@@ -1613,7 +1699,9 @@
     "optimalOrder": 62,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Fishing": 10
+      },
       "quests": []
     },
     "items": {
@@ -1644,7 +1732,9 @@
     "optimalOrder": 64,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Agility": 20
+      },
       "quests": []
     },
     "items": {
@@ -1683,7 +1773,10 @@
     "members": true,
     "requirements": {
       "skills": {},
-      "quests": []
+      "quests": [
+        "icthlarins-little-helper",
+        "the-giant-dwarf"
+      ]
     },
     "items": {
       "required": [
@@ -1721,7 +1814,9 @@
     "optimalOrder": 66,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Thieving": 30
+      },
       "quests": []
     },
     "items": {
@@ -1759,8 +1854,13 @@
     "optimalOrder": 67,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 32,
+        "Thieving": 34
+      },
+      "quests": [
+        "children-of-the-sun"
+      ]
     },
     "items": {
       "required": [],
@@ -1783,7 +1883,9 @@
     "optimalOrder": 69,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Prayer": 31
+      },
       "quests": []
     },
     "items": {
@@ -1815,8 +1917,14 @@
     "optimalOrder": 70,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 10,
+        "Herblore": 10,
+        "Thieving": 25
+      },
+      "quests": [
+        "druidic-ritual"
+      ]
     },
     "items": {
       "required": [
@@ -1852,8 +1960,13 @@
     "optimalOrder": 71,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Magic": 20,
+        "Smithing": 30
+      },
+      "quests": [
+        "elemental-workshop-i"
+      ]
     },
     "items": {
       "required": [
@@ -1976,7 +2089,9 @@
     "members": true,
     "requirements": {
       "skills": {},
-      "quests": []
+      "quests": [
+        "x-marks-the-spot"
+      ]
     },
     "items": {
       "required": [
@@ -2002,8 +2117,12 @@
     "optimalOrder": 77,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Thieving": 20
+      },
+      "quests": [
+        "client-of-kourend"
+      ]
     },
     "items": {
       "required": [
@@ -2030,8 +2149,12 @@
     "optimalOrder": 78,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 18
+      },
+      "quests": [
+        "client-of-kourend"
+      ]
     },
     "items": {
       "required": [],
@@ -2094,7 +2217,11 @@
     "members": true,
     "requirements": {
       "skills": {},
-      "quests": []
+      "quests": [
+        "the-lost-tribe",
+        "priest-in-peril",
+        "recruitment-drive"
+      ]
     },
     "items": {
       "required": [
@@ -2152,8 +2279,12 @@
     "optimalOrder": 83,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Kudos": 100
+      },
+      "quests": [
+        "the-dig-site"
+      ]
     },
     "items": {
       "required": [
@@ -2184,8 +2315,16 @@
     "optimalOrder": 84,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 25,
+        "Herblore": 14,
+        "Magic": 15,
+        "Mining": 40,
+        "Thieving": 15
+      },
+      "quests": [
+        "druidic-ritual"
+      ]
     },
     "items": {
       "required": [
@@ -2228,7 +2367,12 @@
     "optimalOrder": 85,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Crafting": 12,
+        "Firemaking": 16,
+        "Magic": 33,
+        "Thieving": 14
+      },
       "quests": []
     },
     "items": {
@@ -2265,8 +2409,14 @@
     "optimalOrder": 86,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Cooking": 22,
+        "Farming": 17
+      },
+      "quests": [
+        "the-giant-dwarf",
+        "fishing-contest"
+      ]
     },
     "items": {
       "required": [
@@ -2301,8 +2451,15 @@
     "optimalOrder": 87,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Attack": 15,
+        "Prayer": 25
+      },
+      "quests": [
+        "death-to-the-dorgeshuun",
+        "the-dig-site",
+        "the-giant-dwarf"
+      ]
     },
     "items": {
       "required": [
@@ -2426,8 +2583,13 @@
     "optimalOrder": 91,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Crafting": 30
+      },
+      "quests": [
+        "demon-slayer",
+        "the-golem"
+      ]
     },
     "items": {
       "required": [
@@ -2462,7 +2624,9 @@
     "optimalOrder": 92,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Agility": 35
+      },
       "quests": []
     },
     "items": {
@@ -2504,8 +2668,18 @@
     "optimalOrder": 93,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Crafting": 19,
+        "Prayer": 31,
+        "Ranged": 30,
+        "Slayer": 18,
+        "Woodcutting": 35
+      },
+      "quests": [
+        "ernest-the-chicken",
+        "priest-in-peril",
+        "the-restless-ghost"
+      ]
     },
     "items": {
       "required": [
@@ -2539,8 +2713,15 @@
     "optimalOrder": 94,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Crafting": 20,
+        "Smithing": 4,
+        "Thieving": 25
+      },
+      "quests": [
+        "priest-in-peril",
+        "the-restless-ghost"
+      ]
     },
     "items": {
       "required": [
@@ -2576,7 +2757,11 @@
     "optimalOrder": 95,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Cooking": 30,
+        "Fletching": 5,
+        "Ranged": 30
+      },
       "quests": []
     },
     "items": {
@@ -2615,8 +2800,12 @@
     "optimalOrder": 96,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Herblore": 3
+      },
+      "quests": [
+        "druidic-ritual"
+      ]
     },
     "items": {
       "required": [
@@ -2650,8 +2839,14 @@
     "optimalOrder": 97,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 32,
+        "Crafting": 20,
+        "Smithing": 4
+      },
+      "quests": [
+        "jungle-potion"
+      ]
     },
     "items": {
       "required": [
@@ -2687,8 +2882,15 @@
     "optimalOrder": 99,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Herblore": 8,
+        "Ranged": 30,
+        "Smithing": 4
+      },
+      "quests": [
+        "big-chompy-bird-hunting",
+        "jungle-potion"
+      ]
     },
     "items": {
       "required": [
@@ -2755,7 +2957,12 @@
     "optimalOrder": 101,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Magic": 33,
+        "Mining": 37,
+        "Ranged": 37,
+        "Thieving": 37
+      },
       "quests": []
     },
     "items": {
@@ -2798,8 +3005,12 @@
     "optimalOrder": 102,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Farming": 25
+      },
+      "quests": [
+        "creature-of-fenkenstrain"
+      ]
     },
     "items": {
       "required": [
@@ -2837,7 +3048,11 @@
     "optimalOrder": 103,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Firemaking": 20,
+        "Farming": 30,
+        "Crafting": 36
+      },
       "quests": []
     },
     "items": {
@@ -2889,7 +3104,11 @@
     "optimalOrder": 107,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Crafting": 20,
+        "Firemaking": 49,
+        "Mining": 20
+      },
       "quests": []
     },
     "items": {
@@ -2918,8 +3137,12 @@
     "optimalOrder": 108,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 25
+      },
+      "quests": [
+        "nature-spirit"
+      ]
     },
     "items": {
       "required": [
@@ -2957,8 +3180,15 @@
     "optimalOrder": 109,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Crafting": 20,
+        "Firemaking": 5,
+        "Herblore": 15
+      },
+      "quests": [
+        "druidic-ritual",
+        "priest-in-peril"
+      ]
     },
     "items": {
       "required": [
@@ -2993,8 +3223,17 @@
     "optimalOrder": 110,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 25,
+        "Crafting": 25,
+        "Fishing": 16,
+        "Magic": 7,
+        "Mining": 15,
+        "Smithing": 50
+      },
+      "quests": [
+        "in-search-of-the-myreque"
+      ]
     },
     "items": {
       "required": [
@@ -3034,8 +3273,12 @@
     "optimalOrder": 112,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 15
+      },
+      "quests": [
+        "death-plateau"
+      ]
     },
     "items": {
       "required": [
@@ -3066,8 +3309,13 @@
     "optimalOrder": 113,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 28,
+        "Woodcutting": 45
+      },
+      "quests": [
+        "troll-stronghold"
+      ]
     },
     "items": {
       "required": [
@@ -3102,8 +3350,18 @@
     "optimalOrder": 114,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 26,
+        "Construction": 5,
+        "Crafting": 32,
+        "Magic": 33,
+        "Mining": 20,
+        "Strength": 40,
+        "Thieving": 22
+      },
+      "quests": [
+        "in-aid-of-the-myreque"
+      ]
     },
     "items": {
       "required": [
@@ -3137,8 +3395,12 @@
     "optimalOrder": 115,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Ranged": 25
+      },
+      "quests": [
+        "biohazard"
+      ]
     },
     "items": {
       "required": [
@@ -3177,8 +3439,13 @@
     "optimalOrder": 116,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 56,
+        "Crafting": 10
+      },
+      "quests": [
+        "underground-pass"
+      ]
     },
     "items": {
       "required": [
@@ -3222,7 +3489,9 @@
     "optimalOrder": 117,
     "members": false,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Crafting": 8
+      },
       "quests": []
     },
     "items": {
@@ -3301,8 +3570,14 @@
     "optimalOrder": 119,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Construction": 20,
+        "Crafting": 46,
+        "Woodcutting": 56
+      },
+      "quests": [
+        "the-fremennik-trials"
+      ]
     },
     "items": {
       "required": [
@@ -3341,8 +3616,15 @@
     "optimalOrder": 122,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 15,
+        "Cooking": 30,
+        "Fishing": 65,
+        "Herblore": 34
+      },
+      "quests": [
+        "jungle-potion"
+      ]
     },
     "items": {
       "required": [
@@ -3388,7 +3670,10 @@
     "members": true,
     "requirements": {
       "skills": {},
-      "quests": []
+      "quests": [
+        "prince-ali-rescue",
+        "icthlarins-little-helper"
+      ]
     },
     "items": {
       "required": [
@@ -3423,7 +3708,10 @@
     "optimalOrder": 125,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Ranged": 40,
+        "Thieving": 42
+      },
       "quests": []
     },
     "items": {
@@ -3456,8 +3744,14 @@
     "optimalOrder": 126,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Construction": 5,
+        "Magic": 46,
+        "Runecraft": 13
+      },
+      "quests": [
+        "the-grand-tree"
+      ]
     },
     "items": {
       "required": [
@@ -3490,7 +3784,9 @@
     "optimalOrder": 127,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Runecraft": 10
+      },
       "quests": []
     },
     "items": {
@@ -3519,8 +3815,16 @@
     "optimalOrder": 128,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 36,
+        "Crafting": 25,
+        "Herblore": 18,
+        "Smithing": 30
+      },
+      "quests": [
+        "rune-mysteries",
+        "shilo-village"
+      ]
     },
     "items": {
       "required": [
@@ -3558,8 +3862,12 @@
     "optimalOrder": 129,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Hunter": 12
+      },
+      "quests": [
+        "client-of-kourend"
+      ]
     },
     "items": {
       "required": [],
@@ -3591,8 +3899,13 @@
     "optimalOrder": 130,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Mining": 10,
+        "Strength": 16
+      },
+      "quests": [
+        "client-of-kourend"
+      ]
     },
     "items": {
       "required": [
@@ -3628,7 +3941,9 @@
     "members": true,
     "requirements": {
       "skills": {},
-      "quests": []
+      "quests": [
+        "client-of-kourend"
+      ]
     },
     "items": {
       "required": [
@@ -3659,8 +3974,15 @@
     "optimalOrder": 141,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Defence": 30,
+        "Mining": 40,
+        "Smithing": 50
+      },
+      "quests": [
+        "dwarf-cannon",
+        "fishing-contest"
+      ]
     },
     "items": {
       "required": [
@@ -3697,8 +4019,16 @@
     "optimalOrder": 142,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Crafting": 30,
+        "Runecraft": 30,
+        "Slayer": 30,
+        "Thieving": 30
+      },
+      "quests": [
+        "sea-slug",
+        "wanted"
+      ]
     },
     "items": {
       "required": [
@@ -3737,7 +4067,10 @@
     "optimalOrder": 143,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Construction": 26,
+        "Crafting": 30
+      },
       "quests": []
     },
     "items": {
@@ -3776,7 +4109,14 @@
     "optimalOrder": 145,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Agility": 30,
+        "Construction": 34,
+        "Crafting": 30,
+        "Hunter": 10,
+        "Thieving": 15,
+        "Woodcutting": 50
+      },
       "quests": []
     },
     "items": {
@@ -3816,7 +4156,10 @@
     "optimalOrder": 146,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Crafting": 49,
+        "Thieving": 17
+      },
       "quests": []
     },
     "items": {
@@ -3852,7 +4195,13 @@
     "optimalOrder": 147,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Crafting": 50,
+        "Firemaking": 45,
+        "Magic": 39,
+        "Mining": 45,
+        "Prayer": 43
+      },
       "quests": []
     },
     "items": {
@@ -3896,8 +4245,13 @@
     "optimalOrder": 148,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Herblore": 31
+      },
+      "quests": [
+        "druidic-ritual",
+        "troll-stronghold"
+      ]
     },
     "items": {
       "required": [
@@ -3938,8 +4292,15 @@
     "optimalOrder": 149,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Farming": 29,
+        "Woodcutting": 10
+      },
+      "quests": [
+        "eadgars-ruse",
+        "the-feud",
+        "jungle-potion"
+      ]
     },
     "items": {
       "required": [
@@ -3974,7 +4335,9 @@
     "optimalOrder": 150,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Farming": 20
+      },
       "quests": []
     },
     "items": {
@@ -4006,8 +4369,18 @@
     "optimalOrder": 151,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Defence": 20,
+        "Slayer": 40
+      },
+      "quests": [
+        "the-fremennik-trials",
+        "horror-from-the-deep",
+        "rag-and-bone-man-i",
+        "creature-of-fenkenstrain",
+        "waterfall-quest",
+        "zogre-flesh-eaters"
+      ]
     },
     "items": {
       "required": [
@@ -4051,7 +4424,10 @@
     "optimalOrder": 152,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Sailing": 40,
+        "Fishing": 30
+      },
       "quests": []
     },
     "items": {
@@ -4073,8 +4449,17 @@
     "optimalOrder": 153,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Crafting": 42,
+        "Farming": 40,
+        "Fishing": 50,
+        "Prayer": 47,
+        "Slayer": 42
+      },
+      "quests": [
+        "priest-in-peril",
+        "zogre-flesh-eaters"
+      ]
     },
     "items": {
       "required": [
@@ -4106,8 +4491,16 @@
     "optimalOrder": 154,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 42,
+        "Crafting": 45,
+        "Smithing": 50,
+        "Ranged": 40
+      },
+      "quests": [
+        "pirates-treasure",
+        "rum-deal"
+      ]
     },
     "items": {
       "required": [],
@@ -4134,7 +4527,9 @@
     "members": true,
     "requirements": {
       "skills": {},
-      "quests": []
+      "quests": [
+        "children-of-the-sun"
+      ]
     },
     "items": {
       "required": [
@@ -4167,8 +4562,19 @@
     "optimalOrder": 158,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Cooking": 53,
+        "Fishing": 53,
+        "Herblore": 25,
+        "Mining": 50
+      },
+      "quests": [
+        "dragon-slayer-i",
+        "druidic-ritual",
+        "lost-city",
+        "merlins-crystal",
+        "shield-of-arrav"
+      ]
     },
     "items": {
       "required": [
@@ -4208,7 +4614,10 @@
     "members": true,
     "requirements": {
       "skills": {},
-      "quests": []
+      "quests": [
+        "the-fremennik-trials",
+        "heroes-quest"
+      ]
     },
     "items": {
       "required": [
@@ -4241,8 +4650,13 @@
     "optimalOrder": 160,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 40,
+        "Slayer": 40
+      },
+      "quests": [
+        "throne-of-miscellania"
+      ]
     },
     "items": {
       "required": [
@@ -4274,8 +4688,12 @@
     "optimalOrder": 161,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Crafting": 35
+      },
+      "quests": [
+        "priest-in-peril"
+      ]
     },
     "items": {
       "required": [
@@ -4310,7 +4728,10 @@
     "members": true,
     "requirements": {
       "skills": {},
-      "quests": []
+      "quests": [
+        "the-grand-tree",
+        "tree-gnome-village"
+      ]
     },
     "items": {
       "required": [
@@ -4348,8 +4769,13 @@
     "optimalOrder": 164,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Thieving": 25
+      },
+      "quests": [
+        "children-of-the-sun",
+        "shield-of-arrav"
+      ]
     },
     "items": {
       "required": [
@@ -4378,7 +4804,9 @@
     "members": true,
     "requirements": {
       "skills": {},
-      "quests": []
+      "quests": [
+        "children-of-the-sun"
+      ]
     },
     "items": {
       "required": [
@@ -4405,8 +4833,13 @@
     "optimalOrder": 166,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 56
+      },
+      "quests": [
+        "regicide",
+        "waterfall-quest"
+      ]
     },
     "items": {
       "required": [
@@ -4440,8 +4873,15 @@
     "optimalOrder": 167,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Ranged": 60,
+        "Thieving": 50
+      },
+      "quests": [
+        "big-chompy-bird-hunting",
+        "roving-elves",
+        "sheep-herder"
+      ]
     },
     "items": {
       "required": [
@@ -4486,7 +4926,9 @@
     "members": true,
     "requirements": {
       "skills": {},
-      "quests": []
+      "quests": [
+        "mournings-end-part-i"
+      ]
     },
     "items": {
       "required": [
@@ -4522,8 +4964,20 @@
     "optimalOrder": 169,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Firemaking": 50,
+        "Magic": 50,
+        "Slayer": 10,
+        "Thieving": 53
+      },
+      "quests": [
+        "the-dig-site",
+        "temple-of-ikov",
+        "the-tourist-trap",
+        "troll-stronghold",
+        "priest-in-peril",
+        "waterfall-quest"
+      ]
     },
     "items": {
       "required": [
@@ -4571,7 +5025,12 @@
     "optimalOrder": 170,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Crafting": 40,
+        "Magic": 59,
+        "Mining": 40,
+        "Smithing": 40
+      },
       "quests": []
     },
     "items": {
@@ -4609,8 +5068,12 @@
     "optimalOrder": 171,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Runecraft": 35
+      },
+      "quests": [
+        "rune-mysteries"
+      ]
     },
     "items": {
       "required": [
@@ -4641,7 +5104,9 @@
     "optimalOrder": 172,
     "members": true,
     "requirements": {
-      "skills": {},
+      "skills": {
+        "Hunter": 27
+      },
       "quests": []
     },
     "items": {
@@ -4677,7 +5142,9 @@
     "members": true,
     "requirements": {
       "skills": {},
-      "quests": []
+      "quests": [
+        "icthlarins-little-helper"
+      ]
     },
     "items": {
       "required": [
@@ -4719,8 +5186,25 @@
     "optimalOrder": 174,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 50,
+        "Crafting": 50,
+        "Herblore": 45,
+        "Magic": 56,
+        "Mining": 52,
+        "Prayer": 42,
+        "Smithing": 50,
+        "Strength": 50,
+        "Thieving": 50,
+        "Woodcutting": 50
+      },
+      "quests": [
+        "family-crest",
+        "heroes-quest",
+        "shilo-village",
+        "underground-pass",
+        "waterfall-quest"
+      ]
     },
     "items": {
       "required": [
@@ -4764,8 +5248,22 @@
     "optimalOrder": 175,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 38,
+        "Fishing": 40,
+        "Thieving": 45,
+        "Herblore": 48
+      },
+      "quests": [
+        "another-slice-of-h-a-m",
+        "death-to-the-dorgeshuun",
+        "the-lost-tribe",
+        "goblin-diplomacy",
+        "rune-mysteries",
+        "the-giant-dwarf",
+        "the-dig-site",
+        "fishing-contest"
+      ]
     },
     "items": {
       "required": [
@@ -4809,8 +5307,13 @@
     "optimalOrder": 177,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Firemaking": 40,
+        "Woodcutting": 50
+      },
+      "quests": [
+        "the-fremennik-trials"
+      ]
     },
     "items": {
       "required": [
@@ -4845,8 +5348,23 @@
     "optimalOrder": 178,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 54,
+        "Crafting": 38,
+        "Herblore": 50,
+        "Magic": 35,
+        "Mining": 42,
+        "Thieving": 52,
+        "Woodcutting": 52
+      },
+      "quests": [
+        "the-ascent-of-arceuus",
+        "the-depths-of-despair",
+        "druidic-ritual",
+        "the-forsaken-tower",
+        "the-queen-of-thieves",
+        "tale-of-the-righteous"
+      ]
     },
     "items": {
       "required": [
@@ -4885,8 +5403,17 @@
     "optimalOrder": 179,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 45,
+        "Attack": 40,
+        "Crafting": 48,
+        "Herblore": 40,
+        "Slayer": 38
+      },
+      "quests": [
+        "darkness-of-hallowvale",
+        "druidic-ritual"
+      ]
     },
     "items": {
       "required": [
@@ -4924,8 +5451,15 @@
     "optimalOrder": 180,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Hunter": 46,
+        "Herblore": 30,
+        "Construction": 27
+      },
+      "quests": [
+        "children-of-the-sun",
+        "eagles-peak"
+      ]
     },
     "items": {
       "required": [
@@ -4954,8 +5488,15 @@
     "optimalOrder": 196,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Crafting": 16,
+        "Construction": 30,
+        "Prayer": 50
+      },
+      "quests": [
+        "cabin-fever",
+        "creature-of-fenkenstrain"
+      ]
     },
     "items": {
       "required": [
@@ -4994,8 +5535,14 @@
     "optimalOrder": 197,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Construction": 38,
+        "Cooking": 36,
+        "Smithing": 35
+      },
+      "quests": [
+        "children-of-the-sun"
+      ]
     },
     "items": {
       "required": [
@@ -5027,8 +5574,15 @@
     "optimalOrder": 198,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Farming": 49,
+        "Herblore": 57,
+        "Thieving": 40
+      },
+      "quests": [
+        "druidic-ritual",
+        "fairytale-i-growing-pains"
+      ]
     },
     "items": {
       "required": [
@@ -5059,8 +5613,16 @@
     "optimalOrder": 201,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Slayer": 48,
+        "Hunter": 20,
+        "Fishing": 20,
+        "Runecraft": 20,
+        "Construction": 10
+      },
+      "quests": [
+        "twilights-promise"
+      ]
     },
     "items": {
       "required": [
@@ -5096,8 +5658,18 @@
     "optimalOrder": 202,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Strength": 60,
+        "Slayer": 56,
+        "Thieving": 56,
+        "Ranged": 47,
+        "Agility": 45
+      },
+      "quests": [
+        "the-eyes-of-glouphrie",
+        "waterfall-quest",
+        "tree-gnome-village"
+      ]
     },
     "items": {
       "required": [
@@ -5132,8 +5704,15 @@
     "optimalOrder": 203,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Mining": 55,
+        "Thieving": 48,
+        "Slayer": 48,
+        "Agility": 46
+      },
+      "quests": [
+        "twilights-promise"
+      ]
     },
     "items": {
       "required": [
@@ -5166,8 +5745,21 @@
     "optimalOrder": 204,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Crafting": 61,
+        "Defence": 40,
+        "Firemaking": 49,
+        "Herblore": 5,
+        "Magic": 65,
+        "Mining": 60,
+        "Woodcutting": 55
+      },
+      "quests": [
+        "the-fremennik-trials",
+        "lost-city",
+        "rune-mysteries",
+        "shilo-village"
+      ]
     },
     "items": {
       "required": [
@@ -5209,8 +5801,16 @@
     "optimalOrder": 205,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Defence": 65,
+        "Magic": 45
+      },
+      "quests": [
+        "black-knights-fortress",
+        "holy-grail",
+        "murder-mystery",
+        "one-small-favour"
+      ]
     },
     "items": {
       "required": [
@@ -5244,8 +5844,18 @@
     "optimalOrder": 207,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Cooking": 62,
+        "Crafting": 40,
+        "Firemaking": 42,
+        "Fishing": 62,
+        "Magic": 66,
+        "Smithing": 45
+      },
+      "quests": [
+        "garden-of-tranquillity",
+        "one-small-favour"
+      ]
     },
     "items": {
       "required": [
@@ -5324,8 +5934,20 @@
     "optimalOrder": 209,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Smithing": 55,
+        "Hunter": 52
+      },
+      "quests": [
+        "shield-of-arrav",
+        "temple-of-ikov",
+        "below-ice-mountain",
+        "family-crest",
+        "garden-of-tranquillity",
+        "what-lies-below",
+        "romeo-juliet",
+        "demon-slayer"
+      ]
     },
     "items": {
       "required": [
@@ -5357,8 +5979,16 @@
     "optimalOrder": 210,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Fletching": 50,
+        "Runecraft": 50,
+        "Smithing": 65
+      },
+      "quests": [
+        "dorics-quest",
+        "troll-stronghold",
+        "wanted"
+      ]
     },
     "items": {
       "required": [
@@ -5388,8 +6018,17 @@
     "optimalOrder": 211,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 59,
+        "Farming": 45,
+        "Herblore": 52,
+        "Thieving": 58,
+        "Woodcutting": 71
+      },
+      "quests": [
+        "druidic-ritual",
+        "witchs-house"
+      ]
     },
     "items": {
       "required": [
@@ -5426,8 +6065,13 @@
     "optimalOrder": 212,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Combat": 85
+      },
+      "quests": [
+        "eadgars-ruse",
+        "lunar-diplomacy"
+      ]
     },
     "items": {
       "required": [
@@ -5457,8 +6101,19 @@
     "optimalOrder": 215,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Crafting": 65,
+        "Fishing": 60,
+        "Runecraft": 55,
+        "Slayer": 60,
+        "Smithing": 60
+      },
+      "quests": [
+        "the-fremennik-isles",
+        "lunar-diplomacy",
+        "mountain-daughter",
+        "heroes-quest"
+      ]
     },
     "items": {
       "required": [
@@ -5500,8 +6155,19 @@
     "optimalOrder": 216,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 52,
+        "Attack": 50,
+        "Crafting": 56,
+        "Fletching": 60,
+        "Magic": 49,
+        "Slayer": 50,
+        "Woodcutting": 62
+      },
+      "quests": [
+        "a-taste-of-hope",
+        "vampyre-slayer"
+      ]
     },
     "items": {
       "required": [
@@ -5541,8 +6207,17 @@
     "optimalOrder": 220,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 62,
+        "Crafting": 55,
+        "Firemaking": 55
+      },
+      "quests": [
+        "contact",
+        "prince-ali-rescue",
+        "icthlarins-little-helper",
+        "gertrudes-cat"
+      ]
     },
     "items": {
       "required": [
@@ -5579,8 +6254,15 @@
     "optimalOrder": 221,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Slayer": 54,
+        "Fishing": 45,
+        "Construction": 41,
+        "Hunter": 36
+      },
+      "quests": [
+        "children-of-the-sun"
+      ]
     },
     "items": {
       "required": [
@@ -5610,8 +6292,17 @@
     "optimalOrder": 222,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Slayer": 51,
+        "Construction": 48,
+        "Sailing": 45,
+        "Hunter": 45,
+        "Woodcutting": 40,
+        "Crafting": 34
+      },
+      "quests": [
+        "pandemonium"
+      ]
     },
     "items": {
       "required": [
@@ -5641,8 +6332,14 @@
     "optimalOrder": 223,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Sailing": 52,
+        "Smithing": 48
+      },
+      "quests": [
+        "troubled-tortugans",
+        "pandemonium"
+      ]
     },
     "items": {
       "required": [
@@ -5671,8 +6368,15 @@
     "optimalOrder": 224,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Sailing": 62,
+        "Crafting": 60,
+        "Runecraft": 47,
+        "Mining": 53
+      },
+      "quests": [
+        "pandemonium"
+      ]
     },
     "items": {
       "required": [
@@ -5704,8 +6408,20 @@
     "optimalOrder": 225,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 55,
+        "Crafting": 70,
+        "Firemaking": 60,
+        "Hunter": 60,
+        "Slayer": 69,
+        "Thieving": 55
+      },
+      "quests": [
+        "enlightened-journey",
+        "the-eyes-of-glouphrie",
+        "troll-stronghold",
+        "watchtower"
+      ]
     },
     "items": {
       "required": [
@@ -5752,7 +6468,9 @@
     "members": true,
     "requirements": {
       "skills": {},
-      "quests": []
+      "quests": [
+        "a-taste-of-hope"
+      ]
     },
     "items": {
       "required": [
@@ -5786,8 +6504,25 @@
     "optimalOrder": 228,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 60,
+        "Construction": 50,
+        "Crafting": 62,
+        "Hitpoints": 50,
+        "Magic": 75,
+        "Mining": 68,
+        "Smithing": 70,
+        "Thieving": 60
+      },
+      "quests": [
+        "animal-magnetism",
+        "bone-voyage",
+        "client-of-kourend",
+        "dream-mentor",
+        "ghosts-ahoy",
+        "legends-quest",
+        "a-tail-of-two-cats"
+      ]
     },
     "items": {
       "required": [
@@ -5833,8 +6568,18 @@
     "optimalOrder": 229,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Mining": 64,
+        "Ranged": 62,
+        "Thieving": 62,
+        "Agility": 61,
+        "Strength": 58,
+        "Slayer": 37
+      },
+      "quests": [
+        "defender-of-varrock",
+        "troll-romance"
+      ]
     },
     "items": {
       "required": [
@@ -5873,8 +6618,18 @@
     "optimalOrder": 230,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 68,
+        "Construction": 35,
+        "Firemaking": 66,
+        "Mining": 72
+      },
+      "quests": [
+        "cold-war",
+        "my-arms-big-adventure",
+        "romeo-juliet",
+        "swan-song"
+      ]
     },
     "items": {
       "required": [
@@ -5914,8 +6669,16 @@
     "optimalOrder": 231,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 69,
+        "Thieving": 64,
+        "Hunter": 56
+      },
+      "quests": [
+        "making-friends-with-my-arm",
+        "devious-minds",
+        "hazeel-cult"
+      ]
     },
     "items": {
       "required": [
@@ -5945,8 +6708,17 @@
     "optimalOrder": 232,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Thieving": 66,
+        "Runecraft": 52,
+        "Fletching": 52
+      },
+      "quests": [
+        "the-heart-of-darkness",
+        "twilights-promise",
+        "children-of-the-sun",
+        "perilous-moons"
+      ]
     },
     "items": {
       "required": [
@@ -5978,8 +6750,26 @@
     "optimalOrder": 233,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Thieving": 72,
+        "Magic": 67,
+        "Agility": 66,
+        "Farming": 65,
+        "Herblore": 65,
+        "Hunter": 62
+      },
+      "quests": [
+        "defender-of-varrock",
+        "the-path-of-glouphrie",
+        "fight-arena",
+        "dream-mentor",
+        "the-hand-in-the-sand",
+        "wanted",
+        "temple-of-the-eye",
+        "tears-of-guthix",
+        "nature-spirit",
+        "a-tail-of-two-cats"
+      ]
     },
     "items": {
       "required": [
@@ -6024,8 +6814,22 @@
     "optimalOrder": 234,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Firemaking": 75,
+        "Magic": 75,
+        "Herblore": 62,
+        "Thieving": 70,
+        "Runecraft": 60,
+        "Construction": 60
+      },
+      "quests": [
+        "desert-treasure-i",
+        "secrets-of-the-north",
+        "enakhras-lament",
+        "temple-of-the-eye",
+        "the-garden-of-death",
+        "below-ice-mountain"
+      ]
     },
     "items": {
       "required": [
@@ -6061,8 +6865,21 @@
     "optimalOrder": 235,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Agility": 70,
+        "Construction": 70,
+        "Farming": 70,
+        "Herblore": 70,
+        "Hunter": 70,
+        "Mining": 70,
+        "Smithing": 70,
+        "Woodcutting": 70
+      },
+      "quests": [
+        "druidic-ritual",
+        "making-history",
+        "mournings-end-part-ii"
+      ]
     },
     "items": {
       "required": [
@@ -6110,8 +6927,30 @@
     "optimalOrder": 236,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Slayer": 74,
+        "Woodcutting": 74,
+        "Smithing": 72,
+        "Cooking": 72,
+        "Fletching": 70,
+        "Mining": 66,
+        "Hunter": 65,
+        "Crafting": 64,
+        "Herblore": 64,
+        "Magic": 57
+      },
+      "quests": [
+        "a-night-at-the-theatre",
+        "sins-of-the-father",
+        "vampyre-slayer",
+        "a-taste-of-hope",
+        "darkness-of-hallowvale",
+        "in-aid-of-the-myreque",
+        "in-search-of-the-myreque",
+        "nature-spirit",
+        "priest-in-peril",
+        "the-restless-ghost"
+      ]
     },
     "items": {
       "required": [
@@ -6296,8 +7135,31 @@
     "optimalOrder": 1036,
     "members": true,
     "requirements": {
-      "skills": {},
-      "quests": []
+      "skills": {
+        "Cooking": 70,
+        "Crafting": 42,
+        "Smithing": 31,
+        "Firemaking": 20,
+        "Farming": 20,
+        "Agility": 48
+      },
+      "quests": [
+        "cooks-assistant",
+        "fishing-contest",
+        "goblin-diplomacy",
+        "big-chompy-bird-hunting",
+        "biohazard",
+        "demon-slayer",
+        "murder-mystery",
+        "nature-spirit",
+        "witchs-house",
+        "gertrudes-cat",
+        "shadow-of-the-storm",
+        "legends-quest",
+        "monkey-madness-i",
+        "desert-treasure-i",
+        "horror-from-the-deep"
+      ]
     },
     "items": {
       "required": [

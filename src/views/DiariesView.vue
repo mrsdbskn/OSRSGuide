@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useMilestoneStore, TOTAL_DIARY_TIERS } from '@/stores/milestoneStore';
 import { usePreferencesStore } from '@/stores/preferencesStore';
@@ -18,9 +18,15 @@ const selectedRegion = computed({
   set: (val: string) => preferencesStore.setDiarySelectedRegion(val),
 });
 
-if (route.query.region) {
-  preferencesStore.setDiarySelectedRegion(String(route.query.region));
-}
+watch(
+  () => route.query.region,
+  (newRegion) => {
+    if (newRegion) {
+      preferencesStore.setDiarySelectedRegion(String(newRegion));
+    }
+  },
+  { immediate: true }
+);
 
 const filteredDiaries = computed(() => {
   let list = milestoneStore.diaries;
