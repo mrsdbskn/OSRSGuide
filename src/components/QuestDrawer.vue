@@ -156,12 +156,23 @@ const wikiUrl = computed(() => {
 
             <!-- Video Guide Facade -->
             <div>
-              <h3 class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2.5">
-                Video Walkthrough
-              </h3>
+              <div class="flex items-center justify-between mb-2.5">
+                <h3 class="text-xs font-semibold uppercase tracking-wider text-gray-400">
+                  Video Walkthrough
+                </h3>
+                <a
+                  href="https://www.youtube.com/@osrsquestguides"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1 text-[11px] font-semibold text-osrs-gold hover:text-osrs-gold-light transition-colors"
+                >
+                  <span>@osrsquestguides</span>
+                  <ExternalLink class="w-3 h-3" />
+                </a>
+              </div>
               <VideoFacade
                 :video-id="quest.youtubeVideoId"
-                :title="`${quest.name} Quick Guide`"
+                :title="`${quest.name} Quick Guide by @osrsquestguides`"
                 :is-unreleased="quest.isUnreleased"
               />
             </div>

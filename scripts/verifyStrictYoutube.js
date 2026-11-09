@@ -9,6 +9,9 @@ const PLAYLISTS = [
   'PL_Kl9MOC-n-KDxfY2kx7ejkcW3NniQs9O', // Master
   'PL_Kl9MOC-n-JhThu00MGM_BzUN_OdOnP2', // RFD
   'PL_Kl9MOC-n-JWrrr0QU0G0Mo2DPe3DRCy', // Miniquests
+  'PLPi9OYCH7-VE',                      // Grandmaster
+  'PL_Kl9MOC-n-Ksy-PX-8NJ1-ehQwzyRmDt', // Activity guides
+  'PL_Kl9MOC-n-JKJs_7C3TnlsawSYulR6Dv', // Minigames
   'UUG1_EBH9-fRqI93WlaaG98A'             // Full uploads playlist
 ];
 
@@ -47,7 +50,7 @@ async function fetchPlaylistVideos(playlistId) {
 }
 
 async function run() {
-  const verifiedMap = new Map(); // videoId -> title
+  const verifiedMap = new Map();
 
   for (const pid of PLAYLISTS) {
     const vids = await fetchPlaylistVideos(pid);
@@ -56,7 +59,7 @@ async function run() {
     }
   }
 
-  console.log(`Gathered ${verifiedMap.size} unique verified videos strictly from @osrsquestguides!`);
+  console.log(`Gathered ${verifiedMap.size} verified videos strictly from @osrsquestguides.`);
 
   const quests = JSON.parse(fs.readFileSync('./src/data/quests.json', 'utf8'));
 
@@ -64,57 +67,57 @@ async function run() {
     return s.toLowerCase().replace(/[^a-z0-9]/g, '');
   }
 
-  let mappedCount = 0;
-  let removedForeignCount = 0;
+  let matchedStrict = 0;
+  let nonStrict = 0;
 
   for (const q of quests) {
-    // If quest already had a videoId, check if it's strictly in verifiedMap
-    if (q.youtubeVideoId && !verifiedMap.has(q.youtubeVideoId)) {
-      console.log(`Removing foreign/unverified video for ${q.name} (${q.youtubeVideoId})`);
-      q.youtubeVideoId = null;
-      removedForeignCount++;
-    }
-
-    // Now try to match from verified videos strictly from @osrsquestguides
-    const qClean = cleanStr(q.name);
-    let matched = null;
-
-    for (const [vid, title] of verifiedMap.entries()) {
-      const tClean = cleanStr(title);
-      // Clean match
-      if (tClean.includes(qClean) || qClean.includes(tClean)) {
-        matched = { vid, title };
-        break;
+    if (q.youtubeVideoId) {
+      if (verifiedMap.has(q.youtubeVideoId)) {
+        matchedStrict++;
+      } else {
+        console.log(`Non-strict video found: ${q.name} -> ${q.youtubeVideoId}`);
+        q.youtubeVideoId = null;
+        nonStrict++;
       }
-    }
+    } else {
+      // Try to find a match strictly from @osrsquestguides
+      const qClean = cleanStr(q.name);
+      let matched = null;
 
-    if (!matched) {
-      // Word match
-      const words = q.name.toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length > 3 && w !== 'quest');
-      if (words.length > 0) {
-        for (const [vid, title] of verifiedMap.entries()) {
-          const tLower = title.toLowerCase();
-          if (words.every(w => tLower.includes(w))) {
-            matched = { vid, title };
-            break;
+      for (const [vid, title] of verifiedMap.entries()) {
+        const tClean = cleanStr(title);
+        if (tClean.includes(qClean) || qClean.includes(tClean)) {
+          matched = { vid, title };
+          break;
+        }
+      }
+
+      if (!matched) {
+        const words = q.name.toLowerCase().split(/[^a-z0-9]+/).filter(w => w.length > 3 && w !== 'quest');
+        if (words.length > 0) {
+          for (const [vid, title] of verifiedMap.entries()) {
+            const tLower = title.toLowerCase();
+            if (words.every(w => tLower.includes(w))) {
+              matched = { vid, title };
+              break;
+            }
           }
         }
       }
-    }
 
-    if (matched) {
-      q.youtubeVideoId = matched.vid;
-      mappedCount++;
-    } else {
-      q.youtubeVideoId = null;
+      if (matched) {
+        console.log(`Matched new @osrsquestguides video for ${q.name}: [${matched.vid}] ${matched.title}`);
+        q.youtubeVideoId = matched.vid;
+        matchedStrict++;
+      }
     }
   }
 
-  console.log(`Strictly mapped ${mappedCount} quests to official @osrsquestguides videos.`);
-  console.log(`Removed ${removedForeignCount} foreign videos.`);
+  console.log(`Total verified @osrsquestguides videos in dataset: ${matchedStrict}`);
+  console.log(`Non-strict videos removed: ${nonStrict}`);
+  console.log(`Quests without video: ${quests.filter(q => !q.youtubeVideoId).length}`);
 
   fs.writeFileSync('./src/data/quests.json', JSON.stringify(quests, null, 2), 'utf8');
-  console.log('Saved src/data/quests.json successfully.');
 }
 
-run();
+run().catch(console.error);
