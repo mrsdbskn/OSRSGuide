@@ -4,7 +4,7 @@ import type { Quest, DiaryRegion, CombatTask, DiaryTier, CATier } from '@/types/
 import questsRaw from '@/data/quests.json';
 import diariesRaw from '@/data/diaries.json';
 import combatTasksRaw from '@/data/combatAchievements.json';
-import { getCATierSwordSprite, getDiaryEquipmentSprite } from '@/utils/assets';
+import { getCATierSwordSprite, getDiaryEquipmentSprite, COMMON_SPRITES } from '@/utils/assets';
 
 export const CA_THRESHOLDS: { tier: CATier; points: number }[] = [
   { tier: 'Easy', points: 41 },
@@ -15,7 +15,7 @@ export const CA_THRESHOLDS: { tier: CATier; points: number }[] = [
   { tier: 'Grandmaster', points: 2697 },
 ];
 
-export const TOTAL_QP_TARGET = 343; // 184 officially released quests
+export const TOTAL_QP_TARGET = 345; // 186 officially released quests
 export const TOTAL_DIARY_TIERS = 48;
 export const TOTAL_CA_POINTS = 2697; // 655 official CA tasks
 
@@ -81,6 +81,9 @@ export const useMilestoneStore = defineStore('milestones', {
 
     latestUnlockedDiarySprite(state): string {
       const playerStore = usePlayerStore();
+      if (this.completedDiaryTiersCount === TOTAL_DIARY_TIERS) {
+        return COMMON_SPRITES.diariesCape;
+      }
       // Find the highest tier completed in any region
       const tiersOrder: DiaryTier[] = ['Elite', 'Hard', 'Medium', 'Easy'];
       for (const t of tiersOrder) {
@@ -91,8 +94,7 @@ export const useMilestoneStore = defineStore('milestones', {
           }
         }
       }
-      // default: Ardougne Cloak 1
-      return getDiaryEquipmentSprite('ardougne', 'Easy');
+      return COMMON_SPRITES.diariesCape;
     },
 
     // --- COMBAT ACHIEVEMENTS METRICS ---

@@ -129,7 +129,7 @@ const wikiUrl = computed(() => {
               </div>
               <p class="text-xs leading-relaxed text-amber-200/90">
                 This quest was revealed by Jagex (e.g. at the Summer/Winter Summit) but has not yet been released into Old School RuneScape.
-                Prerequisites, skill requirements, and rewards are tentative and do not count toward the official 343 Quest Point Cape.
+                Prerequisites, skill requirements, and rewards are tentative and do not count toward the official {{ milestoneStore.totalPossibleQuestPoints }} Quest Point Cape.
               </p>
             </div>
 

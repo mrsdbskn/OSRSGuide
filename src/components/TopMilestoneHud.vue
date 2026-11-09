@@ -98,8 +98,8 @@ function toggleDensity() {
           >
             <div class="relative w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 flex items-center justify-center">
               <img
-                :src="COMMON_SPRITES.diariesCape"
-                alt="Achievement Diary Cape"
+                :src="milestoneStore.latestUnlockedDiarySprite"
+                alt="Achievement Diary"
                 class="w-5 h-5 sm:w-6 sm:h-6 object-contain drop-shadow transition-transform group-hover:scale-110"
                 @error="(e) => handleImageFallback(e, 'shield')"
               />

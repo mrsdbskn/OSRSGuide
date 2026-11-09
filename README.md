@@ -9,7 +9,7 @@ Optimized for high-performance static hosting on **GitHub Pages**.
 ## ✨ Key Features
 
 ### 1. 🧭 Sticky Milestone Top HUD (`<TopMilestoneHud.vue>`)
-- **Quests Metric**: Quest Points pill (`XXX / 343 QP`) with mini progress gauge. Hover tooltip indicates QP needed for the Quest Point Cape.
+- **Quests Metric**: Quest Points pill (`XXX / 345 QP`) with mini progress gauge. Hover tooltip indicates QP needed for the Quest Point Cape.
 - **Diaries Metric**: Diary Tiers completion pill (`XX / 48 Tiers`) showing the latest unlocked diary item sprite. Hover indicates tiers remaining for the Achievement Diary Cape.
 - **Combat Achievements Metric**: Total points gauge (`XXXX / 2697 pts`) flanked by the unlocked Tier Sword sprite. Hover displays points required for the next sword upgrade.
 - **Next Immediate Reward Pin**: Real-time badge identifying the closest unlockable reward (e.g. *"Next Reward: Hard Combat Hilt (14 pts away)"* or *"Next Reward: Barrows Gloves (2 quests away)"*).

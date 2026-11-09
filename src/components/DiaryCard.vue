@@ -22,7 +22,6 @@ const emit = defineEmits<{
 }>();
 
 const playerStore = usePlayerStore();
-const activeTier = ref<DiaryTier>('Easy');
 const showVideo = ref(false);
 
 const tiers: DiaryTier[] = ['Easy', 'Medium', 'Hard', 'Elite'];
@@ -33,6 +32,34 @@ function isTierCompleted(tier: DiaryTier): boolean {
   if (!tierData || !tierData.tasks.length) return false;
   return tierData.tasks.every((task) => playerStore.completedDiaryTasks.includes(task.id));
 }
+
+// Check if any tier is completed
+const hasAnyTierCompleted = computed(() => {
+  return tiers.some((t) => isTierCompleted(t));
+});
+
+// Latest fully completed tier (Elite -> Hard -> Medium -> Easy)
+const latestCompletedTier = computed<DiaryTier>(() => {
+  const reverseTiers: DiaryTier[] = ['Elite', 'Hard', 'Medium', 'Easy'];
+  for (const t of reverseTiers) {
+    if (isTierCompleted(t)) {
+      return t;
+    }
+  }
+  return 'Easy';
+});
+
+const userSelectedTier = ref<DiaryTier | null>(null);
+
+// Highlight the latest fully completed tier by default instead of Easy
+const activeTier = computed<DiaryTier>({
+  get() {
+    return userSelectedTier.value ?? latestCompletedTier.value;
+  },
+  set(val: DiaryTier) {
+    userSelectedTier.value = val;
+  },
+});
 
 // Progress for current tier
 const currentTierTasks = computed(() => props.region.tiers[activeTier.value]?.tasks || []);
@@ -95,13 +122,33 @@ const currentTierVideoId = computed(() => props.region.tiers[activeTier.value]?.
     <!-- Regional Card Header -->
     <div class="p-4 sm:p-5 border-b border-white/5 bg-gradient-to-b from-white/[0.03] to-transparent">
       <div class="flex items-center justify-between mb-3">
-        <div>
-          <h3 class="text-lg font-bold font-cinzel text-white flex items-center gap-2">
-            {{ region.name }}
-            <span class="text-xs font-sans font-normal text-gray-400">
-              ({{ region.rewardItemName }})
-            </span>
-          </h3>
+        <div class="flex items-center gap-3">
+          <!-- Authentic Tier Equipment Sprite of the latest unlocked tier -->
+          <div class="w-10 h-10 rounded-xl bg-black/40 border border-white/10 flex items-center justify-center p-1.5 flex-shrink-0 shadow-inner">
+            <img
+              :src="getDiaryEquipmentSprite(region.id, latestCompletedTier)"
+              :alt="`${region.name} ${latestCompletedTier}`"
+              class="w-full h-full object-contain transition-all duration-300"
+              :class="hasAnyTierCompleted ? 'opacity-100 drop-shadow' : 'opacity-40 grayscale'"
+              @error="(e) => handleImageFallback(e, 'shield')"
+            />
+          </div>
+          <div>
+            <h3 class="text-lg font-bold font-cinzel text-white flex items-center gap-2">
+              <span>{{ region.name }}</span>
+            </h3>
+            <div class="flex items-center gap-2 mt-0.5">
+              <span class="text-xs font-sans font-normal text-gray-400">
+                {{ region.rewardItemName }}
+              </span>
+              <span
+                v-if="hasAnyTierCompleted"
+                class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-osrs-gold/15 text-osrs-gold border border-osrs-gold/30"
+              >
+                {{ latestCompletedTier }} Unlocked
+              </span>
+            </div>
+          </div>
         </div>
 
         <!-- Video Guide Toggle Button -->
@@ -127,7 +174,7 @@ const currentTierVideoId = computed(() => props.region.tiers[activeTier.value]?.
           class="group relative flex flex-col sm:flex-row items-center justify-center gap-1.5 py-2 px-1 rounded-lg transition-all text-xs font-semibold"
           :class="[
             activeTier === tier
-              ? 'bg-osrs-elevated text-osrs-gold shadow-sm border border-osrs-gold/30'
+              ? 'bg-osrs-elevated text-osrs-gold shadow-sm border border-osrs-gold/40 ring-1 ring-osrs-gold/30'
               : 'text-gray-400 hover:text-gray-200 hover:bg-white/[0.02]'
           ]"
         >
@@ -140,7 +187,8 @@ const currentTierVideoId = computed(() => props.region.tiers[activeTier.value]?.
               :class="[
                 isTierCompleted(tier)
                   ? 'opacity-100 drop-shadow hover:filter hover:drop-shadow-[0_0_8px_rgba(229,184,66,0.6)]'
-                  : 'opacity-40 grayscale group-hover:opacity-70 group-hover:grayscale-0'
+                  : 'opacity-40 grayscale group-hover:opacity-70 group-hover:grayscale-0',
+                tier === latestCompletedTier && hasAnyTierCompleted ? 'scale-110 drop-shadow-[0_0_6px_rgba(229,184,66,0.7)]' : ''
               ]"
               @error="(e) => handleImageFallback(e, 'shield')"
             />
@@ -155,6 +203,15 @@ const currentTierVideoId = computed(() => props.region.tiers[activeTier.value]?.
           </div>
 
           <span class="text-[11px] sm:text-xs truncate">{{ tier }}</span>
+
+          <!-- Latest Completed Badge Indicator -->
+          <span
+            v-if="tier === latestCompletedTier && hasAnyTierCompleted"
+            class="hidden md:inline-block absolute -top-1.5 -right-1 px-1 py-0.2 rounded bg-osrs-gold text-black text-[9px] font-black leading-tight shadow"
+            title="Latest Completed Tier"
+          >
+            LATEST
+          </span>
         </button>
       </div>
 
